@@ -36,6 +36,15 @@ class HenryTest {
         assertEquals(BigDecimal.valueOf(4.55), new Henry().priceBasket(basket));
     }
 
+    @Test
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, no promo, costs 3.55")
+    void test_priceBasket_multiple_combo() {
 
+        Basket basket = new Basket();
+        basket.addItem(new BasketItem(StockItem.SOUP, 3));
+        basket.addItem(new BasketItem(StockItem.BREAD, 2));
+
+        assertEquals(BigDecimal.valueOf(3.55), new Henry().priceBasket(basket));
+    }
 
 }
