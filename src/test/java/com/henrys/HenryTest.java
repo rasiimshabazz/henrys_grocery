@@ -8,6 +8,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class HenryTest {
 
     @Test
+    @DisplayName("a basket containing nada, costs nada")
+    void test_priceBasket_nada() {
+
+        Henry henry = new Henry();
+        Basket basket = new Basket();
+
+        assertEquals(0.00, henry.priceBasket(basket));
+    }
+
+    @Test
     @DisplayName("a basket containing 1 tin of soup, costs 0.65")
     void test_priceBasket() {
 

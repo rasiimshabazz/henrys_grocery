@@ -15,4 +15,8 @@ class Basket {
         if (item == null) return false;
         return basketItems.add(item);
     }
+
+    public boolean isEmpty() {
+        return basketItems.isEmpty();
+    }
 }
