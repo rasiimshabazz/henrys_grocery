@@ -14,6 +14,8 @@ public class HenryTest {
         Henry henry = new Henry();
         Basket basket = new Basket();
 
-        assertEquals(0.15, henry.priceBasket(basket));
+        double price = henry.priceBasket(basket);
+
+        assertEquals(0.15, price);
     }
 }
