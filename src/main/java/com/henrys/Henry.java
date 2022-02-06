@@ -1,6 +1,7 @@
 package com.henrys;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 class Henry {
 
@@ -8,9 +9,10 @@ class Henry {
 
         if (basket.isEmpty()) return BigDecimal.ZERO;
 
-        double price = basket.price();
-
-        return BigDecimal.valueOf(price);
+        return format(basket.price());
     }
 
+    private BigDecimal format(double price) {
+        return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
+    }
 }
