@@ -29,4 +29,15 @@ class HenryTest {
 
         assertEquals(BigDecimal.valueOf(0.65), henry.priceBasket(basket));
     }
+
+    @Test
+    @DisplayName("a basket containing 7 tins of soup, costs 4.55")
+    void test_priceBasket_multiple() {
+
+        Henry henry = new Henry();
+        Basket basket = new Basket();
+        basket.addItem(new BasketItem(StockItem.SOUP, 7));
+
+        assertEquals(BigDecimal.valueOf(4.55), henry.priceBasket(basket));
+    }
 }
