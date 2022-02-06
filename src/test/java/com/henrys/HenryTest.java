@@ -23,7 +23,7 @@ class HenryTest {
 
         Henry henry = new Henry();
         Basket basket = new Basket();
-        basket.addItem("soup");
+        basket.addItem(StockItem.SOUP);
 
         assertEquals(0.65, henry.priceBasket(basket));
     }

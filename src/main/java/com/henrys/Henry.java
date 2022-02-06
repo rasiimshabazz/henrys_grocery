@@ -10,9 +10,9 @@ class Henry {
 
         if (basket.isEmpty()) return 0;
 
-        List<String> basketItems = basket.getItems();
+        List<StockItem> basketItems = basket.getItems();
 
-        if (basketItems.get(0).equalsIgnoreCase("soup"))
+        if (basketItems.get(0).equals(StockItem.SOUP))
             return 0.65;
 
         return price;

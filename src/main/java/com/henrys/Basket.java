@@ -5,13 +5,13 @@ import java.util.List;
 
 class Basket {
 
-    private List<String> basketItems;
+    private List<StockItem> basketItems;
 
     Basket() {
         this.basketItems = new ArrayList<>();
     }
 
-    boolean addItem(String item) {
+    boolean addItem(StockItem item) {
         if (item == null) return false;
         return basketItems.add(item);
     }
@@ -20,7 +20,7 @@ class Basket {
         return basketItems.isEmpty();
     }
 
-    public List<String> getItems() {
+    public List<StockItem> getItems() {
         return basketItems;
     }
 }
