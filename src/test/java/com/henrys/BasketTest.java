@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BasketTest {
+class BasketTest {
 
     @Test
     @DisplayName("can add items to basket")
-    public void addItem() {
+    void test_addItem() {
 
         Basket basket = new Basket();
         String item = "soup";

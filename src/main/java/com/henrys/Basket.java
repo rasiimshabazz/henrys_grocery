@@ -1,11 +1,9 @@
 package com.henrys;
 
-import com.sun.deploy.net.MessageHeader;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Basket {
+class Basket {
 
     private List<String> basketItems;
 
@@ -13,7 +11,7 @@ public class Basket {
         this.basketItems = new ArrayList<>();
     }
 
-    public boolean addItem(String item) {
+    boolean addItem(String item) {
         if (item == null) return false;
         return basketItems.add(item);
     }
