@@ -5,15 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HenryTest {
+public class BasketTest {
 
     @Test
-    @DisplayName("can setup basic basket")
-    public void test_priceBasket() {
+    @DisplayName("can add items to basket")
+    public void addItem() {
 
-        Henry henry = new Henry();
         Basket basket = new Basket();
+        String item = "soup";
 
-        assertEquals(0.15, henry.priceBasket(basket));
+        assertTrue(basket.addItem(item));
     }
+
 }
