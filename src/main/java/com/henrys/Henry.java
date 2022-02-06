@@ -12,7 +12,7 @@ class Henry {
 
         List<BasketItem> basketItems = basket.getItems();
 
-        double price = basketItems.stream().mapToDouble(item -> item.getItem().getCost()).sum();
+        double price = basketItems.stream().mapToDouble(item -> item.price()).sum();
 
         return BigDecimal.valueOf(price);
 

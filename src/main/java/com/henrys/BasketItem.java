@@ -11,10 +11,14 @@ class BasketItem {
     }
 
     public StockItem getItem() {
-        return item;
+        return this.item;
     }
 
     public int getQuantity() {
-        return quantity;
+        return this.quantity;
+    }
+
+    public double price() {
+        return this.item.getCost() * this.quantity;
     }
 }
