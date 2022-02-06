@@ -11,9 +11,12 @@ class Basket {
        this.basketItems = new ArrayList<>();
     }
 
+    double price() {
+        return this.basketItems.stream().mapToDouble(item -> item.price()).sum();
+    }
+
     boolean addItem(BasketItem item) {
         if (item == null) return false;
-
         return basketItems.add(item);
     }
 
@@ -24,4 +27,5 @@ class Basket {
     public List<BasketItem> getItems() {
         return basketItems;
     }
+
 }
