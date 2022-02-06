@@ -4,6 +4,6 @@ public class Henry {
 
     public double priceBasket(Basket basket) {
 
-        return 0.15;
+        return 0.65;
     }
 }
