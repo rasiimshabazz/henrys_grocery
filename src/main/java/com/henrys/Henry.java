@@ -10,11 +10,16 @@ class Henry {
 
         if (basket.isEmpty()) return BigDecimal.ZERO;
 
-        List<BasketItem> basketItems = basket.getItems();
-
-        double price = basketItems.stream().mapToDouble(item -> item.price()).sum();
+        double price = price(basket);
 
         return BigDecimal.valueOf(price);
 
+    }
+
+    private double price(Basket basket) {
+        List<BasketItem> basketItems = basket.getItems();
+
+        double price = basketItems.stream().mapToDouble(item -> item.price()).sum();
+        return price;
     }
 }
