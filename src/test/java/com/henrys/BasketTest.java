@@ -15,6 +15,8 @@ public class BasketTest {
         String item = "soup";
 
         assertTrue(basket.addItem(item));
+        assertFalse(basket.addItem(null));
+
     }
 
 }
