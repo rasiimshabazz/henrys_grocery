@@ -12,9 +12,9 @@ class Henry {
 
         List<StockItem> basketItems = basket.getItems();
 
-        if (basketItems.get(0).equals(StockItem.SOUP))
-            return BigDecimal.valueOf(StockItem.SOUP.getCost());
+        double price = basketItems.stream().mapToDouble(item -> item.getCost()).sum();
 
-        return BigDecimal.ZERO;
+        return BigDecimal.valueOf(price);
+
     }
 }
