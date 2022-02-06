@@ -16,7 +16,6 @@ public class BasketTest {
 
         assertTrue(basket.addItem(item));
         assertFalse(basket.addItem(null));
-
     }
 
 }
