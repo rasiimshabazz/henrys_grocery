@@ -13,7 +13,7 @@ class Henry {
         List<StockItem> basketItems = basket.getItems();
 
         if (basketItems.get(0).equals(StockItem.SOUP))
-            return BigDecimal.valueOf(0.65);
+            return BigDecimal.valueOf(StockItem.SOUP.getCost());
 
         return BigDecimal.ZERO;
     }

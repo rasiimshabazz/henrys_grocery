@@ -1,5 +1,7 @@
 package com.henrys;
 
+import java.math.BigDecimal;
+
 enum StockItem {
 
     SOUP(0.65), BREAD(0.80);
@@ -10,4 +12,7 @@ enum StockItem {
         this.cost = cost;
     }
 
+    public double getCost() {
+        return cost;
+    }
 }
