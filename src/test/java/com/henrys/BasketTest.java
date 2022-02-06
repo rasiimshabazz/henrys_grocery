@@ -20,6 +20,7 @@ class BasketTest {
         assertEquals("soup", basket.getItems().get(0));
         assertEquals("bread", basket.getItems().get(1));
         assertEquals(2, basket.getItems().size());
+
     }
 
 }
