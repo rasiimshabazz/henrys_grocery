@@ -25,7 +25,7 @@ class HenryTest {
 
         Henry henry = new Henry();
         Basket basket = new Basket();
-        basket.addItem(StockItem.SOUP);
+        basket.addItem(new BasketItem(StockItem.SOUP, 1));
 
         assertEquals(BigDecimal.valueOf(0.65), henry.priceBasket(basket));
     }

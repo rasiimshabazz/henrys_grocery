@@ -5,31 +5,23 @@ import java.util.List;
 
 class Basket {
 
-    private List<StockItem> basketItems;
-    private List<BasketItem> newBasketItems;
+    private List<BasketItem> basketItems;
 
     Basket() {
-        this.basketItems = new ArrayList<>();
-        this.newBasketItems = new ArrayList<>();
+       this.basketItems = new ArrayList<>();
     }
 
-    boolean addItem(StockItem item) {
+    boolean addItem(BasketItem item) {
         if (item == null) return false;
-        basketItems.add(item);
-        return addNewBasketItem(item);
-    }
 
-    private boolean addNewBasketItem(StockItem item) {
-
-        BasketItem basketItems = new BasketItem(item, 1);
-        return newBasketItems.add(basketItems);
+        return basketItems.add(item);
     }
 
     public boolean isEmpty() {
         return basketItems.isEmpty();
     }
 
-    public List<StockItem> getItems() {
+    public List<BasketItem> getItems() {
         return basketItems;
     }
 }

@@ -13,12 +13,12 @@ class BasketTest {
 
         Basket basket = new Basket();
 
-        assertTrue(basket.addItem(StockItem.SOUP));
+        assertTrue(basket.addItem(new BasketItem(StockItem.SOUP, 1)));
         assertFalse(basket.addItem(null));
-        assertTrue(basket.addItem(StockItem.BREAD));
+        assertTrue(basket.addItem(new BasketItem(StockItem.BREAD, 1)));
 
-        assertEquals(StockItem.SOUP, basket.getItems().get(0));
-        assertEquals(StockItem.BREAD, basket.getItems().get(1));
+        assertEquals(StockItem.SOUP, basket.getItems().get(0).getItem());
+        assertEquals(StockItem.BREAD, basket.getItems().get(1).getItem());
         assertEquals(2, basket.getItems().size());
 
     }

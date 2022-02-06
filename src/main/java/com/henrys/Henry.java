@@ -10,9 +10,9 @@ class Henry {
 
         if (basket.isEmpty()) return BigDecimal.ZERO;
 
-        List<StockItem> basketItems = basket.getItems();
+        List<BasketItem> basketItems = basket.getItems();
 
-        double price = basketItems.stream().mapToDouble(item -> item.getCost()).sum();
+        double price = basketItems.stream().mapToDouble(item -> item.getItem().getCost()).sum();
 
         return BigDecimal.valueOf(price);
 
