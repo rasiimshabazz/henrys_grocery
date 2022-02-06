@@ -1,20 +1,20 @@
 package com.henrys;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 class Henry {
 
-    double priceBasket(Basket basket) {
+    BigDecimal priceBasket(Basket basket) {
 
-        double price = 0;
-
-        if (basket.isEmpty()) return 0;
+        if (basket.isEmpty()) return BigDecimal.ZERO;
 
         List<StockItem> basketItems = basket.getItems();
 
         if (basketItems.get(0).equals(StockItem.SOUP))
-            return 0.65;
+            return BigDecimal.valueOf(0.65);
 
-        return price;
+        return BigDecimal.ZERO;
     }
 }

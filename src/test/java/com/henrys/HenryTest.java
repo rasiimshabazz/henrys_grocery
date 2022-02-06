@@ -3,6 +3,8 @@ package com.henrys;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HenryTest {
@@ -14,7 +16,7 @@ class HenryTest {
         Henry henry = new Henry();
         Basket basket = new Basket();
 
-        assertEquals(0.00, henry.priceBasket(basket));
+        assertEquals(BigDecimal.valueOf(0), henry.priceBasket(basket));
     }
 
     @Test
@@ -25,6 +27,6 @@ class HenryTest {
         Basket basket = new Basket();
         basket.addItem(StockItem.SOUP);
 
-        assertEquals(0.65, henry.priceBasket(basket));
+        assertEquals(BigDecimal.valueOf(0.65), henry.priceBasket(basket));
     }
 }
