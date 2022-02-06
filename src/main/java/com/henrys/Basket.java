@@ -19,4 +19,8 @@ class Basket {
     public boolean isEmpty() {
         return basketItems.isEmpty();
     }
+
+    public List<String> getItems() {
+        return basketItems;
+    }
 }
