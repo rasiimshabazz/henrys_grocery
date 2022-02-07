@@ -2,9 +2,10 @@ package com.henrys;
 
 import java.util.List;
 
-public class BreadCoupon {
+class BreadCoupon implements Coupon {
 
-    public double discount(List<BasketItem> basketItems) {
+    @Override
+    public double applyDiscount(List<BasketItem> basketItems) {
 
         double discount = 0;
 
