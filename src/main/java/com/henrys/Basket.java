@@ -18,13 +18,13 @@ class Basket {
 
         if (discountsOn) {
 
-            discount = discount();
+            discount = discount(this.basketItems);
         }
 
         return this.basketItems.stream().mapToDouble(item -> item.price()).sum() - discount;
     }
 
-    private double discount() {
+    private static double discount(List<BasketItem> basketItems) {
 
         double discount = 0;
 
