@@ -20,10 +20,6 @@ class Basket {
         return basketItems.add(item);
     }
 
-    public boolean isEmpty() {
-        return basketItems.isEmpty();
-    }
-
     public List<BasketItem> getItems() {
         return basketItems;
     }
