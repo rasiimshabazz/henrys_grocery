@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -177,7 +179,7 @@ class CashierTest {
 
     @Test
     @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, expiring coupon, bought today, costs 3.15")
-    void test_priceBasket_multiple_expiring_coupon() {
+    void test_priceBasket_expiring_bread_coupon() {
 
         Basket basket = new Basket(Arrays.asList(
                 new BasketItem(StockItem.SOUP, 3),
@@ -188,6 +190,22 @@ class CashierTest {
 
         assertEquals(format(3.15), new Cashier().priceBasket(basket, Arrays.asList(
                 new BreadCoupon(validFromDate, validFromDate.plusDays(7)))));
+    }
+
+    @Test
+    @DisplayName("a basket containing 6 apples and a bottle of milk, expiring coupon, bought today, costs = 1.90")
+    void test_priceBasket_expiring_apple_coupon() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketItem(StockItem.APPLES, 6),
+                new BasketItem(StockItem.MILK, 1)
+        ), LocalDate.now());
+
+        LocalDate threeDaysFromNow = LocalDate.now().plusDays(3);
+        LocalDate endOfFollowingMonth = threeDaysFromNow.plusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
+
+        assertEquals(format(1.90), new Cashier().priceBasket(basket, Arrays.asList(
+                new BreadCoupon(), new ApplesCoupon(threeDaysFromNow, endOfFollowingMonth))));
     }
 
 

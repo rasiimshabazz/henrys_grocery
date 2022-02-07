@@ -19,6 +19,8 @@ class ApplesCoupon implements Coupon {
     @Override
     public double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate) {
 
+        if (!isValid(purchaseDate)) return 0;
+
         boolean isPurchasedWithinValidPeriod = true;
         if (!isPurchasedWithinValidPeriod) return 0;
 
@@ -27,5 +29,12 @@ class ApplesCoupon implements Coupon {
         ).findFirst().orElse(new BasketItem(StockItem.APPLES, 0)).getQuantity();
 
         return appleCount * .01;
+    }
+
+    private boolean isValid(LocalDate purchaseDate) {
+
+        if (this.validFromDate == null || this.validToDate == null) return true;
+
+        return purchaseDate.isAfter(this.validFromDate) && purchaseDate.isBefore(this.validToDate);
     }
 }
