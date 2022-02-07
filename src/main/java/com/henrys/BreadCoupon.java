@@ -36,7 +36,7 @@ class BreadCoupon implements Coupon {
         return 0;
     }
 
-    private boolean isValid(LocalDate purchaseDate) {
+    public boolean isValid(LocalDate purchaseDate) {
 
         if (this.validFromDate == null || this.validToDate == null) return true;
 

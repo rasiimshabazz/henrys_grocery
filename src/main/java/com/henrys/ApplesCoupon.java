@@ -31,7 +31,7 @@ class ApplesCoupon implements Coupon {
         return appleCount * .01;
     }
 
-    private boolean isValid(LocalDate purchaseDate) {
+    public boolean isValid(LocalDate purchaseDate) {
 
         if (this.validFromDate == null || this.validToDate == null) return true;
 
