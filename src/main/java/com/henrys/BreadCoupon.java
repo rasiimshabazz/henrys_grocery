@@ -5,7 +5,7 @@ import java.util.List;
 class BreadCoupon implements Coupon {
 
     @Override
-    public double applyDiscount(List<BasketItem> basketItems) {
+    public double calculateDiscount(List<BasketItem> basketItems) {
 
         double discount = 0;
 

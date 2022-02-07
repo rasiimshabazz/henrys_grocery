@@ -7,18 +7,20 @@ class Basket {
 
     private List<BasketItem> basketItems;
 
-    public Basket(List<BasketItem> basketItems) {
-        this.basketItems = basketItems.stream()
+    public Basket(List<BasketItem> newBasketItems) {
+
+        this.basketItems = newBasketItems.stream()
                 .filter(item -> item != null).collect(Collectors.toList());
     }
 
     double price(List<Coupon> coupons) {
 
-        double discount = 0;
+        double discount = coupons.stream().mapToDouble(coupon -> coupon.calculateDiscount(this.basketItems)).sum();
 
-        discount = coupons.stream().mapToDouble(coupon -> coupon.applyDiscount(this.basketItems)).sum();
+        double fullPrice = this.basketItems.stream().mapToDouble(item -> item.price()).sum();
 
-        return this.basketItems.stream().mapToDouble(item -> item.price()).sum() - discount;
+        return fullPrice - discount;
+
     }
 
 }

@@ -49,7 +49,19 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, no discount, costs 3.55")
+    @DisplayName("a basket containing 7 tins of soup (merged), costs 4.55")
+    void test_priceBasket_multiple_merged() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketItem(StockItem.SOUP, 3),
+                new BasketItem(StockItem.SOUP, 4)
+        ));
+
+        assertEquals(format(4.55), new Cashier().priceBasket(basket, Collections.EMPTY_LIST));
+    }
+
+    @Test
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, no coupon, costs 3.55")
     void test_priceBasket_multiple_combo() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -61,7 +73,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, no discount, costs 2.10")
+    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, no coupon, costs 2.10")
     void test_priceBasket_multiple_no_promo_soup_bread_variation() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -73,7 +85,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, fixed discount, costs 3.15")
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, fixed coupon, costs 3.15")
     void test_priceBasket_multiple_fixed_promo() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -84,7 +96,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, fixed discount, costs 1.70")
+    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, fixed coupon, costs 1.70")
     void test_priceBasket_multiple_fixed_promo_soup_bread_variation() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -94,5 +106,6 @@ class CashierTest {
 
         assertEquals(format(1.70), new Cashier().priceBasket(basket, Arrays.asList(new BreadCoupon())));
     }
+
 
 }
