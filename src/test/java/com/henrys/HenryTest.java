@@ -10,10 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class HenryTest {
 
     @Test
+    @DisplayName("a null basket, costs nada")
+    void test_priceBasket_null() {
+
+        assertEquals(BigDecimal.valueOf(0), new Henry().priceBasket(null));
+    }
+
+    @Test
     @DisplayName("a basket containing nada, costs nada")
     void test_priceBasket_nada() {
 
-        assertEquals(BigDecimal.valueOf(0), new Henry().priceBasket(new Basket()));
+        BigDecimal zero = BigDecimal.valueOf(0.00).setScale(2);
+        assertEquals(zero, new Henry().priceBasket(new Basket()));
     }
 
     @Test

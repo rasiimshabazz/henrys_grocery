@@ -7,7 +7,7 @@ class Henry {
 
     BigDecimal priceBasket(Basket basket) {
 
-        if (basket.isEmpty()) return BigDecimal.ZERO;
+        if (basket == null) return BigDecimal.ZERO;
 
         return format(basket.price());
     }
