@@ -5,11 +5,11 @@ import java.math.RoundingMode;
 
 class Cashier {
 
-    BigDecimal priceBasket(Basket basket) {
+    BigDecimal priceBasket(Basket basket, boolean discount) {
 
         if (basket == null) return BigDecimal.ZERO;
 
-        return format(basket.price());
+        return format(basket.price(discount));
     }
 
     private BigDecimal format(double price) {

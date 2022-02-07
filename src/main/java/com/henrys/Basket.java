@@ -1,6 +1,5 @@
 package com.henrys;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +12,7 @@ class Basket {
                 .filter(item -> item != null).collect(Collectors.toList());
     }
 
-    double price() {
+    double price(boolean discount) {
         return this.basketItems.stream().mapToDouble(item -> item.price()).sum();
     }
 

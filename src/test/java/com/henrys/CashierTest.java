@@ -15,7 +15,7 @@ class CashierTest {
     @DisplayName("a null basket, costs nada")
     void test_priceBasket_null() {
 
-        assertEquals(BigDecimal.valueOf(0), new Cashier().priceBasket(null));
+        assertEquals(BigDecimal.valueOf(0), new Cashier().priceBasket(null, false));
     }
 
     @Test
@@ -23,7 +23,7 @@ class CashierTest {
     void test_priceBasket_nada() {
 
         BigDecimal zero = BigDecimal.valueOf(0.00).setScale(2);
-        assertEquals(zero, new Cashier().priceBasket(new Basket(new ArrayList<>())));
+        assertEquals(zero, new Cashier().priceBasket(new Basket(new ArrayList<>()), false));
     }
 
     @Test
@@ -34,7 +34,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 1)
         ));
 
-        assertEquals(BigDecimal.valueOf(0.65), new Cashier().priceBasket(basket));
+        assertEquals(BigDecimal.valueOf(0.65), new Cashier().priceBasket(basket, false));
     }
 
     @Test
@@ -45,7 +45,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 7)
         ));
 
-        assertEquals(BigDecimal.valueOf(4.55), new Cashier().priceBasket(basket));
+        assertEquals(BigDecimal.valueOf(4.55), new Cashier().priceBasket(basket, false));
     }
 
     @Test
@@ -57,7 +57,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ));
 
-        assertEquals(BigDecimal.valueOf(3.55), new Cashier().priceBasket(basket));
+        assertEquals(BigDecimal.valueOf(3.55), new Cashier().priceBasket(basket, false));
     }
 
 }
