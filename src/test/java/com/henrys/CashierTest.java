@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -58,6 +59,32 @@ class CashierTest {
         ));
 
         assertEquals(BigDecimal.valueOf(3.55), new Cashier().priceBasket(basket, false));
+    }
+
+    @Test
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, fixed promo, costs 3.15")
+    void test_priceBasket_multiple_fixed_promo() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketItem(StockItem.SOUP, 3),
+                new BasketItem(StockItem.BREAD, 2)
+        ));
+        assertEquals(BigDecimal.valueOf(3.15), new Cashier().priceBasket(basket, true));
+    }
+
+    @Test
+    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, fixed promo, costs 1.70")
+    void test_priceBasket_multiple_fixed_promo_soup_bread_variation() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketItem(StockItem.SOUP, 2),
+                new BasketItem(StockItem.BREAD, 1)
+        ));
+
+        BigDecimal decimal = new BigDecimal(0).setScale(2, RoundingMode.HALF_UP);
+
+        assertEquals(decimal.valueOf(1.70).setScale(2, RoundingMode.HALF_UP),
+                new Cashier().priceBasket(basket, true));
     }
 
 }
