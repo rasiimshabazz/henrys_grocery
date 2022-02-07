@@ -2,11 +2,18 @@ package com.henrys;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Basket {
 
     private List<BasketItem> basketItems;
 
+    public Basket(List<BasketItem> basketItems) {
+        this.basketItems = basketItems.stream()
+                .filter(item -> item != null).collect(Collectors.toList());
+    }
+
+    @Deprecated
     Basket() {
        this.basketItems = new ArrayList<>();
     }
