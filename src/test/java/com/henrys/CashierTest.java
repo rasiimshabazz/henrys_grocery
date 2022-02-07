@@ -194,7 +194,7 @@ class CashierTest {
 
     @Test
     @DisplayName("a basket containing 6 apples and a bottle of milk, expiring coupon, bought today, costs = 1.90")
-    void test_priceBasket_expiring_apple_coupon() {
+    void test_priceBasket_expiring_apple_coupon_invalid() {
 
         Basket basket = new Basket(Arrays.asList(
                 new BasketItem(StockItem.APPLES, 6),
@@ -206,6 +206,46 @@ class CashierTest {
 
         assertEquals(format(1.90), new Cashier().priceBasket(basket, Arrays.asList(
                 new BreadCoupon(), new ApplesCoupon(threeDaysFromNow, endOfFollowingMonth))));
+    }
+
+
+    @Test
+    @DisplayName("a basket containing 6 apples and a bottle of milk, expiring coupon, bought in 5 days time, costs = 1.84")
+    void test_priceBasket_expiring_apple_coupon_valid() {
+        LocalDate fiveDaysTime = LocalDate.now().plusDays(5);
+        Basket basket = new Basket(Arrays.asList(
+                new BasketItem(StockItem.APPLES, 6),
+                new BasketItem(StockItem.MILK, 1)
+        ), fiveDaysTime);
+
+        LocalDate threeDaysFromNow = LocalDate.now().plusDays(3);
+        LocalDate endOfFollowingMonth = threeDaysFromNow.plusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
+
+        assertEquals(format(1.84), new Cashier().priceBasket(basket, Arrays.asList(
+                new BreadCoupon(), new ApplesCoupon(threeDaysFromNow, endOfFollowingMonth))));
+    }
+
+
+    @Test
+    @DisplayName("a basket containing 3 apples, 2 tins of soup and a loaf of bread, expiring coupon, bought in 5 days time, costs = 1.97")
+    void test_priceBasket_apples_soup_bread_with_coupon_valid() {
+        LocalDate fiveDaysTime = LocalDate.now().plusDays(5);
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketItem(StockItem.APPLES, 3),
+                new BasketItem(StockItem.SOUP, 2),
+                new BasketItem(StockItem.BREAD, 1)
+        ), fiveDaysTime);
+
+
+        LocalDate threeDaysFromNow = LocalDate.now().plusDays(3);
+        LocalDate endOfFollowingMonth = threeDaysFromNow.plusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
+        LocalDate yesterday = LocalDate.now().minusDays(1);
+
+        assertEquals(format(1.97), new Cashier().priceBasket(basket, Arrays.asList(
+                new BreadCoupon(yesterday, yesterday.plusDays(7)),
+                new ApplesCoupon(threeDaysFromNow, endOfFollowingMonth))));
+
     }
 
 
