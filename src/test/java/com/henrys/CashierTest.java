@@ -157,4 +157,16 @@ class CashierTest {
 
     }
 
+    @Test
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, expiring coupon, costs 3.15")
+    void test_priceBasket_multiple_expiring_coupon() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketItem(StockItem.SOUP, 3),
+                new BasketItem(StockItem.BREAD, 2)
+        ));
+        assertEquals(format(3.15), new Cashier().priceBasket(basket, Arrays.asList(new BreadCoupon())));
+    }
+
+
 }

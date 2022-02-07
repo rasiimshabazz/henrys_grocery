@@ -1,8 +1,20 @@
 package com.henrys;
 
+import java.time.LocalDate;
 import java.util.List;
 
 class BreadCoupon implements Coupon {
+
+    private LocalDate validFromDate;
+    private LocalDate validToDate;
+
+    BreadCoupon() {
+    }
+
+    public BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
+        this.validFromDate = validFromDate;
+        this.validToDate = validToDate;
+    }
 
     @Override
     public double calculateDiscount(List<BasketItem> basketItems) {
