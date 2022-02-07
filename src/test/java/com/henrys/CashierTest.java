@@ -60,6 +60,18 @@ class CashierTest {
     }
 
     @Test
+    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, no discount, costs 2.10")
+    void test_priceBasket_multiple_no_promo_soup_bread_variation() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketItem(StockItem.SOUP, 2),
+                new BasketItem(StockItem.BREAD, 1)
+        ));
+
+        assertEquals(format(2.10), new Cashier().priceBasket(basket, false));
+    }
+
+    @Test
     @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, fixed discount, costs 3.15")
     void test_priceBasket_multiple_fixed_promo() {
 
