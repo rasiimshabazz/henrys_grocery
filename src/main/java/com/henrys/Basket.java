@@ -1,6 +1,5 @@
 package com.henrys;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,12 +12,7 @@ class Basket {
                 .filter(item -> item != null).collect(Collectors.toList());
     }
 
-    double price(boolean discountsOn) {
-
-        return priceWithCoupons(discountsOn, Arrays.asList(new BreadCoupon()));
-    }
-
-    private double priceWithCoupons(boolean discountsOn, List<Coupon> coupons) {
+    double price(boolean discountsOn, List<Coupon> coupons) {
 
         double discount = 0;
 

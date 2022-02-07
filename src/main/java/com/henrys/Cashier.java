@@ -2,6 +2,7 @@ package com.henrys;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
 
 class Cashier {
 
@@ -9,7 +10,7 @@ class Cashier {
 
         if (basket == null) return format(0);
 
-        return format(basket.price(discount));
+        return format(basket.price(discount, Arrays.asList(new BreadCoupon())));
     }
 
     public static BigDecimal format(double value) {
