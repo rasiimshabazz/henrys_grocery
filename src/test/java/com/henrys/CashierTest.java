@@ -128,7 +128,8 @@ class CashierTest {
                 new BasketItem(StockItem.MILK, 1)
         ));
 
-        assertEquals(format(1.84), new Cashier().priceBasket(basket, Arrays.asList(new ApplesCoupon())));
+        assertEquals(format(1.84), new Cashier().priceBasket(basket, Arrays.asList(
+                new BreadCoupon(), new ApplesCoupon())));
     }
 
 
