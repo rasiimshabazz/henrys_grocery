@@ -18,7 +18,7 @@ class Basket {
 
         if (discountsOn) {
 
-            discount = Coupon.discount(this.basketItems);
+            discount = BreadCoupon.discount(this.basketItems);
         }
 
         return this.basketItems.stream().mapToDouble(item -> item.price()).sum() - discount;

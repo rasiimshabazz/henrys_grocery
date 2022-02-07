@@ -1,11 +1,8 @@
 package com.henrys;
 
-import com.henrys.BasketItem;
-import com.henrys.StockItem;
-
 import java.util.List;
 
-public class Coupon {
+public class BreadCoupon {
 
     public static double discount(List<BasketItem> basketItems) {
 
