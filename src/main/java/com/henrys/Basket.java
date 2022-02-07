@@ -17,8 +17,4 @@ class Basket {
         return this.basketItems.stream().mapToDouble(item -> item.price()).sum();
     }
 
-    public List<BasketItem> getItems() {
-        return basketItems;
-    }
-
 }
