@@ -48,7 +48,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, no promo, costs 3.55")
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, no discount, costs 3.55")
     void test_priceBasket_multiple_combo() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -60,7 +60,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, fixed promo, costs 3.15")
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, fixed discount, costs 3.15")
     void test_priceBasket_multiple_fixed_promo() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -71,7 +71,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, fixed promo, costs 1.70")
+    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, fixed discount, costs 1.70")
     void test_priceBasket_multiple_fixed_promo_soup_bread_variation() {
 
         Basket basket = new Basket(Arrays.asList(
