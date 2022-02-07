@@ -17,7 +17,10 @@ class ApplesCoupon implements Coupon {
     }
 
     @Override
-    public double calculateDiscount(List<BasketItem> basketItems) {
+    public double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate) {
+
+        boolean isPurchasedWithinValidPeriod = true;
+        if (!isPurchasedWithinValidPeriod) return 0;
 
         int appleCount = basketItems.stream().filter(item ->
             item.getItem().equals(StockItem.APPLES)

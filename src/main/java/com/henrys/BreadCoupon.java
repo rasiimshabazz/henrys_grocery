@@ -1,6 +1,7 @@
 package com.henrys;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 class BreadCoupon implements Coupon {
@@ -11,13 +12,15 @@ class BreadCoupon implements Coupon {
     BreadCoupon() {
     }
 
-    public BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
+    BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
         this.validFromDate = validFromDate;
         this.validToDate = validToDate;
     }
 
     @Override
-    public double calculateDiscount(List<BasketItem> basketItems) {
+    public double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate) {
+
+        if (!isValid(purchaseDate)) return 0;
 
         boolean isBuyingBread = basketItems.stream().anyMatch(item -> {
             return item.getItem().equals(StockItem.BREAD);
@@ -31,5 +34,12 @@ class BreadCoupon implements Coupon {
             return StockItem.BREAD.getCost() / 2;
 
         return 0;
+    }
+
+    private boolean isValid(LocalDate purchaseDate) {
+
+        if (this.validFromDate == null || this.validToDate == null) return true;
+
+        return purchaseDate.isAfter(this.validFromDate) && purchaseDate.isBefore(this.validToDate);
     }
 }
