@@ -19,7 +19,7 @@ class BreadCoupon implements Coupon {
     @Override
     public double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate) {
 
-        if (!isValid(purchaseDate)) return 0;
+        if (!Coupon.isValid(purchaseDate, this.validFromDate, this.validToDate)) return 0;
 
         boolean isBuyingBread = basketItems.stream().anyMatch(item -> {
             return item.getItem().equals(StockItem.BREAD);
@@ -35,10 +35,4 @@ class BreadCoupon implements Coupon {
         return 0;
     }
 
-    public boolean isValid(LocalDate purchaseDate) {
-
-        if (this.validFromDate == null || this.validToDate == null) return true;
-
-        return purchaseDate.isAfter(this.validFromDate) && purchaseDate.isBefore(this.validToDate);
-    }
 }

@@ -1,6 +1,7 @@
 package com.henrys;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 class ApplesCoupon implements Coupon {
@@ -19,7 +20,7 @@ class ApplesCoupon implements Coupon {
     @Override
     public double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate) {
 
-        if (!isValid(purchaseDate)) return 0;
+        if (!Coupon.isValid(purchaseDate, this.validFromDate, this.validToDate)) return 0;
 
         boolean isPurchasedWithinValidPeriod = true;
         if (!isPurchasedWithinValidPeriod) return 0;
@@ -31,10 +32,4 @@ class ApplesCoupon implements Coupon {
         return appleCount * .01;
     }
 
-    public boolean isValid(LocalDate purchaseDate) {
-
-        if (this.validFromDate == null || this.validToDate == null) return true;
-
-        return purchaseDate.isAfter(this.validFromDate) && purchaseDate.isBefore(this.validToDate);
-    }
 }
