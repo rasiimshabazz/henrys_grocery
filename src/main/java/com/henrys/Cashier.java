@@ -3,7 +3,7 @@ package com.henrys;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-class Henry {
+class Cashier {
 
     BigDecimal priceBasket(Basket basket) {
 

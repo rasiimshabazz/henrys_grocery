@@ -9,13 +9,13 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HenryTest {
+class CashierTest {
 
     @Test
     @DisplayName("a null basket, costs nada")
     void test_priceBasket_null() {
 
-        assertEquals(BigDecimal.valueOf(0), new Henry().priceBasket(null));
+        assertEquals(BigDecimal.valueOf(0), new Cashier().priceBasket(null));
     }
 
     @Test
@@ -23,7 +23,7 @@ class HenryTest {
     void test_priceBasket_nada() {
 
         BigDecimal zero = BigDecimal.valueOf(0.00).setScale(2);
-        assertEquals(zero, new Henry().priceBasket(new Basket(new ArrayList<>())));
+        assertEquals(zero, new Cashier().priceBasket(new Basket(new ArrayList<>())));
     }
 
     @Test
@@ -34,7 +34,7 @@ class HenryTest {
                 new BasketItem(StockItem.SOUP, 1)
         ));
 
-        assertEquals(BigDecimal.valueOf(0.65), new Henry().priceBasket(basket));
+        assertEquals(BigDecimal.valueOf(0.65), new Cashier().priceBasket(basket));
     }
 
     @Test
@@ -45,7 +45,7 @@ class HenryTest {
                 new BasketItem(StockItem.SOUP, 7)
         ));
 
-        assertEquals(BigDecimal.valueOf(4.55), new Henry().priceBasket(basket));
+        assertEquals(BigDecimal.valueOf(4.55), new Cashier().priceBasket(basket));
     }
 
     @Test
@@ -57,7 +57,7 @@ class HenryTest {
                 new BasketItem(StockItem.BREAD, 2)
         ));
 
-        assertEquals(BigDecimal.valueOf(3.55), new Henry().priceBasket(basket));
+        assertEquals(BigDecimal.valueOf(3.55), new Cashier().priceBasket(basket));
     }
 
 }
