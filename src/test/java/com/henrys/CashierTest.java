@@ -3,11 +3,10 @@ package com.henrys;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.henrys.Cashier.format;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CashierTest {
@@ -81,10 +80,6 @@ class CashierTest {
         ));
 
         assertEquals(format(1.70), new Cashier().priceBasket(basket, true));
-    }
-
-    private BigDecimal format(double value) {
-        return BigDecimal.valueOf(value).setScale(2);
     }
 
 }

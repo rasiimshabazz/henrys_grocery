@@ -12,7 +12,8 @@ class Cashier {
         return format(basket.price(discount));
     }
 
-    private BigDecimal format(double price) {
-        return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
+    public static BigDecimal format(double value) {
+        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
+
 }
