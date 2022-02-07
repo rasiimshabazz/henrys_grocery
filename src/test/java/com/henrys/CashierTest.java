@@ -107,5 +107,16 @@ class CashierTest {
         assertEquals(format(1.70), new Cashier().priceBasket(basket, Arrays.asList(new BreadCoupon())));
     }
 
+    @Test
+    @DisplayName("a basket containing 6 apples and a bottle of milk, costs = 1.90")
+    void test_priceBasket_apples_milk_no_coupon() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketItem(StockItem.APPLES, 6),
+                new BasketItem(StockItem.MILK, 1)
+        ));
+
+        assertEquals(format(1.90), new Cashier().priceBasket(basket, Collections.EMPTY_LIST));
+    }
 
 }
