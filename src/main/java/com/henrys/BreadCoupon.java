@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BreadCoupon {
 
-    public static double discount(List<BasketItem> basketItems) {
+    public double discount(List<BasketItem> basketItems) {
 
         double discount = 0;
 
