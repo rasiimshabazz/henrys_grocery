@@ -16,15 +16,14 @@ class CashierTest {
     @DisplayName("a null basket, costs nada")
     void test_priceBasket_null() {
 
-        assertEquals(BigDecimal.valueOf(0), new Cashier().priceBasket(null, false));
+        assertEquals(format(0), new Cashier().priceBasket(null, false));
     }
 
     @Test
     @DisplayName("a basket containing nada, costs nada")
     void test_priceBasket_nada() {
 
-        BigDecimal zero = BigDecimal.valueOf(0.00).setScale(2);
-        assertEquals(zero, new Cashier().priceBasket(new Basket(new ArrayList<>()), false));
+        assertEquals(format(0), new Cashier().priceBasket(new Basket(new ArrayList<>()), false));
     }
 
     @Test
@@ -35,7 +34,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 1)
         ));
 
-        assertEquals(BigDecimal.valueOf(0.65), new Cashier().priceBasket(basket, false));
+        assertEquals(format(0.65), new Cashier().priceBasket(basket, false));
     }
 
     @Test
@@ -46,7 +45,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 7)
         ));
 
-        assertEquals(BigDecimal.valueOf(4.55), new Cashier().priceBasket(basket, false));
+        assertEquals(format(4.55), new Cashier().priceBasket(basket, false));
     }
 
     @Test
@@ -58,7 +57,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ));
 
-        assertEquals(BigDecimal.valueOf(3.55), new Cashier().priceBasket(basket, false));
+        assertEquals(format(3.55), new Cashier().priceBasket(basket, false));
     }
 
     @Test
@@ -69,7 +68,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 3),
                 new BasketItem(StockItem.BREAD, 2)
         ));
-        assertEquals(BigDecimal.valueOf(3.15), new Cashier().priceBasket(basket, true));
+        assertEquals(format(3.15), new Cashier().priceBasket(basket, true));
     }
 
     @Test
@@ -81,10 +80,11 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 1)
         ));
 
-        BigDecimal decimal = new BigDecimal(0).setScale(2, RoundingMode.HALF_UP);
+        assertEquals(format(1.70), new Cashier().priceBasket(basket, true));
+    }
 
-        assertEquals(decimal.valueOf(1.70).setScale(2, RoundingMode.HALF_UP),
-                new Cashier().priceBasket(basket, true));
+    private BigDecimal format(double value) {
+        return BigDecimal.valueOf(value).setScale(2);
     }
 
 }

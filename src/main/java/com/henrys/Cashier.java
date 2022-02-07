@@ -7,7 +7,7 @@ class Cashier {
 
     BigDecimal priceBasket(Basket basket, boolean discount) {
 
-        if (basket == null) return BigDecimal.ZERO;
+        if (basket == null) return format(0);
 
         return format(basket.price(discount));
     }
