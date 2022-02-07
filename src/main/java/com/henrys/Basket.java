@@ -18,29 +18,10 @@ class Basket {
 
         if (discountsOn) {
 
-            discount = discount(this.basketItems);
+            discount = Coupon.discount(this.basketItems);
         }
 
         return this.basketItems.stream().mapToDouble(item -> item.price()).sum() - discount;
-    }
-
-    private static double discount(List<BasketItem> basketItems) {
-
-        double discount = 0;
-
-        boolean hasBread = basketItems.stream().anyMatch(item -> {
-            return item.getItem().equals(StockItem.BREAD);
-        });
-
-        boolean hasTwoSoups = basketItems.stream().filter(item -> {
-            return item.getItem().equals(StockItem.SOUP);
-        }).findFirst().orElse(new BasketItem(StockItem.SOUP, 1)).getQuantity() >= 2;
-
-
-        if (hasBread && hasTwoSoups) {
-            discount = StockItem.BREAD.getCost() / 2;
-        }
-        return discount;
     }
 
 }
