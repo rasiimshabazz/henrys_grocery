@@ -3,14 +3,17 @@ package com.henrys;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
+import java.util.List;
 
 class Cashier {
 
-    BigDecimal priceBasket(Basket basket, boolean discount) {
+    BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
 
         if (basket == null) return format(0);
 
-        return format(basket.price(discount, Arrays.asList(new BreadCoupon())));
+        double price = basket.price(coupons);
+
+        return format(price);
     }
 
     public static BigDecimal format(double value) {

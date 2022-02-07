@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static com.henrys.Cashier.format;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,14 +16,14 @@ class CashierTest {
     @DisplayName("a null basket, costs nada")
     void test_priceBasket_null() {
 
-        assertEquals(format(0), new Cashier().priceBasket(null, false));
+        assertEquals(format(0), new Cashier().priceBasket(null, Collections.EMPTY_LIST));
     }
 
     @Test
     @DisplayName("a basket containing nada, costs nada")
     void test_priceBasket_nada() {
 
-        assertEquals(format(0), new Cashier().priceBasket(new Basket(new ArrayList<>()), false));
+        assertEquals(format(0), new Cashier().priceBasket(new Basket(new ArrayList<>()), Collections.EMPTY_LIST));
     }
 
     @Test
@@ -33,7 +34,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 1)
         ));
 
-        assertEquals(format(0.65), new Cashier().priceBasket(basket, false));
+        assertEquals(format(0.65), new Cashier().priceBasket(basket, Collections.EMPTY_LIST));
     }
 
     @Test
@@ -44,7 +45,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 7)
         ));
 
-        assertEquals(format(4.55), new Cashier().priceBasket(basket, false));
+        assertEquals(format(4.55), new Cashier().priceBasket(basket, Collections.EMPTY_LIST));
     }
 
     @Test
@@ -56,7 +57,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ));
 
-        assertEquals(format(3.55), new Cashier().priceBasket(basket, false));
+        assertEquals(format(3.55), new Cashier().priceBasket(basket, Collections.EMPTY_LIST));
     }
 
     @Test
@@ -68,7 +69,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 1)
         ));
 
-        assertEquals(format(2.10), new Cashier().priceBasket(basket, false));
+        assertEquals(format(2.10), new Cashier().priceBasket(basket, Collections.EMPTY_LIST));
     }
 
     @Test
@@ -79,7 +80,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 3),
                 new BasketItem(StockItem.BREAD, 2)
         ));
-        assertEquals(format(3.15), new Cashier().priceBasket(basket, true));
+        assertEquals(format(3.15), new Cashier().priceBasket(basket, Arrays.asList(new BreadCoupon())));
     }
 
     @Test
@@ -91,7 +92,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 1)
         ));
 
-        assertEquals(format(1.70), new Cashier().priceBasket(basket, true));
+        assertEquals(format(1.70), new Cashier().priceBasket(basket, Arrays.asList(new BreadCoupon())));
     }
 
 }

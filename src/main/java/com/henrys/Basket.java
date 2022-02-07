@@ -12,14 +12,11 @@ class Basket {
                 .filter(item -> item != null).collect(Collectors.toList());
     }
 
-    double price(boolean discountsOn, List<Coupon> coupons) {
+    double price(List<Coupon> coupons) {
 
         double discount = 0;
 
-        if (discountsOn) {
-
-            discount = coupons.stream().mapToDouble(coupon -> coupon.applyDiscount(this.basketItems)).sum();
-        }
+        discount = coupons.stream().mapToDouble(coupon -> coupon.applyDiscount(this.basketItems)).sum();
 
         return this.basketItems.stream().mapToDouble(item -> item.price()).sum() - discount;
     }
