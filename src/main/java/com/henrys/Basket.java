@@ -14,11 +14,16 @@ class Basket {
 
     double price(boolean discountsOn) {
 
+        BreadCoupon coupon = new BreadCoupon();
+        return priceWithCoupons(discountsOn, coupon);
+    }
+
+    private double priceWithCoupons(boolean discountsOn, BreadCoupon coupon) {
+
         double discount = 0;
 
         if (discountsOn) {
-
-            discount = new BreadCoupon().discount(this.basketItems);
+            discount = coupon.discount(this.basketItems);
         }
 
         return this.basketItems.stream().mapToDouble(item -> item.price()).sum() - discount;
