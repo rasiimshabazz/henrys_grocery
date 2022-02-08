@@ -1,6 +1,6 @@
 package com.henrys;
 
-import com.henrys.shopper.ScreenImpl;
+import com.henrys.shopper.CliScreen;
 import com.henrys.pricer.Cashier;
 import com.henrys.pricer.Coupon;
 import com.henrys.shopper.Kiosk;
@@ -12,7 +12,7 @@ public class Main {
 
     public static void  main(String[] args) {
 
-        Kiosk kiosk = new Kiosk(new ScreenImpl());
+        Kiosk kiosk = new Kiosk(new CliScreen());
 
 
         Cashier cashier = new Cashier();

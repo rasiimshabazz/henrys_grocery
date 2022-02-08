@@ -8,9 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class KioskTest {
 
-    private Screen screen = new ScreenImpl();
+    private Screen screen = new TestScreen();
     private Kiosk kiosk = new Kiosk(screen);
 
+    @Test
     @DisplayName("shop")
     void test_goGroceryShopping() {
 
