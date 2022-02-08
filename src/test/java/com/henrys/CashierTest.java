@@ -21,6 +21,14 @@ class CashierTest {
     }
 
     @Test
+    @DisplayName("a basket containing null, costs nada")
+    void test_priceBasket_containing_null_() {
+
+        assertEquals(format(0), new Cashier().priceBasket(new Basket(null, null),
+                new ArrayList<>()));
+    }
+
+    @Test
     @DisplayName("a basket containing nada, costs nada")
     void test_priceBasket_nada() {
 
@@ -37,6 +45,17 @@ class CashierTest {
         ), LocalDate.now());
 
         assertEquals(format(0.65), new Cashier().priceBasket(basket, new ArrayList<>()));
+    }
+
+    @Test
+    @DisplayName("a basket containing 1 tin of soup, bought today, with null coupons, costs 0.65")
+    void test_priceBasket_null_coupons() {
+
+        Basket basket = new Basket(Collections.singletonList(
+                new BasketItem(StockItem.SOUP, 1)
+        ), LocalDate.now());
+
+        assertEquals(format(0.65), new Cashier().priceBasket(basket, null));
     }
 
     @Test

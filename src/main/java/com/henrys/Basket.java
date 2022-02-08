@@ -1,6 +1,7 @@
 package com.henrys;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -11,6 +12,10 @@ class Basket {
     private final LocalDate purchaseDate;
 
     public Basket(List<BasketItem> newBasketItems, LocalDate purchaseDate) {
+
+        if (newBasketItems == null) {
+            newBasketItems = new ArrayList<>();
+        }
 
         this.basketItems = newBasketItems.stream()
                 .filter(Objects::nonNull)

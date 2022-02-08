@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Cashier {
-
+    
     BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
 
         if (basket == null) return format(0);
