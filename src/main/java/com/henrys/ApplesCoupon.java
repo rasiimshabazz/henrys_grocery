@@ -14,15 +14,19 @@ class ApplesCoupon extends Coupon {
     }
 
     @Override
-    public double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate) {
+    public double calculateDiscount(List<BasketItem> items, LocalDate purchaseDate) {
 
-        if (!Coupon.isValid(purchaseDate, this.validFromDate, this.validToDate)) return 0;
+        if (!Coupon.isValid(purchaseDate, this.validFromDate, this.validToDate))
+            return 0;
 
+        return numberOfApples(items) * .01;
+    }
+
+    private int numberOfApples(List<BasketItem> basketItems) {
         int appleCount = basketItems.stream().filter(item ->
             item.getItem().equals(StockItem.APPLES)
         ).findFirst().orElse(new BasketItem(StockItem.APPLES, 0)).getQuantity();
-
-        return appleCount * .01;
+        return appleCount;
     }
 
 }

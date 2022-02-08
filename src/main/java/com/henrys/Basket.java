@@ -10,6 +10,7 @@ class Basket {
     private LocalDate purchaseDate;
 
     public Basket(List<BasketItem> newBasketItems, LocalDate purchaseDate) {
+
         this.basketItems = newBasketItems.stream()
                 .filter(item -> item != null).collect(Collectors.toList());
 
