@@ -7,8 +7,8 @@ abstract class Coupon {
 
     abstract double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate);
 
-    static boolean isValid(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
-        return purchaseDate.isAfter(validFromDate) && purchaseDate.isBefore(validToDate);
+    static boolean isNotApplicable(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
+        return !purchaseDate.isAfter(validFromDate) || !purchaseDate.isBefore(validToDate);
     }
 
     static Coupon createApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {

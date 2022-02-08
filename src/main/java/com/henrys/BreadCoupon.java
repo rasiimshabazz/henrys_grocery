@@ -16,7 +16,7 @@ class BreadCoupon extends Coupon {
     @Override
     public double calculateDiscount(List<BasketItem> items, LocalDate purchaseDate) {
 
-        if (!Coupon.isValid(purchaseDate, this.validFromDate, this.validToDate))
+        if (Coupon.isNotApplicable(purchaseDate, this.validFromDate, this.validToDate))
             return 0;
 
         if (isBuyingBread(items) && isBuyingAtLeastTwoSoups(items))
