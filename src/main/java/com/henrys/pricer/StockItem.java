@@ -3,7 +3,6 @@ package com.henrys.pricer;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public enum StockItem {
 
@@ -20,7 +19,12 @@ public enum StockItem {
     }
 
     public static List<String> names() {
-        return Arrays.asList(StockItem.values()).stream().map(value -> value.name()).collect(Collectors.toList());
+        return Arrays.asList(StockItem.values()).stream()
+                .map(value -> value.name()).collect(Collectors.toList());
+    }
+
+    public static String namesToString() {
+        return names().toString().toLowerCase();
     }
 
 }

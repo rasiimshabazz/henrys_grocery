@@ -11,6 +11,13 @@ import java.util.List;
 
 public class Kiosk {
 
+
+    public static final String PROMPT_PRODUCT_PREFIX = "add a product to the basket? ";
+    public static final String PROMPT_PRODUCT = PROMPT_PRODUCT_PREFIX + StockItem.namesToString() + ": ";
+    public static final String PROMPT_QUANTITY = "how many of them? ";
+    public static final String PROMPT_QUANTITY_RETRY = "please enter a number for quantity: ";
+    public static final String PROMPT_SHOPPING = "continue shopping? (y/n) ";
+
     private Screen screen;
 
     public Kiosk(Screen screen) {
@@ -39,10 +46,9 @@ public class Kiosk {
         StockItem product = null;
         while(product == null) {
 
-            List<String> productNames = StockItem.names();
-            screen.promptUser(Screen.PROMPT_PRODUCT);
+            screen.promptUser(PROMPT_PRODUCT);
             String productResponse = screen.readResponse().trim().toUpperCase();
-            if (productNames.contains(productResponse)) {
+            if (StockItem.names().contains(productResponse)) {
                 product = StockItem.valueOf(productResponse);
             }
         }
@@ -54,13 +60,13 @@ public class Kiosk {
         Integer quantity = null;
         while(quantity == null) {
 
-            screen.promptUser(Screen.PROMPT_QUANTITY);
+            screen.promptUser(PROMPT_QUANTITY);
             String quantityResponse = screen.readResponse();
             try {
                 quantity = Integer.valueOf(quantityResponse);
             }
             catch (NumberFormatException e) {
-                screen.promptUser(Screen.PROMPT_QUANTITY_RETRY);
+                screen.promptUser(PROMPT_QUANTITY_RETRY);
             }
         }
 
@@ -73,7 +79,7 @@ public class Kiosk {
         String shoppingResponse = "";
 
         while (!Arrays.asList("y", "n").contains(shoppingResponse.toLowerCase())) {
-            screen.promptUser(Screen.PROMPT_SHOPPING);
+            screen.promptUser(PROMPT_SHOPPING);
             shoppingResponse = screen.readResponse().trim();
 
             if (shoppingResponse.equalsIgnoreCase("n")) {
