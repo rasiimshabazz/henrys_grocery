@@ -13,14 +13,14 @@ public class Main {
     public static void  main(String[] args) {
 
         Shopper shopper = new Shopper();
-        Cashier cashier = new Cashier();
-        ArrayList<Coupon> coupons = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         String prompt = "wanna do some shopping? (y/n): ";
         System.out.print(prompt);
         String response = scanner.nextLine();
 
+        Cashier cashier = new Cashier();
+        ArrayList<Coupon> coupons = new ArrayList<>();
         BigDecimal price = cashier.priceBasket(shopper.goGroceryShopping(), coupons);
     }
 
