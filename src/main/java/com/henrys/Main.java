@@ -15,18 +15,6 @@ public class Main {
 
         Shopper shopper = new Shopper(new Kiosk());
 
-        Scanner scanner = new Scanner(System.in);
-
-        Shopper.promptUser("wanna do some shopping? (y/n): ");
-
-        String response = Shopper.readUserInput(scanner);
-
-        if (response.equalsIgnoreCase("y")) {
-            System.out.println("ok, let's shop");
-        }
-        else {
-            System.out.println(response + "? ok, next time then.");
-        }
 
         Cashier cashier = new Cashier();
         ArrayList<Coupon> coupons = new ArrayList<>();

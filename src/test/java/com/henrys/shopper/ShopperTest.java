@@ -8,9 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShopperTest {
 
-    Shopper shopper = new Shopper(new Kiosk());
+    private Kiosk kiosk = new Kiosk();
+    private Shopper shopper = new Shopper(kiosk);
 
-    @Test
+
     @DisplayName("shop")
     void test_goGroceryShopping() {
 

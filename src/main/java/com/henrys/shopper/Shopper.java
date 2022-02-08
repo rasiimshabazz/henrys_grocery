@@ -2,8 +2,6 @@ package com.henrys.shopper;
 
 import com.henrys.pricer.Basket;
 
-import java.util.Scanner;
-
 public class Shopper {
 
     private Kiosk kiosk;
@@ -19,15 +17,19 @@ public class Shopper {
 
     private Basket promptUserAndAddProducts() {
 
+        kiosk.promptUser("wanna do some shopping? (y/n): ");
+
+        String response = kiosk.readUserInput();
+
+        if (response.equalsIgnoreCase("y")) {
+            System.out.println("ok, let's shop");
+        }
+        else {
+            System.out.println(response + "? ok, next time then.");
+        }
+
+
         return null;
     }
 
-    public static String readUserInput(Scanner scanner) {
-        String response = scanner.nextLine();
-        return response;
-    }
-
-    public static void promptUser(final String prompt) {
-        System.out.print(prompt);
-    }
 }
