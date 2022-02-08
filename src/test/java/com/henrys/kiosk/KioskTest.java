@@ -46,5 +46,31 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.createBasket().toString());
     }
 
+    @Test
+    @DisplayName("when user enters ' ', 'soup', '1' - basket should have 1 soup")
+    void test_createBasket_1_soup_with_blank() {
+
+        List<BasketItem> expectedProducts = Arrays.asList(new BasketItem(StockItem.SOUP, 1));
+        given(mockScreen.readResponse())
+                .willReturn(" ")
+                .willReturn("soup")
+                .willReturn("1");
+
+        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.createBasket().toString());
+    }
+
+    @Test
+    @DisplayName("when user enters 'soup', ' ', '1' - basket should have 1 soup")
+    void test_createBasket_1_soup_with_blank_after() {
+
+        List<BasketItem> expectedProducts = Arrays.asList(new BasketItem(StockItem.SOUP, 1));
+        given(mockScreen.readResponse())
+                .willReturn("soup")
+                .willReturn(" ")
+                .willReturn("1");
+
+        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.createBasket().toString());
+    }
+
 }
 
