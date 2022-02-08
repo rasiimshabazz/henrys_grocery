@@ -13,9 +13,7 @@ class Basket {
 
     public Basket(List<BasketItem> newBasketItems, LocalDate purchaseDate) {
 
-        if (newBasketItems == null) {
-            newBasketItems = new ArrayList<>();
-        }
+        if (newBasketItems == null) newBasketItems = new ArrayList<>();
 
         this.basketItems = newBasketItems.stream()
                 .filter(Objects::nonNull)
@@ -25,6 +23,8 @@ class Basket {
     }
 
     double price(List<Coupon> coupons) {
+
+        if (coupons == null) coupons = new ArrayList<>();
 
         double discount = coupons.stream()
                 .mapToDouble(coupon -> coupon.calculateDiscount(this.basketItems, this.purchaseDate))
