@@ -17,7 +17,7 @@ public class Kiosk {
         this.screen = screen;
     }
 
-    public Basket createBasket() {
+    public Basket takeShoppersOrder() {
 
         List<BasketItem> products = new ArrayList<>();
 

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,23 +30,23 @@ public class KioskTest {
 
     @Test
     @DisplayName("when user enters 'bread', '1' - basket should have 1 bread")
-    void test_createBasket() {
+    void test_takeShoppersOrder() {
 
-        List<BasketItem> bread = Arrays.asList(new BasketItem(StockItem.BREAD, 1));
+        List<BasketItem> bread = Collections.singletonList(new BasketItem(StockItem.BREAD, 1));
         given(mockScreen.readResponse())
                 .willReturn("bread")
                 .willReturn("1")
                 .willReturn("n");
 
-        assertEquals(new Basket(bread, LocalDate.now()).toString(), kiosk.createBasket().toString());
+        assertEquals(new Basket(bread, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(3)).readResponse();
     }
 
     @Test
     @DisplayName("when user enters 1 soup and blank entries - basket should have 1 soup")
-    void test_createBasket_1_soup_with_blank_entries() {
+    void test_takeShoppersOrder_1_soup_with_blank_entries() {
 
-        List<BasketItem> expectedProducts = Arrays.asList(new BasketItem(StockItem.SOUP, 1));
+        List<BasketItem> expectedProducts = Collections.singletonList(new BasketItem(StockItem.SOUP, 1));
 
         given(mockScreen.readResponse())
                 .willReturn(" ")
@@ -57,14 +58,14 @@ public class KioskTest {
                 .willReturn(" ")
                 .willReturn("n");
 
-        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.createBasket().toString());
+        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(8)).readResponse();
 
     }
 
     @Test
     @DisplayName("when user enters 1 soup, blank entries, 3 bread, blanks again - basket should have 1 soup and 3 breads")
-    void test_createBasket_1_soup_3_bread_with_blank_entries() {
+    void test_takeShoppersOrder_1_soup_3_bread_with_blank_entries() {
 
         List<BasketItem> expectedProducts = Arrays.asList(
                 new BasketItem(StockItem.SOUP, 1),
@@ -84,14 +85,14 @@ public class KioskTest {
                 .willReturn(" ")
                 .willReturn("n");
 
-        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.createBasket().toString());
+        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(12)).readResponse();
 
     }
 
     @Test
     @DisplayName("when user enters 1 soup, 3 bread, 5 apples, blanks - basket should have 1 soup, 3 breads, 5 apples")
-    void test_createBasket_1_soup_3_bread_5_apples_with_blanks() {
+    void test_takeShoppersOrder_1_soup_3_bread_5_apples_with_blanks() {
 
         List<BasketItem> expectedProducts = Arrays.asList(
                 new BasketItem(StockItem.SOUP, 1),
@@ -111,7 +112,7 @@ public class KioskTest {
                 .willReturn("n")
                 .willReturn(" ");
 
-        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.createBasket().toString());
+        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(10)).readResponse();
 
     }

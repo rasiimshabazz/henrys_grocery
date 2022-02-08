@@ -17,7 +17,7 @@ public class Main {
         Pricer pricer = new Pricer();
         ArrayList<Coupon> coupons = new ArrayList<>();
 
-        BigDecimal price = pricer.priceBasket(kiosk.createBasket(), coupons);
+        BigDecimal price = pricer.priceBasket(kiosk.takeShoppersOrder(), coupons);
 
         System.out.println("price is: " + price);
     }
