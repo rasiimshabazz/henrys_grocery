@@ -19,6 +19,13 @@ public class Main {
         System.out.print(prompt);
         String response = scanner.nextLine();
 
+        if (response.equalsIgnoreCase("y")) {
+            System.out.println("ok, let's shop");
+        }
+        else {
+            System.out.println(response + "? ok, next time then.");
+        }
+
         Cashier cashier = new Cashier();
         ArrayList<Coupon> coupons = new ArrayList<>();
         BigDecimal price = cashier.priceBasket(shopper.goGroceryShopping(), coupons);
