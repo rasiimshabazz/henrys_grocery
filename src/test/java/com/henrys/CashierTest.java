@@ -29,7 +29,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 1 tin of soup, costs 0.65")
+    @DisplayName("a basket containing 1 tin of soup, bought today, costs 0.65")
     void test_priceBasket() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -40,7 +40,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 1 tin of soup, null coupons, costs 0.65")
+    @DisplayName("a basket containing 1 tin of soup, null coupons, bought today, costs 0.65")
     void test_priceBasket_nullCoupons() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -86,7 +86,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, no coupon, costs 2.10")
+    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, bought today, no coupon, costs 2.10")
     void test_priceBasket_multiple_no_promo_soup_bread_variation() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -148,7 +148,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, bought today, costs 3.15")
+    @DisplayName("* a basket containing 3 tins of soup and 2 loaves of bread, bought today, costs 3.15")
     void test_priceBasket_bread_coupon() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -161,7 +161,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 6 apples and a bottle of milk, bought today, costs = 1.90")
+    @DisplayName("* a basket containing 6 apples and a bottle of milk, bought today, costs = 1.90")
     void test_priceBasket_apple_coupon_invalid() {
 
         Basket basket = new Basket(Arrays.asList(
@@ -175,7 +175,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 6 apples and a bottle of milk, bought in 5 days time, costs = 1.84")
+    @DisplayName("* a basket containing 6 apples and a bottle of milk, bought in 5 days time, costs = 1.84")
     void test_priceBasket_apple_coupon_valid() {
 
         LocalDate boughtInFiveDaysTime = LocalDate.now().plusDays(5);
@@ -190,7 +190,7 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time, costs = 1.97")
+    @DisplayName("* a basket containing 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time, costs = 1.97")
     void test_priceBasket_apples_soup_bread_with_coupons_valid() {
 
         LocalDate boughtInFiveDaysTime = LocalDate.now().plusDays(5);
