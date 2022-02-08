@@ -8,6 +8,8 @@ abstract class Coupon {
     abstract double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate);
 
     static boolean isNotApplicable(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
+        if (purchaseDate == null || validFromDate == null || validToDate == null) return true;
+
         return !purchaseDate.isAfter(validFromDate) || !purchaseDate.isBefore(validToDate);
     }
 
