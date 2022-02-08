@@ -18,6 +18,8 @@ public class Main {
         ArrayList<Coupon> coupons = new ArrayList<>();
 
         BigDecimal price = pricer.priceBasket(kiosk.createBasket(), coupons);
+
+        System.out.println("price is: " + price);
     }
 
 }

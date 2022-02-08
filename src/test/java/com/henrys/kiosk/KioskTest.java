@@ -14,19 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class KioskTest {
 
-    private Screen screen = new TestScreen();
-    private Kiosk kiosk = new Kiosk(screen);
-
     @Test
-    @DisplayName("user enters: 'bread', '1' - basket should have 1 bread")
+    @DisplayName("when user enters 'bread', '1' - basket should have 1 bread")
     void test_createBasket() {
-
-        List<BasketItem> basketItems = Arrays.asList(new BasketItem(StockItem.BREAD, 1));
-        Basket expectedBasket = new Basket(basketItems, LocalDate.now());
-
-        Basket actualBasket = kiosk.createBasket();
-
-        assertEquals(expectedBasket.toString(), actualBasket.toString());
+        Kiosk kiosk = new Kiosk(new TestScreen());
+        List<BasketItem> bread = Arrays.asList(new BasketItem(StockItem.BREAD, 1));
+        assertEquals(new Basket(bread, LocalDate.now()).toString(), kiosk.createBasket().toString());
     }
 
 }
