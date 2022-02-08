@@ -242,8 +242,8 @@ class CashierTest {
         LocalDate yesterday = LocalDate.now().minusDays(1);
 
         assertEquals(format(1.97), new Cashier().priceBasket(basket, Arrays.asList(
-                new BreadCoupon(yesterday, yesterday.plusDays(7)),
-                new ApplesCoupon(threeDaysFromNow, endOfFollowingMonth))));
+                Coupon.createBreadCoupon(yesterday, yesterday.plusDays(7)),
+                Coupon.createApplesCoupon(threeDaysFromNow, endOfFollowingMonth))));
 
     }
 

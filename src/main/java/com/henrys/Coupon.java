@@ -21,4 +21,12 @@ abstract class Coupon {
         return couponDoesNotExpire;
     }
 
+    static Coupon createApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
+        return new ApplesCoupon(validFromDate, validToDate);
+    }
+
+    static Coupon createBreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
+        return new BreadCoupon(validFromDate, validToDate);
+    }
+
 }
