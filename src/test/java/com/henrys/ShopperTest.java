@@ -19,8 +19,9 @@ public class ShopperTest {
     @DisplayName("shop")
     void test_goGroceryShopping() {
 
+        Basket expectedBasket = new Basket(new ArrayList<>(), LocalDate.now());
+
         Basket actualBasket = shopper.goGroceryShopping();
-        Basket expectedBasket = new Basket(null, null);
 
         assertEquals(
                 expectedBasket.price(testBreadCoupon()),
