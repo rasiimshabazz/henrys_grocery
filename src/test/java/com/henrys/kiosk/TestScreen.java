@@ -6,12 +6,12 @@ public class TestScreen extends Screen {
 
     public void promptUser(String prompt) {
 
-        if (prompt.equalsIgnoreCase("soup, bread, apples, or milk? ")) {
+        if (prompt.equalsIgnoreCase(PROMPT_PRODUCT)) {
             response = "bread";
             return;
         }
 
-        if (prompt.equalsIgnoreCase("how many? ")) {
+        if (prompt.equalsIgnoreCase(PROMPT_QUANTITY)) {
             response = "1";
             return;
         }

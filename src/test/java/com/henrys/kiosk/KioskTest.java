@@ -22,5 +22,14 @@ public class KioskTest {
         assertEquals(new Basket(bread, LocalDate.now()).toString(), kiosk.createBasket().toString());
     }
 
+
+//    @Test
+//    @DisplayName("when user enters 'soup', '1' - basket should have 1 soup")
+//    void test_createBasket_1_soup() {
+//        Kiosk kiosk = new Kiosk(new TestScreen());
+//        List<BasketItem> soup = Arrays.asList(new BasketItem(StockItem.SOUP, 1));
+//        assertEquals(new Basket(soup, LocalDate.now()).toString(), kiosk.createBasket().toString());
+//    }
+
 }
 
