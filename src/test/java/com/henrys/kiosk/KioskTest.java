@@ -62,5 +62,32 @@ public class KioskTest {
 
     }
 
+    @Test
+    @DisplayName("when user enters 1 soup, blank entries, 3 bread, blanks again - basket should have 1 soup and 3 breads")
+    void test_createBasket_1_soup_3_bread_with_blank_entries() {
+
+        List<BasketItem> expectedProducts = Arrays.asList(
+                new BasketItem(StockItem.SOUP, 1),
+                new BasketItem(StockItem.BREAD, 3));
+
+        given(mockScreen.readResponse())
+                .willReturn(" ")
+                .willReturn(" ")
+                .willReturn("soup")
+                .willReturn(" ")
+                .willReturn("1")
+                .willReturn(" ")
+                .willReturn("y")
+                .willReturn("bread")
+                .willReturn(" ")
+                .willReturn("3")
+                .willReturn(" ")
+                .willReturn("n");
+
+        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.createBasket().toString());
+        then(mockScreen).should(times(12)).readResponse();
+
+    }
+
 }
 
