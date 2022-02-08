@@ -8,7 +8,7 @@ class BreadCoupon extends Coupon {
     private LocalDate validFromDate;
     private LocalDate validToDate;
 
-    BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
+    protected BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
         this.validFromDate = validFromDate;
         this.validToDate = validToDate;
     }
