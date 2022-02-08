@@ -16,19 +16,21 @@ public class ShopperTest {
     Shopper shopper = new Shopper();
 
     @Test
-    void getBasket() {
+    @DisplayName("shop")
+    void test_goGroceryShopping() {
 
-        Basket actualResult = shopper.goGroceryShopping();
+        Basket actualBasket = shopper.goGroceryShopping();
+        Basket expectedBasket = new Basket(null, null);
 
         assertEquals(
-                new Basket(null, null).price(Collections.singletonList(createBreadCoupon())),
-                actualResult.price(Collections.singletonList(createBreadCoupon())));
+                expectedBasket.price(testBreadCoupon()),
+                actualBasket.price(testBreadCoupon()));
     }
 
-    private Coupon createBreadCoupon() {
-        return Coupon.createBreadCoupon(
+    private List<Coupon> testBreadCoupon() {
+        return Collections.singletonList(Coupon.createBreadCoupon(
                 LocalDate.now().minusDays(1),
-                LocalDate.now().minusDays(1).plusDays(7));
+                LocalDate.now().minusDays(1).plusDays(7)));
     }
 
 }
