@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class Coupon {
 
-    abstract double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate);
+    abstract double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate);
 
     static boolean isNotApplicable(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
         if (purchaseDate == null || validFromDate == null || validToDate == null) return true;

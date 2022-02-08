@@ -1,7 +1,7 @@
 package com.henrys.kiosk;
 
 import com.henrys.pricer.Basket;
-import com.henrys.pricer.BasketItem;
+import com.henrys.pricer.BasketEntry;
 import com.henrys.pricer.StockItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,7 +32,7 @@ public class KioskTest {
     @DisplayName("when user enters 'bread', '1' - basket should have 1 bread")
     void test_takeShoppersOrder() {
 
-        List<BasketItem> bread = Collections.singletonList(new BasketItem(StockItem.BREAD, 1));
+        List<BasketEntry> bread = Collections.singletonList(new BasketEntry(StockItem.BREAD, 1));
         given(mockScreen.readResponse())
                 .willReturn("bread")
                 .willReturn("1")
@@ -46,7 +46,7 @@ public class KioskTest {
     @DisplayName("when user enters 1 soup and blank entries - basket should have 1 soup")
     void test_takeShoppersOrder_1_soup_with_blank_entries() {
 
-        List<BasketItem> expectedProducts = Collections.singletonList(new BasketItem(StockItem.SOUP, 1));
+        List<BasketEntry> expectedProducts = Collections.singletonList(new BasketEntry(StockItem.SOUP, 1));
 
         given(mockScreen.readResponse())
                 .willReturn(" ")
@@ -67,9 +67,9 @@ public class KioskTest {
     @DisplayName("when user enters 1 soup, blank entries, 3 bread, blanks again - basket should have 1 soup and 3 breads")
     void test_takeShoppersOrder_1_soup_3_bread_with_blank_entries() {
 
-        List<BasketItem> expectedProducts = Arrays.asList(
-                new BasketItem(StockItem.SOUP, 1),
-                new BasketItem(StockItem.BREAD, 3));
+        List<BasketEntry> expectedProducts = Arrays.asList(
+                new BasketEntry(StockItem.SOUP, 1),
+                new BasketEntry(StockItem.BREAD, 3));
 
         given(mockScreen.readResponse())
                 .willReturn(" ")
@@ -94,10 +94,10 @@ public class KioskTest {
     @DisplayName("when user enters 1 soup, 3 bread, 5 apples, blanks - basket should have 1 soup, 3 breads, 5 apples")
     void test_takeShoppersOrder_1_soup_3_bread_5_apples_with_blanks() {
 
-        List<BasketItem> expectedProducts = Arrays.asList(
-                new BasketItem(StockItem.SOUP, 1),
-                new BasketItem(StockItem.BREAD, 3),
-                new BasketItem(StockItem.APPLES, 5));
+        List<BasketEntry> expectedProducts = Arrays.asList(
+                new BasketEntry(StockItem.SOUP, 1),
+                new BasketEntry(StockItem.BREAD, 3),
+                new BasketEntry(StockItem.APPLES, 5));
 
         given(mockScreen.readResponse())
                 .willReturn(" ")

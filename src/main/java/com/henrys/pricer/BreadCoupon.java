@@ -14,7 +14,7 @@ class BreadCoupon extends Coupon {
     }
 
     @Override
-    double calculateDiscount(List<BasketItem> items, LocalDate purchaseDate) {
+    double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
 
         if (isNotApplicable(purchaseDate, this.validFromDate, this.validToDate))
             return 0;
@@ -25,16 +25,16 @@ class BreadCoupon extends Coupon {
         return 0;
     }
 
-    private boolean isBuyingAtLeastTwoSoups(List<BasketItem> basketItems) {
-        return basketItems.stream()
+    private boolean isBuyingAtLeastTwoSoups(List<BasketEntry> basketEntries) {
+        return basketEntries.stream()
                 .filter(item -> item.getItem().equals(StockItem.SOUP))
                 .findFirst()
-                .orElse(new BasketItem(StockItem.SOUP, 1))
+                .orElse(new BasketEntry(StockItem.SOUP, 1))
                 .getQuantity() >= 2;
     }
 
-    private boolean isBuyingBread(List<BasketItem> basketItems) {
-        return basketItems.stream().anyMatch(item -> item.getItem().equals(StockItem.BREAD));
+    private boolean isBuyingBread(List<BasketEntry> basketEntries) {
+        return basketEntries.stream().anyMatch(item -> item.getItem().equals(StockItem.BREAD));
     }
 
 }

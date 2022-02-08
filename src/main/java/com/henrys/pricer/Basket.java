@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 
 public class Basket {
 
-    private final List<BasketItem> basketItems;
+    private final List<BasketEntry> basketEntries;
     private final LocalDate purchaseDate;
 
-    public Basket(List<BasketItem> newBasketItems, LocalDate purchaseDate) {
+    public Basket(List<BasketEntry> newBasketEntries, LocalDate purchaseDate) {
 
-        if (newBasketItems == null) newBasketItems = new ArrayList<>();
+        if (newBasketEntries == null) newBasketEntries = new ArrayList<>();
 
-        this.basketItems = newBasketItems.stream()
+        this.basketEntries = newBasketEntries.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
@@ -27,17 +27,17 @@ public class Basket {
         if (coupons == null) coupons = new ArrayList<>();
 
         double discount = coupons.stream()
-                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketItems, this.purchaseDate))
+                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, this.purchaseDate))
                 .sum();
 
-        double fullPrice = this.basketItems.stream()
-                .mapToDouble(BasketItem::price)
+        double fullPrice = this.basketEntries.stream()
+                .mapToDouble(BasketEntry::price)
                 .sum();
 
         return fullPrice - discount;
     }
 
     public String toString() {
-        return "items: " + this.basketItems.toString() + ", purchase date: " + this.purchaseDate.toString();
+        return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
     }
 }

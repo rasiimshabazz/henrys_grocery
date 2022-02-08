@@ -1,7 +1,7 @@
 package com.henrys.kiosk;
 
 import com.henrys.pricer.Basket;
-import com.henrys.pricer.BasketItem;
+import com.henrys.pricer.BasketEntry;
 import com.henrys.pricer.StockItem;
 
 import java.time.LocalDate;
@@ -19,14 +19,14 @@ public class Kiosk {
 
     public Basket takeShoppersOrder() {
 
-        List<BasketItem> basketEntries = new ArrayList<>();
+        List<BasketEntry> basketEntries = new ArrayList<>();
         boolean isShopping = true;
         while (isShopping) {
 
             StockItem product = promptForProduct();
             int quantity = promptForQuantity();
 
-            basketEntries.add(new BasketItem(product, quantity));
+            basketEntries.add(new BasketEntry(product, quantity));
 
             isShopping = promptToContinue();
         }

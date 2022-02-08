@@ -39,7 +39,7 @@ class PricerTest {
     void test_priceBasket() {
 
         Basket basket = new Basket(Collections.singletonList(
-                new BasketItem(StockItem.SOUP, 1)
+                new BasketEntry(StockItem.SOUP, 1)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(0.65), new Pricer().priceBasket(basket, new ArrayList<>()));
@@ -50,7 +50,7 @@ class PricerTest {
     void test_priceBasket_null_coupons() {
 
         Basket basket = new Basket(Collections.singletonList(
-                new BasketItem(StockItem.SOUP, 1)
+                new BasketEntry(StockItem.SOUP, 1)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(0.65), new Pricer().priceBasket(basket, null));
@@ -61,7 +61,7 @@ class PricerTest {
     void test_priceBasket_nullCoupons() {
 
         Basket basket = new Basket(Collections.singletonList(
-                new BasketItem(StockItem.SOUP, 1)
+                new BasketEntry(StockItem.SOUP, 1)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(0.65), new Pricer().priceBasket(basket, null));
@@ -72,7 +72,7 @@ class PricerTest {
     void test_priceBasket_multiple() {
 
         Basket basket = new Basket(Collections.singletonList(
-                new BasketItem(StockItem.SOUP, 7)
+                new BasketEntry(StockItem.SOUP, 7)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(4.55), new Pricer().priceBasket(basket, new ArrayList<>()));
@@ -83,8 +83,8 @@ class PricerTest {
     void test_priceBasket_multiple_merged() {
 
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.SOUP, 3),
-                new BasketItem(StockItem.SOUP, 4)
+                new BasketEntry(StockItem.SOUP, 3),
+                new BasketEntry(StockItem.SOUP, 4)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(4.55), new Pricer().priceBasket(basket, new ArrayList<>()));
@@ -95,8 +95,8 @@ class PricerTest {
     void test_priceBasket_multiple_combo() {
 
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.SOUP, 3),
-                new BasketItem(StockItem.BREAD, 2)
+                new BasketEntry(StockItem.SOUP, 3),
+                new BasketEntry(StockItem.BREAD, 2)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(3.55), new Pricer().priceBasket(basket, new ArrayList<>()));
@@ -107,8 +107,8 @@ class PricerTest {
     void test_priceBasket_multiple_no_promo_soup_bread_variation() {
 
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.SOUP, 2),
-                new BasketItem(StockItem.BREAD, 1)
+                new BasketEntry(StockItem.SOUP, 2),
+                new BasketEntry(StockItem.BREAD, 1)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(2.10), new Pricer().priceBasket(basket, new ArrayList<>()));
@@ -119,8 +119,8 @@ class PricerTest {
     void test_priceBasket_multiple_promo() {
 
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.SOUP, 3),
-                new BasketItem(StockItem.BREAD, 2)
+                new BasketEntry(StockItem.SOUP, 3),
+                new BasketEntry(StockItem.BREAD, 2)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(3.15), new Pricer().priceBasket(basket, Collections.singletonList(createBreadCoupon())));
@@ -131,8 +131,8 @@ class PricerTest {
     void test_priceBasket_multiple_promo_soup_bread_variation() {
 
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.SOUP, 2),
-                new BasketItem(StockItem.BREAD, 1)
+                new BasketEntry(StockItem.SOUP, 2),
+                new BasketEntry(StockItem.BREAD, 1)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(1.70), new Pricer().priceBasket(basket, Collections.singletonList(createBreadCoupon())));
@@ -143,8 +143,8 @@ class PricerTest {
     void test_priceBasket_apples_milk_no_coupon() {
 
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.APPLES, 6),
-                new BasketItem(StockItem.MILK, 1)
+                new BasketEntry(StockItem.APPLES, 6),
+                new BasketEntry(StockItem.MILK, 1)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(1.90), new Pricer().priceBasket(basket, new ArrayList<>()));
@@ -156,8 +156,8 @@ class PricerTest {
 
         LocalDate boughtAWeekAgo = LocalDate.now().minusWeeks(1);
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.SOUP, 3),
-                new BasketItem(StockItem.BREAD, 2)
+                new BasketEntry(StockItem.SOUP, 3),
+                new BasketEntry(StockItem.BREAD, 2)
         ), boughtAWeekAgo);
 
         Assertions.assertEquals(Pricer.format(3.55), new Pricer().priceBasket(basket, Collections.singletonList(
@@ -169,8 +169,8 @@ class PricerTest {
     void test_priceBasket_bread_coupon() {
 
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.SOUP, 3),
-                new BasketItem(StockItem.BREAD, 2)
+                new BasketEntry(StockItem.SOUP, 3),
+                new BasketEntry(StockItem.BREAD, 2)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(3.15), new Pricer().priceBasket(basket, Collections.singletonList(
@@ -182,8 +182,8 @@ class PricerTest {
     void test_priceBasket_apple_coupon_invalid() {
 
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.APPLES, 6),
-                new BasketItem(StockItem.MILK, 1)
+                new BasketEntry(StockItem.APPLES, 6),
+                new BasketEntry(StockItem.MILK, 1)
         ), LocalDate.now());
 
         Assertions.assertEquals(Pricer.format(1.90), new Pricer().priceBasket(basket, Arrays.asList(
@@ -197,8 +197,8 @@ class PricerTest {
 
         LocalDate boughtInFiveDaysTime = LocalDate.now().plusDays(5);
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.APPLES, 6),
-                new BasketItem(StockItem.MILK, 1)
+                new BasketEntry(StockItem.APPLES, 6),
+                new BasketEntry(StockItem.MILK, 1)
         ), boughtInFiveDaysTime);
 
         Assertions.assertEquals(Pricer.format(1.84), new Pricer().priceBasket(basket, Arrays.asList(
@@ -212,9 +212,9 @@ class PricerTest {
 
         LocalDate boughtInFiveDaysTime = LocalDate.now().plusDays(5);
         Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.APPLES, 3),
-                new BasketItem(StockItem.SOUP, 2),
-                new BasketItem(StockItem.BREAD, 1)
+                new BasketEntry(StockItem.APPLES, 3),
+                new BasketEntry(StockItem.SOUP, 2),
+                new BasketEntry(StockItem.BREAD, 1)
         ), boughtInFiveDaysTime);
 
         Assertions.assertEquals(Pricer.format(1.97), new Pricer().priceBasket(basket,

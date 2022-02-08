@@ -1,11 +1,11 @@
 package com.henrys.pricer;
 
-public class BasketItem {
+public class BasketEntry {
 
     private final StockItem item;
     private final int quantity;
 
-    public BasketItem(StockItem item, int quantity) {
+    public BasketEntry(StockItem item, int quantity) {
         this.item = item;
         this.quantity = quantity;
     }

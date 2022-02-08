@@ -14,7 +14,7 @@ class ApplesCoupon extends Coupon {
     }
 
     @Override
-    double calculateDiscount(List<BasketItem> items, LocalDate purchaseDate) {
+    double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
 
         if (isNotApplicable(purchaseDate, this.validFromDate, this.validToDate))
             return 0;
@@ -22,10 +22,10 @@ class ApplesCoupon extends Coupon {
         return numberOfApples(items) * .01;
     }
 
-    private int numberOfApples(List<BasketItem> basketItems) {
-        return basketItems.stream().filter(item ->
+    private int numberOfApples(List<BasketEntry> basketEntries) {
+        return basketEntries.stream().filter(item ->
             item.getItem().equals(StockItem.APPLES)
-        ).findFirst().orElse(new BasketItem(StockItem.APPLES, 0)).getQuantity();
+        ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity();
     }
 
 }
