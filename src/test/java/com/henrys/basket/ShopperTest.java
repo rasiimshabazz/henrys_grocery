@@ -12,15 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShopperTest {
 
-    Shopper shopper = new Shopper();
-
     @Test
     @DisplayName("shop")
     void test_goGroceryShopping() {
 
         Basket expectedBasket = new Basket(new ArrayList<>(), LocalDate.now());
-
-        Basket actualBasket = shopper.goGroceryShopping();
+        Basket actualBasket = new Shopper().goGroceryShopping();
 
         assertEquals(
                 expectedBasket.price(testBreadCoupon()),

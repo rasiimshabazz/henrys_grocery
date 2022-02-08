@@ -5,7 +5,10 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-class Cashier {
+public class Cashier {
+
+    public Cashier() {
+    }
 
     BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
 
