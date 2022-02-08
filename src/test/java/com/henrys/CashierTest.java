@@ -134,34 +134,6 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 6 apples and a bottle of milk, fixed coupon costs = 1.84")
-    void test_priceBasket_apples_milk_with_coupon() {
-
-        Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.APPLES, 6),
-                new BasketItem(StockItem.MILK, 1)
-        ), LocalDate.now());
-
-        assertEquals(format(1.84), new Cashier().priceBasket(basket, Arrays.asList(
-                createBreadCoupon(), new ApplesCoupon())));
-    }
-
-    @Test
-    @DisplayName("a basket containing 3 apples, 2 tins of soup and a loaf of bread, costs = 1.97")
-    void test_priceBasket_apples_soup_bread_with_coupon() {
-
-        Basket basket = new Basket(Arrays.asList(
-                new BasketItem(StockItem.APPLES, 3),
-                new BasketItem(StockItem.SOUP, 2),
-                new BasketItem(StockItem.BREAD, 1)
-        ), LocalDate.now());
-
-        assertEquals(format(1.97), new Cashier().priceBasket(basket, Arrays.asList(
-                createBreadCoupon(), new ApplesCoupon())));
-
-    }
-
-    @Test
     @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, expiring coupon, bought a week ago, costs 3.55")
     void test_priceBasket_multiple_before_expiring_coupon() {
 

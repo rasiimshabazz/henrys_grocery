@@ -8,9 +8,6 @@ class ApplesCoupon extends Coupon {
     private LocalDate validFromDate;
     private LocalDate validToDate;
 
-    ApplesCoupon() {
-    }
-
     public ApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
         this.validFromDate = validFromDate;
         this.validToDate = validToDate;
