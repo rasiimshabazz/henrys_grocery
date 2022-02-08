@@ -1,21 +1,9 @@
 package com.henrys.shopper;
 
-import java.util.Scanner;
+abstract class Screen {
 
-public class Screen {
+    abstract String readUserInput();
 
-    private Scanner scanner = new Scanner(System.in);
-
-    public Screen() {
-    }
-
-    public String readUserInput() {
-        String response = this.scanner.nextLine();
-        return response;
-    }
-
-    public void promptUser(final String prompt) {
-        System.out.print(prompt);
-    }
+    abstract void promptUser(final String prompt);
 
 }

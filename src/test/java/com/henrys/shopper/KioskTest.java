@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class KioskTest {
 
-    private Screen screen = new Screen();
+    private Screen screen = new ScreenImpl();
     private Kiosk kiosk = new Kiosk(screen);
 
     @DisplayName("shop")
