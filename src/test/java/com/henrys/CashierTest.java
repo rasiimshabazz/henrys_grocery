@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -228,7 +227,7 @@ class CashierTest {
 
     @Test
     @DisplayName("a basket containing 3 apples, 2 tins of soup and a loaf of bread, expiring coupon, bought in 5 days time, costs = 1.97")
-    void test_priceBasket_apples_soup_bread_with_coupon_valid() {
+    void test_priceBasket_apples_soup_bread_with_expiring_coupons_valid() {
         LocalDate fiveDaysTime = LocalDate.now().plusDays(5);
 
         Basket basket = new Basket(Arrays.asList(
