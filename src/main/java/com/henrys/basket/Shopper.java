@@ -7,7 +7,7 @@ class Shopper {
 
     Basket goGroceryShopping() {
 
-        return new Basket(new ArrayList<>(), LocalDate.now());
+        return null;
     }
 
 }
