@@ -18,5 +18,4 @@ abstract class Coupon {
     static Coupon createBreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
         return new BreadCoupon(validFromDate, validToDate);
     }
-
 }

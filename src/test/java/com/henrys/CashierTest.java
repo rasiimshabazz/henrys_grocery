@@ -174,7 +174,6 @@ class CashierTest {
                 createApplesCoupon())));
     }
 
-
     @Test
     @DisplayName("a basket containing 6 apples and a bottle of milk, bought in 5 days time, costs = 1.84")
     void test_priceBasket_apple_coupon_valid() {
@@ -189,7 +188,6 @@ class CashierTest {
                 createBreadCoupon(),
                 createApplesCoupon())));
     }
-
 
     @Test
     @DisplayName("a basket containing 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time, costs = 1.97")
