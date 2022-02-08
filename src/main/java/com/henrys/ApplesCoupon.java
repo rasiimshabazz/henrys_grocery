@@ -5,8 +5,8 @@ import java.util.List;
 
 class ApplesCoupon extends Coupon {
 
-    private LocalDate validFromDate;
-    private LocalDate validToDate;
+    private final LocalDate validFromDate;
+    private final LocalDate validToDate;
 
     protected ApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
         this.validFromDate = validFromDate;
@@ -23,10 +23,9 @@ class ApplesCoupon extends Coupon {
     }
 
     private int numberOfApples(List<BasketItem> basketItems) {
-        int appleCount = basketItems.stream().filter(item ->
+        return basketItems.stream().filter(item ->
             item.getItem().equals(StockItem.APPLES)
         ).findFirst().orElse(new BasketItem(StockItem.APPLES, 0)).getQuantity();
-        return appleCount;
     }
 
 }

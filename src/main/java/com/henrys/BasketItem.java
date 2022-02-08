@@ -2,8 +2,8 @@ package com.henrys;
 
 class BasketItem {
 
-    private StockItem item;
-    private int quantity;
+    private final StockItem item;
+    private final int quantity;
 
     BasketItem(StockItem item, int quantity) {
         this.item = item;

@@ -2,17 +2,19 @@ package com.henrys;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 class Basket {
 
-    private List<BasketItem> basketItems;
-    private LocalDate purchaseDate;
+    private final List<BasketItem> basketItems;
+    private final LocalDate purchaseDate;
 
     public Basket(List<BasketItem> newBasketItems, LocalDate purchaseDate) {
 
         this.basketItems = newBasketItems.stream()
-                .filter(item -> item != null).collect(Collectors.toList());
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
         this.purchaseDate = purchaseDate;
     }
@@ -24,7 +26,7 @@ class Basket {
                 .sum();
 
         double fullPrice = this.basketItems.stream()
-                .mapToDouble(item -> item.price())
+                .mapToDouble(BasketItem::price)
                 .sum();
 
         return fullPrice - discount;

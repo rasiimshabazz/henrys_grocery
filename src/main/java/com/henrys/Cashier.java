@@ -2,7 +2,7 @@ package com.henrys;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 class Cashier {
@@ -10,7 +10,7 @@ class Cashier {
     BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
 
         if (basket == null) return format(0);
-        if (coupons == null) coupons = Collections.EMPTY_LIST;
+        if (coupons == null) coupons = new ArrayList<>();
 
         double price = basket.price(coupons);
 
