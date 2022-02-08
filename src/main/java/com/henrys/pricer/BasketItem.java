@@ -1,4 +1,4 @@
-package com.henrys.basket;
+package com.henrys.pricer;
 
 class BasketItem {
 

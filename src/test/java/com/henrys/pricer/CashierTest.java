@@ -1,4 +1,4 @@
-package com.henrys.basket;
+package com.henrys.pricer;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

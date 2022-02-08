@@ -1,8 +1,8 @@
 package com.henrys;
 
-import com.henrys.basket.Cashier;
-import com.henrys.basket.Coupon;
-import com.henrys.basket.Shopper;
+import com.henrys.pricer.Cashier;
+import com.henrys.pricer.Coupon;
+import com.henrys.pricer.Shopper;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

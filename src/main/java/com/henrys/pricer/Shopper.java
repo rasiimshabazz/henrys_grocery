@@ -1,6 +1,4 @@
-package com.henrys.basket;
-
-import java.util.Scanner;
+package com.henrys.pricer;
 
 public class Shopper {
 
@@ -10,7 +8,7 @@ public class Shopper {
     }
 
     private Basket promptUserAndAddProducts() {
-        
+
         return null;
     }
 

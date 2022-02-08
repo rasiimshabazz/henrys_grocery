@@ -1,4 +1,4 @@
-package com.henrys.basket;
+package com.henrys.pricer;
 
 import java.time.LocalDate;
 import java.util.List;
