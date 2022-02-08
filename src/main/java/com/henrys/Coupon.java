@@ -3,9 +3,9 @@ package com.henrys;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface Coupon {
+abstract class Coupon {
 
-    double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate);
+    abstract double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate);
 
     static boolean isValid(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
 

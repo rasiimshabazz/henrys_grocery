@@ -3,7 +3,7 @@ package com.henrys;
 import java.time.LocalDate;
 import java.util.List;
 
-class ApplesCoupon implements Coupon {
+class ApplesCoupon extends Coupon {
 
     private LocalDate validFromDate;
     private LocalDate validToDate;
