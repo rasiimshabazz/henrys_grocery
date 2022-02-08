@@ -19,12 +19,12 @@ import static org.mockito.Mockito.*;
 
 public class KioskTest {
 
-    private CliScreen mockScreen;
+    private Screen mockScreen;
     private Kiosk kiosk;
 
     @BeforeEach
     void setup() {
-        mockScreen = mock(CliScreen.class);
+        mockScreen = mock(Screen.class);
         kiosk = new Kiosk(mockScreen);
     }
 

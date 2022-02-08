@@ -1,6 +1,6 @@
 package com.henrys;
 
-import com.henrys.kiosk.CliScreen;
+import com.henrys.kiosk.Screen;
 import com.henrys.pricer.Pricer;
 import com.henrys.pricer.Coupon;
 import com.henrys.kiosk.Kiosk;
@@ -12,11 +12,11 @@ public class Main {
 
     public static void  main(String[] args) {
 
-        Kiosk kiosk = new Kiosk(new CliScreen());
+        Kiosk kiosk = new Kiosk(new Screen());
 
-        Pricer pricer = new Pricer();
         ArrayList<Coupon> coupons = new ArrayList<>();
 
+        Pricer pricer = new Pricer();
         BigDecimal price = pricer.priceBasket(kiosk.takeShoppersOrder(), coupons);
 
         System.out.println("price is: " + price);
