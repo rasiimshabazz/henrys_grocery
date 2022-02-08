@@ -5,6 +5,7 @@ import com.henrys.pricer.BasketItem;
 import com.henrys.pricer.StockItem;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,18 +19,43 @@ public class Kiosk {
 
     public Basket createBasket() {
 
-        StockItem product = promptForProduct();
-        int quantity = promptForQuantity();
+        List<BasketItem> products = new ArrayList<>();
 
-        BasketItem basketItem = new BasketItem(product, quantity);
-        List<BasketItem> basketItems = Arrays.asList(basketItem);
+        boolean isShopping = true;
+        while (isShopping) {
 
-        return new Basket(basketItems, LocalDate.now());
+            StockItem product = promptForProduct();
+            int quantity = promptForQuantity();
+
+            products.add(new BasketItem(product, quantity));
+
+            isShopping = promptToContinue();
+        }
+
+        return new Basket(products, LocalDate.now());
+    }
+
+    private boolean promptToContinue() {
+        boolean isShopping = true;
+        String shoppingResponse = "";
+
+        while (!Arrays.asList("y", "n").contains(shoppingResponse.toLowerCase())) {
+
+            screen.promptUser(Screen.PROMPT_SHOPPING);
+            shoppingResponse = screen.readResponse().trim();
+
+            if (shoppingResponse.equalsIgnoreCase("n")) {
+                isShopping = false;
+            }
+        }
+        return isShopping;
     }
 
     private StockItem promptForProduct() {
+
         StockItem product = null;
         while(product == null) {
+
             List<String> productNames = StockItem.names();
             screen.promptUser(Screen.PROMPT_PRODUCT);
             String productResponse = screen.readResponse().trim().toUpperCase();
@@ -47,12 +73,11 @@ public class Kiosk {
 
             screen.promptUser(Screen.PROMPT_QUANTITY);
             String quantityResponse = screen.readResponse();
-
             try {
                 quantity = Integer.valueOf(quantityResponse);
             }
             catch (NumberFormatException e) {
-                screen.promptUser("please enter a number for quantity: ");
+                screen.promptUser(Screen.PROMPT_QUANTITY_RETRY);
             }
         }
 
