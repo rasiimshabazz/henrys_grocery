@@ -98,8 +98,8 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, fixed coupon, costs 3.15")
-    void test_priceBasket_multiple_fixed_promo() {
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, costs 3.15")
+    void test_priceBasket_multiple_promo() {
 
         Basket basket = new Basket(Arrays.asList(
                 new BasketItem(StockItem.SOUP, 3),
@@ -110,8 +110,8 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, fixed coupon, costs 1.70")
-    void test_priceBasket_multiple_fixed_promo_soup_bread_variation() {
+    @DisplayName("a basket containing 2 tins of soup and 1 loaves of bread, costs 1.70")
+    void test_priceBasket_multiple_promo_soup_bread_variation() {
 
         Basket basket = new Basket(Arrays.asList(
                 new BasketItem(StockItem.SOUP, 2),
@@ -134,8 +134,8 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, expiring coupon, bought a week ago, costs 3.55")
-    void test_priceBasket_multiple_before_expiring_coupon() {
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, bought a week ago, costs 3.55")
+    void test_priceBasket_multiple_before_coupon() {
 
         LocalDate boughtAWeekAgo = LocalDate.now().minusWeeks(1);
         Basket basket = new Basket(Arrays.asList(
@@ -148,8 +148,8 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, expiring coupon, bought today, costs 3.15")
-    void test_priceBasket_expiring_bread_coupon() {
+    @DisplayName("a basket containing 3 tins of soup and 2 loaves of bread, bought today, costs 3.15")
+    void test_priceBasket_bread_coupon() {
 
         Basket basket = new Basket(Arrays.asList(
                 new BasketItem(StockItem.SOUP, 3),
@@ -161,8 +161,8 @@ class CashierTest {
     }
 
     @Test
-    @DisplayName("a basket containing 6 apples and a bottle of milk, expiring coupon, bought today, costs = 1.90")
-    void test_priceBasket_expiring_apple_coupon_invalid() {
+    @DisplayName("a basket containing 6 apples and a bottle of milk, bought today, costs = 1.90")
+    void test_priceBasket_apple_coupon_invalid() {
 
         Basket basket = new Basket(Arrays.asList(
                 new BasketItem(StockItem.APPLES, 6),
@@ -176,8 +176,8 @@ class CashierTest {
 
 
     @Test
-    @DisplayName("a basket containing 6 apples and a bottle of milk, expiring coupon, bought in 5 days time, costs = 1.84")
-    void test_priceBasket_expiring_apple_coupon_valid() {
+    @DisplayName("a basket containing 6 apples and a bottle of milk, bought in 5 days time, costs = 1.84")
+    void test_priceBasket_apple_coupon_valid() {
 
         LocalDate boughtInFiveDaysTime = LocalDate.now().plusDays(5);
         Basket basket = new Basket(Arrays.asList(
@@ -192,8 +192,8 @@ class CashierTest {
 
 
     @Test
-    @DisplayName("a basket containing 3 apples, 2 tins of soup and a loaf of bread, expiring coupon, bought in 5 days time, costs = 1.97")
-    void test_priceBasket_apples_soup_bread_with_expiring_coupons_valid() {
+    @DisplayName("a basket containing 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time, costs = 1.97")
+    void test_priceBasket_apples_soup_bread_with_coupons_valid() {
 
         LocalDate boughtInFiveDaysTime = LocalDate.now().plusDays(5);
         Basket basket = new Basket(Arrays.asList(
