@@ -1,9 +1,9 @@
 package com.henrys;
 
-import com.henrys.shopper.CliScreen;
-import com.henrys.pricer.Cashier;
+import com.henrys.kiosk.CliScreen;
+import com.henrys.pricer.Pricer;
 import com.henrys.pricer.Coupon;
-import com.henrys.shopper.Kiosk;
+import com.henrys.kiosk.Kiosk;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ public class Main {
 
         Kiosk kiosk = new Kiosk(new CliScreen());
 
-
-        Cashier cashier = new Cashier();
+        Pricer pricer = new Pricer();
         ArrayList<Coupon> coupons = new ArrayList<>();
-        BigDecimal price = cashier.priceBasket(kiosk.goGroceryShopping(), coupons);
+
+        BigDecimal price = pricer.priceBasket(kiosk.createBasket(), coupons);
     }
 
 }

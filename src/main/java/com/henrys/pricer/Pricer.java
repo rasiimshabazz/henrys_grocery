@@ -5,9 +5,9 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cashier {
+public class Pricer {
 
-    public Cashier() {
+    public Pricer() {
     }
 
     public BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {

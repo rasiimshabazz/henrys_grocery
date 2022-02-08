@@ -1,4 +1,4 @@
-package com.henrys.shopper;
+package com.henrys.kiosk;
 
 import com.henrys.pricer.Basket;
 
@@ -10,16 +10,11 @@ public class Kiosk {
         this.screen = screen;
     }
 
-    public Basket goGroceryShopping() {
-
-        return promptUserAndAddProducts();
-    }
-
-    private Basket promptUserAndAddProducts() {
+    public Basket createBasket() {
 
         screen.promptUser("wanna do some shopping? (y/n): ");
 
-        String response = screen.readUserInput();
+        String response = screen.readResponse();
 
         if (response.equalsIgnoreCase("y")) {
             System.out.println("ok, let's shop");

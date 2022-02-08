@@ -1,8 +1,8 @@
-package com.henrys.shopper;
+package com.henrys.kiosk;
 
 abstract class Screen {
 
-    abstract String readUserInput();
+    abstract String readResponse();
 
     abstract void promptUser(final String prompt);
 

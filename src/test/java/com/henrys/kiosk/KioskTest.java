@@ -1,4 +1,4 @@
-package com.henrys.shopper;
+package com.henrys.kiosk;
 
 import com.henrys.pricer.Basket;
 import org.junit.jupiter.api.DisplayName;
@@ -13,10 +13,13 @@ public class KioskTest {
 
     @Test
     @DisplayName("shop")
-    void test_goGroceryShopping() {
+    void test_createBasket() {
 
         Basket expectedBasket = null;
-        Basket actualBasket = kiosk.goGroceryShopping();
+
+        Basket actualBasket = kiosk.createBasket();
+
+
 
         assertEquals(expectedBasket, actualBasket);
     }
