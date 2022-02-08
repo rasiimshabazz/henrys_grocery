@@ -19,36 +19,19 @@ public class Kiosk {
 
     public Basket takeShoppersOrder() {
 
-        List<BasketItem> products = new ArrayList<>();
-
+        List<BasketItem> basketEntries = new ArrayList<>();
         boolean isShopping = true;
         while (isShopping) {
 
             StockItem product = promptForProduct();
             int quantity = promptForQuantity();
 
-            products.add(new BasketItem(product, quantity));
+            basketEntries.add(new BasketItem(product, quantity));
 
             isShopping = promptToContinue();
         }
 
-        return new Basket(products, LocalDate.now());
-    }
-
-    private boolean promptToContinue() {
-        boolean isShopping = true;
-        String shoppingResponse = "";
-
-        while (!Arrays.asList("y", "n").contains(shoppingResponse.toLowerCase())) {
-
-            screen.promptUser(Screen.PROMPT_SHOPPING);
-            shoppingResponse = screen.readResponse().trim();
-
-            if (shoppingResponse.equalsIgnoreCase("n")) {
-                isShopping = false;
-            }
-        }
-        return isShopping;
+        return new Basket(basketEntries, LocalDate.now());
     }
 
     private StockItem promptForProduct() {
@@ -83,4 +66,21 @@ public class Kiosk {
 
         return quantity;
     }
+
+    private boolean promptToContinue() {
+
+        boolean isShopping = true;
+        String shoppingResponse = "";
+
+        while (!Arrays.asList("y", "n").contains(shoppingResponse.toLowerCase())) {
+            screen.promptUser(Screen.PROMPT_SHOPPING);
+            shoppingResponse = screen.readResponse().trim();
+
+            if (shoppingResponse.equalsIgnoreCase("n")) {
+                isShopping = false;
+            }
+        }
+        return isShopping;
+    }
+
 }

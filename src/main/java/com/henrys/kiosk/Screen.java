@@ -16,8 +16,7 @@ public class Screen {
     }
 
     public String readResponse() {
-        String response = this.scanner.nextLine();
-        return response;
+        return this.scanner.nextLine();
     }
 
 }
