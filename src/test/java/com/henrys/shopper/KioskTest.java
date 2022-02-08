@@ -6,17 +6,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ShopperTest {
+public class KioskTest {
 
-    private Kiosk kiosk = new Kiosk();
-    private Shopper shopper = new Shopper(kiosk);
-
+    private Screen screen = new Screen();
+    private Kiosk kiosk = new Kiosk(screen);
 
     @DisplayName("shop")
     void test_goGroceryShopping() {
 
         Basket expectedBasket = null;
-        Basket actualBasket = shopper.goGroceryShopping();
+        Basket actualBasket = kiosk.goGroceryShopping();
 
         assertEquals(expectedBasket, actualBasket);
     }

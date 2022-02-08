@@ -1,23 +1,35 @@
 package com.henrys.shopper;
 
-import java.util.Scanner;
+import com.henrys.pricer.Basket;
 
 public class Kiosk {
 
-    private Scanner scanner = new Scanner(System.in);
+    private Screen screen;
 
-    public Kiosk() {
-
-
+    public Kiosk(Screen screen) {
+        this.screen = screen;
     }
 
-    public String readUserInput() {
-        String response = this.scanner.nextLine();
-        return response;
+    public Basket goGroceryShopping() {
+
+        return promptUserAndAddProducts();
     }
 
-    public void promptUser(final String prompt) {
-        System.out.print(prompt);
+    private Basket promptUserAndAddProducts() {
+
+        screen.promptUser("wanna do some shopping? (y/n): ");
+
+        String response = screen.readUserInput();
+
+        if (response.equalsIgnoreCase("y")) {
+            System.out.println("ok, let's shop");
+        }
+        else {
+            System.out.println(response + "? ok, next time then.");
+        }
+
+
+        return null;
     }
 
 }
