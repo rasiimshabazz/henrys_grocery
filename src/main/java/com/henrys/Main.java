@@ -17,9 +17,9 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        promptUser("wanna do some shopping? (y/n): ");
+        Shopper.promptUser("wanna do some shopping? (y/n): ");
 
-        String response = readUserInput(scanner);
+        String response = Shopper.readUserInput(scanner);
 
         if (response.equalsIgnoreCase("y")) {
             System.out.println("ok, let's shop");
@@ -31,15 +31,6 @@ public class Main {
         Cashier cashier = new Cashier();
         ArrayList<Coupon> coupons = new ArrayList<>();
         BigDecimal price = cashier.priceBasket(shopper.goGroceryShopping(), coupons);
-    }
-
-    private static String readUserInput(Scanner scanner) {
-        String response = scanner.nextLine();
-        return response;
-    }
-
-    private static void promptUser(final String prompt) {
-        System.out.print(prompt);
     }
 
 }
