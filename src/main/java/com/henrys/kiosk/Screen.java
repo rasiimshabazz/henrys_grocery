@@ -6,7 +6,6 @@ abstract class Screen {
     public static final String PROMPT_QUANTITY = "how many? ";
 
     abstract void promptUser(final String prompt);
-
     abstract String readResponse();
 
 }

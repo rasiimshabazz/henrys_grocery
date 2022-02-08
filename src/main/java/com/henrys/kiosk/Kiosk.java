@@ -19,13 +19,25 @@ public class Kiosk {
     public Basket createBasket() {
 
         StockItem product = promptForProduct();
-
         int quantity = promptForQuantity();
 
         BasketItem basketItem = new BasketItem(product, quantity);
         List<BasketItem> basketItems = Arrays.asList(basketItem);
 
         return new Basket(basketItems, LocalDate.now());
+    }
+
+    private StockItem promptForProduct() {
+        StockItem product = null;
+        while(product == null) {
+            List<String> productNames = StockItem.names();
+            screen.promptUser(Screen.PROMPT_PRODUCT);
+            String productResponse = screen.readResponse().trim().toUpperCase();
+            if (productNames.contains(productResponse)) {
+                product = StockItem.valueOf(productResponse);
+            }
+        }
+        return product;
     }
 
     private int promptForQuantity() {
@@ -46,18 +58,4 @@ public class Kiosk {
 
         return quantity;
     }
-
-    private StockItem promptForProduct() {
-        StockItem product = null;
-        while(product == null) {
-            List<String> productNames = StockItem.names();
-            screen.promptUser(Screen.PROMPT_PRODUCT);
-            String productResponse = screen.readResponse().trim().toUpperCase();
-            if (productNames.contains(productResponse)) {
-                product = StockItem.valueOf(productResponse);
-            }
-        }
-        return product;
-    }
-
 }
