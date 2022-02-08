@@ -9,7 +9,8 @@ public interface Coupon {
 
     static boolean isValid(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
 
-        if (validFromDate == null || validToDate == null) return true;
+        boolean couponDoesNotExpire = validFromDate == null || validToDate == null;
+        if (couponDoesNotExpire) return true;
 
         return purchaseDate.isAfter(validFromDate) && purchaseDate.isBefore(validToDate);
     }
