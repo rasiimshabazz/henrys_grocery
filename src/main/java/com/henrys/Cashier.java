@@ -11,7 +11,7 @@ class Cashier {
     BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
 
         if (basket == null) return format(0);
-        coupons = coupons != null ? coupons : Collections.EMPTY_LIST;
+        if (coupons == null) coupons = Collections.EMPTY_LIST;
 
         double price = basket.price(coupons);
 

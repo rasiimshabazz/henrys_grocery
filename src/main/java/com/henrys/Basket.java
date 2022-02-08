@@ -18,13 +18,15 @@ class Basket {
 
     double price(List<Coupon> coupons) {
 
-        double discount = coupons.stream().mapToDouble(coupon ->
-                coupon.calculateDiscount(this.basketItems, this.purchaseDate)).sum();
+        double discount = coupons.stream()
+                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketItems, this.purchaseDate))
+                .sum();
 
-        double fullPrice = this.basketItems.stream().mapToDouble(item -> item.price()).sum();
+        double fullPrice = this.basketItems.stream()
+                .mapToDouble(item -> item.price())
+                .sum();
 
         return fullPrice - discount;
-
     }
 
 }

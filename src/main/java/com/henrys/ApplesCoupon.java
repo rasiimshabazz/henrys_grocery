@@ -1,7 +1,6 @@
 package com.henrys;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 class ApplesCoupon implements Coupon {
@@ -21,9 +20,6 @@ class ApplesCoupon implements Coupon {
     public double calculateDiscount(List<BasketItem> basketItems, LocalDate purchaseDate) {
 
         if (!Coupon.isValid(purchaseDate, this.validFromDate, this.validToDate)) return 0;
-
-        boolean isPurchasedWithinValidPeriod = true;
-        if (!isPurchasedWithinValidPeriod) return 0;
 
         int appleCount = basketItems.stream().filter(item ->
             item.getItem().equals(StockItem.APPLES)
