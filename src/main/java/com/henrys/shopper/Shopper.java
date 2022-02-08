@@ -1,6 +1,11 @@
-package com.henrys.pricer;
+package com.henrys.shopper;
+
+import com.henrys.pricer.Basket;
 
 public class Shopper {
+
+    public Shopper(Kiosk kiosk) {
+    }
 
     public Basket goGroceryShopping() {
 

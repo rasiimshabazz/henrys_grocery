@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-class Basket {
+public class Basket {
 
     private final List<BasketItem> basketItems;
     private final LocalDate purchaseDate;
