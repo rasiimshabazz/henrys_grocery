@@ -105,6 +105,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 3),
                 new BasketItem(StockItem.BREAD, 2)
         ), LocalDate.now());
+
         assertEquals(format(3.15), new Cashier().priceBasket(basket, Arrays.asList(new BreadCoupon())));
     }
 
@@ -170,10 +171,8 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ), aWeekAgo);
 
-        LocalDate validFromYesterday = LocalDate.now().minusDays(1);
-
         assertEquals(format(3.55), new Cashier().priceBasket(basket, Arrays.asList(
-                Coupon.createBreadCoupon(validFromYesterday, validFromYesterday.plusDays(7)))));
+                createBreadCoupon())));
     }
 
     @Test
@@ -185,10 +184,8 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ), LocalDate.now());
 
-        LocalDate validFromDate = LocalDate.now().minusDays(1);
-
         assertEquals(format(3.15), new Cashier().priceBasket(basket, Arrays.asList(
-                Coupon.createBreadCoupon(validFromDate, validFromDate.plusDays(7)))));
+                createBreadCoupon())));
     }
 
     @Test
@@ -200,11 +197,9 @@ class CashierTest {
                 new BasketItem(StockItem.MILK, 1)
         ), LocalDate.now());
 
-        LocalDate threeDaysFromNow = LocalDate.now().plusDays(3);
-        LocalDate endOfFollowingMonth = threeDaysFromNow.plusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
-
         assertEquals(format(1.90), new Cashier().priceBasket(basket, Arrays.asList(
-                new BreadCoupon(), Coupon.createApplesCoupon(threeDaysFromNow, endOfFollowingMonth))));
+                new BreadCoupon(),
+                createApplesCoupon())));
     }
 
 
@@ -217,11 +212,9 @@ class CashierTest {
                 new BasketItem(StockItem.MILK, 1)
         ), fiveDaysTime);
 
-        LocalDate threeDaysFromNow = LocalDate.now().plusDays(3);
-        LocalDate endOfFollowingMonth = threeDaysFromNow.plusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
-
         assertEquals(format(1.84), new Cashier().priceBasket(basket, Arrays.asList(
-                new BreadCoupon(), Coupon.createApplesCoupon(threeDaysFromNow, endOfFollowingMonth))));
+                new BreadCoupon(),
+                createApplesCoupon())));
     }
 
 
@@ -236,16 +229,25 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 1)
         ), fiveDaysTime);
 
-
-        LocalDate threeDaysFromNow = LocalDate.now().plusDays(3);
-        LocalDate endOfFollowingMonth = threeDaysFromNow.plusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
-        LocalDate yesterday = LocalDate.now().minusDays(1);
-
-        assertEquals(format(1.97), new Cashier().priceBasket(basket, Arrays.asList(
-                Coupon.createBreadCoupon(yesterday, yesterday.plusDays(7)),
-                Coupon.createApplesCoupon(threeDaysFromNow, endOfFollowingMonth))));
+        assertEquals(format(1.97), new Cashier().priceBasket(basket,
+                Arrays.asList(
+                        createBreadCoupon(),
+                        createApplesCoupon())));
 
     }
 
+    private Coupon createBreadCoupon() {
+
+        return Coupon.createBreadCoupon(
+                LocalDate.now().minusDays(1),
+                LocalDate.now().minusDays(1).plusDays(7));
+    }
+
+    private Coupon createApplesCoupon() {
+
+        return Coupon.createApplesCoupon(
+                LocalDate.now().plusDays(3),
+                LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()));
+    }
 
 }
