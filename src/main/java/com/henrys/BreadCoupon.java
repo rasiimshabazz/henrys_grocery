@@ -18,18 +18,22 @@ class BreadCoupon extends Coupon {
 
         if (!Coupon.isValid(purchaseDate, this.validFromDate, this.validToDate)) return 0;
 
-        boolean isBuyingBread = basketItems.stream().anyMatch(item -> {
-            return item.getItem().equals(StockItem.BREAD);
-        });
-
-        boolean isBuyingAtLeastTwoSoups = basketItems.stream().filter(item -> {
-            return item.getItem().equals(StockItem.SOUP);
-        }).findFirst().orElse(new BasketItem(StockItem.SOUP, 1)).getQuantity() >= 2;
-
-        if (isBuyingBread && isBuyingAtLeastTwoSoups)
+        if (isBuyingBread(basketItems) && isBuyingAtLeastTwoSoups(basketItems))
             return StockItem.BREAD.getCost() / 2;
 
         return 0;
+    }
+
+    private boolean isBuyingAtLeastTwoSoups(List<BasketItem> basketItems) {
+        return basketItems.stream().filter(item -> {
+            return item.getItem().equals(StockItem.SOUP);
+        }).findFirst().orElse(new BasketItem(StockItem.SOUP, 1)).getQuantity() >= 2;
+    }
+
+    private boolean isBuyingBread(List<BasketItem> basketItems) {
+        return basketItems.stream().anyMatch(item -> {
+            return item.getItem().equals(StockItem.BREAD);
+        });
     }
 
 }
