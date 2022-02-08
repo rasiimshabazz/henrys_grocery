@@ -18,7 +18,7 @@ public class KioskTest {
     private Kiosk kiosk = new Kiosk(screen);
 
     @Test
-    @DisplayName("user enters: soup, 1")
+    @DisplayName("user enters: 'bread', '1' - basket should have 1 bread")
     void test_createBasket() {
 
         List<BasketItem> basketItems = Arrays.asList(new BasketItem(StockItem.BREAD, 1));

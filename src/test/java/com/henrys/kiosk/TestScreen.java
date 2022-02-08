@@ -2,15 +2,24 @@ package com.henrys.kiosk;
 
 public class TestScreen extends Screen {
 
-    private String prompt;
+    String response;
 
-    public void promptUser(final String prompt) {
+    public void promptUser(String prompt) {
         System.out.print(prompt);
-        this.prompt = prompt;
+
+
+        if (prompt.equalsIgnoreCase("soup, bread, apples, or milk? ")) {
+            response = "bread"; return;
+        }
+
+        if (prompt.equalsIgnoreCase("how many? ")) {
+            response = "1"; return;
+        }
+
+        response = "";
     }
 
     public String readResponse() {
-        String response = "<test user response>";
         return response;
     }
 

@@ -7,6 +7,7 @@ import com.henrys.pricer.StockItem;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class Kiosk {
 
@@ -18,18 +19,18 @@ public class Kiosk {
 
     public Basket createBasket() {
 
-        screen.promptUser("wanna do some shopping? (y/n): ");
+        String productPrompt = "soup, bread, apples, or milk? ";
+        screen.promptUser(productPrompt);
+        String productResponse = screen.readResponse();
+        StockItem product = StockItem.valueOf(productResponse.toUpperCase());
 
-        String response = screen.readResponse();
+        String quantityPrompt = "how many? ";
+        screen.promptUser(quantityPrompt);
+        String quantityResponse = screen.readResponse();
+        int quantity = Integer.valueOf(quantityResponse);
 
-        if (response.equalsIgnoreCase("y")) {
-            System.out.println("ok, let's shop");
-        }
-        else {
-            System.out.println(response + "? ok, next time then.");
-        }
-
-        List<BasketItem> basketItems = Arrays.asList(new BasketItem(StockItem.BREAD, 1));
+        BasketItem basketItem = new BasketItem(product, quantity);
+        List<BasketItem> basketItems = Arrays.asList(basketItem);
         return new Basket(basketItems, LocalDate.now());
     }
 
