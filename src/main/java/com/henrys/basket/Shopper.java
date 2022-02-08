@@ -1,12 +1,16 @@
 package com.henrys.basket;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Scanner;
 
-class Shopper {
+public class Shopper {
 
-    Basket goGroceryShopping() {
+    public Basket goGroceryShopping() {
 
+        return promptUserAndAddProducts();
+    }
+
+    private Basket promptUserAndAddProducts() {
+        
         return null;
     }
 

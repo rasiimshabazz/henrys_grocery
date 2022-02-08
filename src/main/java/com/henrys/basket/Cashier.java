@@ -10,7 +10,7 @@ public class Cashier {
     public Cashier() {
     }
 
-    BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
+    public BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
 
         if (basket == null) return format(0);
         if (coupons == null) coupons = new ArrayList<>();
