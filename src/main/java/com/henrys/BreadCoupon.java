@@ -8,7 +8,7 @@ class BreadCoupon extends Coupon {
     private LocalDate validFromDate;
     private LocalDate validToDate;
 
-    BreadCoupon() {
+    private BreadCoupon() {
     }
 
     BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {

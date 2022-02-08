@@ -106,7 +106,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ), LocalDate.now());
 
-        assertEquals(format(3.15), new Cashier().priceBasket(basket, Arrays.asList(new BreadCoupon())));
+        assertEquals(format(3.15), new Cashier().priceBasket(basket, Arrays.asList(createBreadCoupon())));
     }
 
     @Test
@@ -118,7 +118,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 1)
         ), LocalDate.now());
 
-        assertEquals(format(1.70), new Cashier().priceBasket(basket, Arrays.asList(new BreadCoupon())));
+        assertEquals(format(1.70), new Cashier().priceBasket(basket, Arrays.asList(createBreadCoupon())));
     }
 
     @Test
@@ -143,7 +143,7 @@ class CashierTest {
         ), LocalDate.now());
 
         assertEquals(format(1.84), new Cashier().priceBasket(basket, Arrays.asList(
-                new BreadCoupon(), new ApplesCoupon())));
+                createBreadCoupon(), new ApplesCoupon())));
     }
 
     @Test
@@ -157,7 +157,7 @@ class CashierTest {
         ), LocalDate.now());
 
         assertEquals(format(1.97), new Cashier().priceBasket(basket, Arrays.asList(
-                new BreadCoupon(), new ApplesCoupon())));
+                createBreadCoupon(), new ApplesCoupon())));
 
     }
 
@@ -198,7 +198,7 @@ class CashierTest {
         ), LocalDate.now());
 
         assertEquals(format(1.90), new Cashier().priceBasket(basket, Arrays.asList(
-                new BreadCoupon(),
+                createBreadCoupon(),
                 createApplesCoupon())));
     }
 
@@ -214,7 +214,7 @@ class CashierTest {
         ), boughtInFiveDaysTime);
 
         assertEquals(format(1.84), new Cashier().priceBasket(basket, Arrays.asList(
-                new BreadCoupon(),
+                createBreadCoupon(),
                 createApplesCoupon())));
     }
 
