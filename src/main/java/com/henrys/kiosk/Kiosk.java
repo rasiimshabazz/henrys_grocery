@@ -30,15 +30,14 @@ public class Kiosk {
 
     private int promptForQuantity() {
 
-        int quantity = 0;
-        boolean validNumber = false;
-        while(!validNumber) {
+        Integer quantity = null;
+        while(quantity == null) {
+
             screen.promptUser(Screen.PROMPT_QUANTITY);
             String quantityResponse = screen.readResponse();
 
             try {
                 quantity = Integer.valueOf(quantityResponse);
-                validNumber = true;
             }
             catch (NumberFormatException e) {
                 screen.promptUser("please enter a number for quantity: ");

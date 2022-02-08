@@ -13,8 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class KioskTest {
 
@@ -51,6 +50,7 @@ public class KioskTest {
     void test_createBasket_1_soup_with_blank() {
 
         List<BasketItem> expectedProducts = Arrays.asList(new BasketItem(StockItem.SOUP, 1));
+
         given(mockScreen.readResponse())
                 .willReturn(" ")
                 .willReturn("soup")
@@ -60,12 +60,16 @@ public class KioskTest {
     }
 
     @Test
-    @DisplayName("when user enters 'soup', ' ', '1' - basket should have 1 soup")
-    void test_createBasket_1_soup_with_blank_after() {
+    @DisplayName("when user enters ' ', 'soup', ' ', '1' - basket should have 1 soup")
+    void test_createBasket_1_soup_with_blank_entries() {
 
         List<BasketItem> expectedProducts = Arrays.asList(new BasketItem(StockItem.SOUP, 1));
+
         given(mockScreen.readResponse())
+                .willReturn(" ")
+                .willReturn(" ")
                 .willReturn("soup")
+                .willReturn(" ")
                 .willReturn(" ")
                 .willReturn("1");
 
