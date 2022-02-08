@@ -1,11 +1,11 @@
 package com.henrys.pricer;
 
-class BasketItem {
+public class BasketItem {
 
     private final StockItem item;
     private final int quantity;
 
-    BasketItem(StockItem item, int quantity) {
+    public BasketItem(StockItem item, int quantity) {
         this.item = item;
         this.quantity = quantity;
     }
@@ -20,5 +20,9 @@ class BasketItem {
 
     double price() {
         return this.item.getCost() * this.quantity;
+    }
+
+    public String toString() {
+        return this.quantity + " " + this.item;
     }
 }

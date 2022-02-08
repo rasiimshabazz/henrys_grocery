@@ -1,6 +1,12 @@
 package com.henrys.kiosk;
 
 import com.henrys.pricer.Basket;
+import com.henrys.pricer.BasketItem;
+import com.henrys.pricer.StockItem;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 public class Kiosk {
 
@@ -23,8 +29,8 @@ public class Kiosk {
             System.out.println(response + "? ok, next time then.");
         }
 
-
-        return null;
+        List<BasketItem> basketItems = Arrays.asList(new BasketItem(StockItem.BREAD, 1));
+        return new Basket(basketItems, LocalDate.now());
     }
 
 }

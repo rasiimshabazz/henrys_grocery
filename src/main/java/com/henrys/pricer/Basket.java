@@ -11,7 +11,7 @@ public class Basket {
     private final List<BasketItem> basketItems;
     private final LocalDate purchaseDate;
 
-    Basket(List<BasketItem> newBasketItems, LocalDate purchaseDate) {
+    public Basket(List<BasketItem> newBasketItems, LocalDate purchaseDate) {
 
         if (newBasketItems == null) newBasketItems = new ArrayList<>();
 
@@ -37,4 +37,7 @@ public class Basket {
         return fullPrice - discount;
     }
 
+    public String toString() {
+        return "items: " + this.basketItems.toString() + ", purchase date: " + this.purchaseDate.toString();
+    }
 }
