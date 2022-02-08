@@ -1,12 +1,12 @@
-package com.henrys;
+package com.henrys.basket;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Shopper {
+class Shopper {
 
-    public Basket goGroceryShopping() {
+    Basket goGroceryShopping() {
 
         return new Basket(new ArrayList<>(), LocalDate.now());
     }

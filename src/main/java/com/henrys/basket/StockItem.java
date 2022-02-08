@@ -1,4 +1,4 @@
-package com.henrys;
+package com.henrys.basket;
 
 enum StockItem {
 
@@ -10,7 +10,7 @@ enum StockItem {
         this.cost = cost;
     }
 
-    public double getCost() {
+    double getCost() {
         return cost;
     }
 }

@@ -1,4 +1,4 @@
-package com.henrys;
+package com.henrys.basket;
 
 class BasketItem {
 
@@ -10,15 +10,15 @@ class BasketItem {
         this.quantity = quantity;
     }
 
-    public StockItem getItem() {
+    StockItem getItem() {
         return this.item;
     }
 
-    public int getQuantity() {
+    int getQuantity() {
         return this.quantity;
     }
 
-    public double price() {
+    double price() {
         return this.item.getCost() * this.quantity;
     }
 }

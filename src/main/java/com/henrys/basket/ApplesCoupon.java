@@ -1,4 +1,4 @@
-package com.henrys;
+package com.henrys.basket;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,9 +14,9 @@ class ApplesCoupon extends Coupon {
     }
 
     @Override
-    public double calculateDiscount(List<BasketItem> items, LocalDate purchaseDate) {
+    double calculateDiscount(List<BasketItem> items, LocalDate purchaseDate) {
 
-        if (Coupon.isNotApplicable(purchaseDate, this.validFromDate, this.validToDate))
+        if (isNotApplicable(purchaseDate, this.validFromDate, this.validToDate))
             return 0;
 
         return numberOfApples(items) * .01;

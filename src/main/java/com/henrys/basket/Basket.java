@@ -1,4 +1,4 @@
-package com.henrys;
+package com.henrys.basket;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ class Basket {
     private final List<BasketItem> basketItems;
     private final LocalDate purchaseDate;
 
-    public Basket(List<BasketItem> newBasketItems, LocalDate purchaseDate) {
+    Basket(List<BasketItem> newBasketItems, LocalDate purchaseDate) {
 
         if (newBasketItems == null) newBasketItems = new ArrayList<>();
 

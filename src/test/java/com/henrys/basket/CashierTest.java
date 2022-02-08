@@ -1,5 +1,6 @@
-package com.henrys;
+package com.henrys.basket;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,22 +10,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static com.henrys.Cashier.format;
-import static org.junit.jupiter.api.Assertions.*;
-
 class CashierTest {
 
     @Test
     @DisplayName("a null basket, costs nada")
     void test_priceBasket_null() {
-        assertEquals(format(0), new Cashier().priceBasket(null, new ArrayList<>()));
+        Assertions.assertEquals(Cashier.format(0), new Cashier().priceBasket(null, new ArrayList<>()));
     }
 
     @Test
     @DisplayName("a basket containing null, costs nada")
     void test_priceBasket_containing_null_() {
 
-        assertEquals(format(0), new Cashier().priceBasket(new Basket(null, null),
+        Assertions.assertEquals(Cashier.format(0), new Cashier().priceBasket(new Basket(null, null),
                 new ArrayList<>()));
     }
 
@@ -32,7 +30,7 @@ class CashierTest {
     @DisplayName("a basket containing nada, costs nada")
     void test_priceBasket_nada() {
 
-        assertEquals(format(0), new Cashier().priceBasket(new Basket(new ArrayList<>(), LocalDate.now()),
+        Assertions.assertEquals(Cashier.format(0), new Cashier().priceBasket(new Basket(new ArrayList<>(), LocalDate.now()),
                 new ArrayList<>()));
     }
 
@@ -44,7 +42,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 1)
         ), LocalDate.now());
 
-        assertEquals(format(0.65), new Cashier().priceBasket(basket, new ArrayList<>()));
+        Assertions.assertEquals(Cashier.format(0.65), new Cashier().priceBasket(basket, new ArrayList<>()));
     }
 
     @Test
@@ -55,7 +53,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 1)
         ), LocalDate.now());
 
-        assertEquals(format(0.65), new Cashier().priceBasket(basket, null));
+        Assertions.assertEquals(Cashier.format(0.65), new Cashier().priceBasket(basket, null));
     }
 
     @Test
@@ -66,7 +64,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 1)
         ), LocalDate.now());
 
-        assertEquals(format(0.65), new Cashier().priceBasket(basket, null));
+        Assertions.assertEquals(Cashier.format(0.65), new Cashier().priceBasket(basket, null));
     }
 
     @Test
@@ -77,7 +75,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 7)
         ), LocalDate.now());
 
-        assertEquals(format(4.55), new Cashier().priceBasket(basket, new ArrayList<>()));
+        Assertions.assertEquals(Cashier.format(4.55), new Cashier().priceBasket(basket, new ArrayList<>()));
     }
 
     @Test
@@ -89,7 +87,7 @@ class CashierTest {
                 new BasketItem(StockItem.SOUP, 4)
         ), LocalDate.now());
 
-        assertEquals(format(4.55), new Cashier().priceBasket(basket, new ArrayList<>()));
+        Assertions.assertEquals(Cashier.format(4.55), new Cashier().priceBasket(basket, new ArrayList<>()));
     }
 
     @Test
@@ -101,7 +99,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ), LocalDate.now());
 
-        assertEquals(format(3.55), new Cashier().priceBasket(basket, new ArrayList<>()));
+        Assertions.assertEquals(Cashier.format(3.55), new Cashier().priceBasket(basket, new ArrayList<>()));
     }
 
     @Test
@@ -113,7 +111,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 1)
         ), LocalDate.now());
 
-        assertEquals(format(2.10), new Cashier().priceBasket(basket, new ArrayList<>()));
+        Assertions.assertEquals(Cashier.format(2.10), new Cashier().priceBasket(basket, new ArrayList<>()));
     }
 
     @Test
@@ -125,7 +123,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ), LocalDate.now());
 
-        assertEquals(format(3.15), new Cashier().priceBasket(basket, Collections.singletonList(createBreadCoupon())));
+        Assertions.assertEquals(Cashier.format(3.15), new Cashier().priceBasket(basket, Collections.singletonList(createBreadCoupon())));
     }
 
     @Test
@@ -137,7 +135,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 1)
         ), LocalDate.now());
 
-        assertEquals(format(1.70), new Cashier().priceBasket(basket, Collections.singletonList(createBreadCoupon())));
+        Assertions.assertEquals(Cashier.format(1.70), new Cashier().priceBasket(basket, Collections.singletonList(createBreadCoupon())));
     }
 
     @Test
@@ -149,7 +147,7 @@ class CashierTest {
                 new BasketItem(StockItem.MILK, 1)
         ), LocalDate.now());
 
-        assertEquals(format(1.90), new Cashier().priceBasket(basket, new ArrayList<>()));
+        Assertions.assertEquals(Cashier.format(1.90), new Cashier().priceBasket(basket, new ArrayList<>()));
     }
 
     @Test
@@ -162,7 +160,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ), boughtAWeekAgo);
 
-        assertEquals(format(3.55), new Cashier().priceBasket(basket, Collections.singletonList(
+        Assertions.assertEquals(Cashier.format(3.55), new Cashier().priceBasket(basket, Collections.singletonList(
                 createBreadCoupon())));
     }
 
@@ -175,7 +173,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 2)
         ), LocalDate.now());
 
-        assertEquals(format(3.15), new Cashier().priceBasket(basket, Collections.singletonList(
+        Assertions.assertEquals(Cashier.format(3.15), new Cashier().priceBasket(basket, Collections.singletonList(
                 createBreadCoupon())));
     }
 
@@ -188,7 +186,7 @@ class CashierTest {
                 new BasketItem(StockItem.MILK, 1)
         ), LocalDate.now());
 
-        assertEquals(format(1.90), new Cashier().priceBasket(basket, Arrays.asList(
+        Assertions.assertEquals(Cashier.format(1.90), new Cashier().priceBasket(basket, Arrays.asList(
                 createBreadCoupon(),
                 createApplesCoupon())));
     }
@@ -203,7 +201,7 @@ class CashierTest {
                 new BasketItem(StockItem.MILK, 1)
         ), boughtInFiveDaysTime);
 
-        assertEquals(format(1.84), new Cashier().priceBasket(basket, Arrays.asList(
+        Assertions.assertEquals(Cashier.format(1.84), new Cashier().priceBasket(basket, Arrays.asList(
                 createBreadCoupon(),
                 createApplesCoupon())));
     }
@@ -219,7 +217,7 @@ class CashierTest {
                 new BasketItem(StockItem.BREAD, 1)
         ), boughtInFiveDaysTime);
 
-        assertEquals(format(1.97), new Cashier().priceBasket(basket,
+        Assertions.assertEquals(Cashier.format(1.97), new Cashier().priceBasket(basket,
                 Arrays.asList(createBreadCoupon(), createApplesCoupon())));
     }
 
