@@ -13,12 +13,6 @@ import java.util.Collections;
 class PricerTest {
 
     @Test
-    @DisplayName("a null basket, costs nada")
-    void test_priceBasket_null() {
-        Assertions.assertEquals(Pricer.format(0), Pricer.priceBasket(null, new ArrayList<>()));
-    }
-
-    @Test
     @DisplayName("a basket containing null, costs nada")
     void test_priceBasket_containing_null_() {
 
