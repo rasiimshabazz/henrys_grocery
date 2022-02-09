@@ -33,4 +33,13 @@ All outputs must print to the command line.
     - Expected total cost = 1.84;
 - Price a basket containing: 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time,
     - Expected total cost = 1.97.
- 
+
+### Play with it
+
+- clone it
+  - $ git clone https://github.com/rusiimsha/henrys_grocery.git
+- build it
+  - $ mvn clean install
+- run it
+  - $ java -cp henrys.jar com.henrys.Henry
+
