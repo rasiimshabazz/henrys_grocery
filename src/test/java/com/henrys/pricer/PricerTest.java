@@ -178,6 +178,37 @@ class PricerTest {
     }
 
     @Test
+    @DisplayName("* a basket containing 3 tins of soup (unmerged up) and 2 loaves of bread, bought today, costs 3.15")
+    void test_priceBasket_bread_coupon_rolled_up() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketEntry(StockItem.SOUP, 1),
+                new BasketEntry(StockItem.SOUP, 1),
+                new BasketEntry(StockItem.SOUP, 1),
+                new BasketEntry(StockItem.BREAD, 1),
+                new BasketEntry(StockItem.BREAD, 1)
+        ), LocalDate.now());
+
+        Assertions.assertEquals(Pricer.format(3.15), new Pricer().priceBasket(basket, Collections.singletonList(
+                createBreadCoupon())));
+    }
+
+    @Test
+    @DisplayName("a basket containing 7 tins of soup (unmerged), one loaf bread, with/out coupon")
+    void test_priceBasket_multiple_merged_with_bread() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketEntry(StockItem.SOUP, 1),
+                new BasketEntry(StockItem.SOUP, 6),
+                new BasketEntry(StockItem.BREAD, 1)
+        ), LocalDate.now());
+
+        Assertions.assertEquals(Pricer.format(4.95), new Pricer().priceBasket(basket, Collections.singletonList(
+                createBreadCoupon())));
+        Assertions.assertEquals(Pricer.format(5.35), new Pricer().priceBasket(basket, null));
+    }
+
+    @Test
     @DisplayName("* a basket containing 6 apples and a bottle of milk, bought today, costs = 1.90")
     void test_priceBasket_apple_coupon_invalid() {
 
