@@ -7,7 +7,6 @@ import com.henrys.basket.StockItem;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,9 +21,18 @@ public class Kiosk {
 
     public Basket takeShoppersOrder() {
 
-        printIntro();
+        screen.printLine(INFO_WELCOME_MESSAGE);
 
+        Basket basket = new Basket(collectBasketEntries(), LocalDate.now());
 
+        BigDecimal price = basket.calculatePrice(Coupon.currentPomotion());
+
+        screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
+
+        return basket;
+    }
+
+    private List<BasketEntry> collectBasketEntries() {
         List<BasketEntry> basketEntries = new ArrayList<>();
         boolean isShopping = true;
         while (isShopping) {
@@ -39,14 +47,7 @@ public class Kiosk {
 
             isShopping = promptToContinue();
         }
-
-
-        Basket basket = new Basket(basketEntries, LocalDate.now());
-        BigDecimal price = basket.calculatePrice(coupons());
-
-        printOutro(price);
-
-        return basket;
+        return basketEntries;
     }
 
     private StockItem promptForProduct() {
@@ -93,31 +94,18 @@ public class Kiosk {
         return isShopping;
     }
 
-    private static void printIntro() {
-        System.out.println("\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n");
-    }
-
-    private static void printOutro(BigDecimal price) {
-        System.out.println("\ntotal price is: $" + price);
-        System.out.println("\nthank you! come again.\n\n\n");
-    }
-
-    private static List<Coupon> coupons() {
-        return Arrays.asList(
-                Coupon.createBreadCoupon(
-                        LocalDate.now().minusDays(1),
-                        LocalDate.now().minusDays(1).plusDays(7)),
-                Coupon.createApplesCoupon(
-                        LocalDate.now().plusDays(3),
-                        LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth())));
-    }
+    private static final String INFO_WELCOME_MESSAGE = "\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n";
+    private static final String INFO_TOTAL_PRICE = "\ntotal price is: $";
+    private static final String INFO_THANK_YOU = "\nthank you! come again.\n\n\n";
+    private static final String INFO_BASKET_STATUS_PREFIX = "your basket so far: ";
 
     private static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
     private static final String PROMPT_FOR_QUANTITY = "how many? ";
     private static final String PROMPT_FOR_SHOPPING = "add more? (y/n) ";
+
     private static final String RESPONSE_YES = "y";
     private static final String RESPONSE_NO = "n";
-    private static final String INFO_BASKET_STATUS_PREFIX = "your basket so far: ";
+
     private static final String ERROR_PREFIX = "! you typed: ";
 
 }

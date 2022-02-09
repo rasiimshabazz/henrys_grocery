@@ -1,6 +1,8 @@
 package com.henrys.basket;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class Coupon {
@@ -31,5 +33,15 @@ public abstract class Coupon {
 
     public static Coupon createBreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
         return new BreadCoupon(validFromDate, validToDate);
+    }
+
+    public static List<Coupon> currentPomotion() {
+        return Arrays.asList(
+                Coupon.createBreadCoupon(
+                        LocalDate.now().minusDays(1),
+                        LocalDate.now().minusDays(1).plusDays(7)),
+                Coupon.createApplesCoupon(
+                        LocalDate.now().plusDays(3),
+                        LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth())));
     }
 }
