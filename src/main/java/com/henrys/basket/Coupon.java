@@ -15,11 +15,14 @@ public abstract class Coupon {
 
     abstract double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate);
 
-    boolean isNotApplicable(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
+    boolean isApplicable(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
 
-        if (purchaseDate == null || validFromDate == null || validToDate == null) return true;
+        if (purchaseDate == null || validFromDate == null || validToDate == null) {
 
-        return !(purchaseDate.isAfter(validFromDate) && purchaseDate.isBefore(validToDate));
+            return false;
+        }
+
+        return purchaseDate.isAfter(validFromDate) && purchaseDate.isBefore(validToDate);
     }
 
     public static Coupon createApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
