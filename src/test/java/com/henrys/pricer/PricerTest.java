@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
@@ -16,16 +18,14 @@ class PricerTest {
     @DisplayName("a basket containing null, costs nada")
     void test_priceBasket_containing_null_() {
 
-        Assertions.assertEquals(Basket.format(0), new Basket(null, null).priceBasket(
-                new ArrayList<>()));
+        Assertions.assertEquals(PricerTest.format(0), new Basket(null, null).calculatePrice(new ArrayList<>()));
     }
 
     @Test
     @DisplayName("a basket containing nada, costs nada")
     void test_priceBasket_nada() {
 
-        Assertions.assertEquals(Basket.format(0), new Basket(new ArrayList<>(), LocalDate.now()).priceBasket(
-                new ArrayList<>()));
+        Assertions.assertEquals(PricerTest.format(0), new Basket(new ArrayList<>(), LocalDate.now()).calculatePrice(new ArrayList<>()));
     }
 
     @Test
@@ -36,7 +36,7 @@ class PricerTest {
                 new BasketEntry(StockItem.SOUP, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(0.65), basket.priceBasket(new ArrayList<>()));
+        Assertions.assertEquals(PricerTest.format(0.65), basket.calculatePrice(new ArrayList<>()));
     }
 
     @Test
@@ -47,7 +47,7 @@ class PricerTest {
                 new BasketEntry(StockItem.SOUP, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(0.65), basket.priceBasket(null));
+        Assertions.assertEquals(PricerTest.format(0.65), basket.calculatePrice(null));
     }
 
     @Test
@@ -58,7 +58,7 @@ class PricerTest {
                 new BasketEntry(StockItem.SOUP, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(0.65), basket.priceBasket(null));
+        Assertions.assertEquals(PricerTest.format(0.65), basket.calculatePrice(null));
     }
 
     @Test
@@ -69,7 +69,7 @@ class PricerTest {
                 new BasketEntry(StockItem.SOUP, 7)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(4.55), basket.priceBasket(new ArrayList<>()));
+        Assertions.assertEquals(PricerTest.format(4.55), basket.calculatePrice(new ArrayList<>()));
     }
 
     @Test
@@ -81,7 +81,7 @@ class PricerTest {
                 new BasketEntry(StockItem.SOUP, 4)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(4.55), basket.priceBasket(new ArrayList<>()));
+        Assertions.assertEquals(PricerTest.format(4.55), basket.calculatePrice(new ArrayList<>()));
     }
 
     @Test
@@ -93,7 +93,7 @@ class PricerTest {
                 new BasketEntry(StockItem.BREAD, 2)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(3.55), basket.priceBasket(new ArrayList<>()));
+        Assertions.assertEquals(PricerTest.format(3.55), basket.calculatePrice(new ArrayList<>()));
     }
 
     @Test
@@ -105,7 +105,7 @@ class PricerTest {
                 new BasketEntry(StockItem.BREAD, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(2.10), basket.priceBasket(new ArrayList<>()));
+        Assertions.assertEquals(PricerTest.format(2.10), basket.calculatePrice(new ArrayList<>()));
     }
 
     @Test
@@ -117,7 +117,7 @@ class PricerTest {
                 new BasketEntry(StockItem.BREAD, 2)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(3.15), basket.priceBasket(Collections.singletonList(createBreadCoupon())));
+        Assertions.assertEquals(PricerTest.format(3.15), basket.calculatePrice(Collections.singletonList(createBreadCoupon())));
     }
 
     @Test
@@ -129,7 +129,7 @@ class PricerTest {
                 new BasketEntry(StockItem.BREAD, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(1.70), basket.priceBasket(Collections.singletonList(createBreadCoupon())));
+        Assertions.assertEquals(PricerTest.format(1.70), basket.calculatePrice(Collections.singletonList(createBreadCoupon())));
     }
 
     @Test
@@ -141,7 +141,7 @@ class PricerTest {
                 new BasketEntry(StockItem.MILK, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(1.90), basket.priceBasket(new ArrayList<>()));
+        Assertions.assertEquals(PricerTest.format(1.90), basket.calculatePrice(new ArrayList<>()));
     }
 
     @Test
@@ -154,7 +154,7 @@ class PricerTest {
                 new BasketEntry(StockItem.BREAD, 2)
         ), boughtAWeekAgo);
 
-        Assertions.assertEquals(Basket.format(3.55), basket.priceBasket(Collections.singletonList(
+        Assertions.assertEquals(PricerTest.format(3.55), basket.calculatePrice(Collections.singletonList(
                 createBreadCoupon())));
     }
 
@@ -167,7 +167,7 @@ class PricerTest {
                 new BasketEntry(StockItem.BREAD, 2)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(3.15), basket.priceBasket(Collections.singletonList(
+        Assertions.assertEquals(PricerTest.format(3.15), basket.calculatePrice(Collections.singletonList(
                 createBreadCoupon())));
     }
 
@@ -183,7 +183,7 @@ class PricerTest {
                 new BasketEntry(StockItem.BREAD, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(3.15), basket.priceBasket(Collections.singletonList(
+        Assertions.assertEquals(PricerTest.format(3.15), basket.calculatePrice(Collections.singletonList(
                 createBreadCoupon())));
     }
 
@@ -197,9 +197,10 @@ class PricerTest {
                 new BasketEntry(StockItem.BREAD, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(4.95), basket.priceBasket(Collections.singletonList(
+        Assertions.assertEquals(PricerTest.format(4.95), basket.calculatePrice(Collections.singletonList(
                 createBreadCoupon())));
-        Assertions.assertEquals(Basket.format(5.35), basket.priceBasket(null));
+
+        Assertions.assertEquals(PricerTest.format(5.35), basket.calculatePrice(null));
     }
 
     @Test
@@ -211,7 +212,7 @@ class PricerTest {
                 new BasketEntry(StockItem.MILK, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(Basket.format(1.90), basket.priceBasket(Arrays.asList(
+        Assertions.assertEquals(PricerTest.format(1.90), basket.calculatePrice(Arrays.asList(
                 createBreadCoupon(),
                 createApplesCoupon())));
     }
@@ -226,7 +227,7 @@ class PricerTest {
                 new BasketEntry(StockItem.MILK, 1)
         ), boughtInFiveDaysTime);
 
-        Assertions.assertEquals(Basket.format(1.84), basket.priceBasket(Arrays.asList(
+        Assertions.assertEquals(PricerTest.format(1.84), basket.calculatePrice(Arrays.asList(
                 createBreadCoupon(),
                 createApplesCoupon())));
     }
@@ -242,7 +243,7 @@ class PricerTest {
                 new BasketEntry(StockItem.BREAD, 1)
         ), boughtInFiveDaysTime);
 
-        Assertions.assertEquals(Basket.format(1.97), basket.priceBasket(Arrays.asList(createBreadCoupon(),
+        Assertions.assertEquals(PricerTest.format(1.97), basket.calculatePrice(Arrays.asList(createBreadCoupon(),
                 createApplesCoupon())));
     }
 
@@ -257,5 +258,8 @@ class PricerTest {
                 LocalDate.now().plusDays(3),
                 LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()));
     }
-
+    
+    static BigDecimal format(double value) {
+        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
+    }
 }

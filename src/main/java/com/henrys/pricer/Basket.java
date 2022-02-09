@@ -19,18 +19,11 @@ public class Basket {
         this.purchaseDate = purchaseDate;
     }
 
-    public BigDecimal priceBasket(List<Coupon> coupons) {
-
-        double price = this.calculatePrice(coupons);
-
-        return format(price);
-    }
-
-    double calculatePrice(List<Coupon> coupons) {
+    public BigDecimal calculatePrice(List<Coupon> coupons) {
 
         if (coupons == null) coupons = new ArrayList<>();
 
-        return fullPrice() - discount(coupons);
+        return format(fullPrice() - discount(coupons));
     }
 
     private double fullPrice() {
