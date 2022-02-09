@@ -42,7 +42,7 @@ public class Basket {
         return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
     }
 
-    static BigDecimal format(double value) {
+    private static BigDecimal format(double value) {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
 
