@@ -19,7 +19,7 @@ public class Henry {
 
         Basket basket = new Kiosk(new Screen()).takeShoppersOrder();
 
-        BigDecimal price = Basket.priceBasket(basket, coupons());
+        BigDecimal price = basket.priceBasket(coupons());
 
         printOutro(price);
 

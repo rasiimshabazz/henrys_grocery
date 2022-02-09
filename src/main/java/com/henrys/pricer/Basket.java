@@ -19,15 +19,11 @@ public class Basket {
         this.purchaseDate = purchaseDate;
     }
 
-    public static BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
+    public BigDecimal priceBasket(List<Coupon> coupons) {
 
-        double price = basket.calculatePrice(coupons);
+        double price = this.calculatePrice(coupons);
 
         return format(price);
-    }
-
-    static BigDecimal format(double value) {
-        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
 
     double calculatePrice(List<Coupon> coupons) {
@@ -51,6 +47,10 @@ public class Basket {
 
     public String toString() {
         return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
+    }
+
+    static BigDecimal format(double value) {
+        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
 
     private static List<BasketEntry> mergeQuantities(List<BasketEntry> unmerged) {
