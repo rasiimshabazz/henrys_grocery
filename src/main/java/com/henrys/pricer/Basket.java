@@ -21,20 +21,16 @@ public class Basket {
 
         if (coupons == null) coupons = new ArrayList<>();
 
-        double fullPrice = calculateFullPrice();
-
-        double discount = calculateDiscount(coupons);
-
-        return fullPrice - discount;
+        return fullPrice() - discount(coupons);
     }
 
-    private double calculateFullPrice() {
+    private double fullPrice() {
         return this.basketEntries.stream()
                 .mapToDouble(BasketEntry::price)
                 .sum();
     }
 
-    private double calculateDiscount(List<Coupon> coupons) {
+    private double discount(List<Coupon> coupons) {
         return coupons.stream()
                 .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, this.purchaseDate))
                 .sum();
