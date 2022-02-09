@@ -10,6 +10,7 @@ public class Basket {
     private final LocalDate purchaseDate;
 
     public Basket(List<BasketEntry> basketEntries, LocalDate purchaseDate) {
+
         if (basketEntries == null) basketEntries = new ArrayList<>();
 
         this.basketEntries = mergeQuantities(filterOutNulls(basketEntries));
@@ -20,20 +21,23 @@ public class Basket {
 
         if (coupons == null) coupons = new ArrayList<>();
 
-        double discount = coupons.stream()
-                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, this.purchaseDate))
-                .sum();
+        double fullPrice = calculateFullPrice();
 
-        double fullPrice = this.basketEntries.stream()
-                .mapToDouble(BasketEntry::price)
-                .sum();
+        double discount = calculateDiscount(coupons);
 
         return fullPrice - discount;
     }
 
-    public String toString() {
+    private double calculateFullPrice() {
+        return this.basketEntries.stream()
+                .mapToDouble(BasketEntry::price)
+                .sum();
+    }
 
-        return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
+    private double calculateDiscount(List<Coupon> coupons) {
+        return coupons.stream()
+                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, this.purchaseDate))
+                .sum();
     }
 
     private List<BasketEntry> mergeQuantities(List<BasketEntry> unmerged) {
@@ -41,13 +45,13 @@ public class Basket {
                 .map(BasketEntry::getItem)
                 .distinct().collect(Collectors.toList());
         return distinctItems.stream()
-                .map(distinctItem -> sumQuantities(unmerged, distinctItem))
+                .map(distinctItem -> mergeQuantitiesByStockItem(unmerged, distinctItem))
                 .collect(Collectors.toList());
     }
 
-    private BasketEntry sumQuantities(List<BasketEntry> repeateds, StockItem distinctItem) {
-        int count = repeateds.stream()
-                .filter(repeat -> distinctItem.equals(repeat.getItem()))
+    private BasketEntry mergeQuantitiesByStockItem(List<BasketEntry> repeatedEntries, StockItem distinctItem) {
+        int count = repeatedEntries.stream()
+                .filter(repeat -> repeat.getItem().equals(distinctItem))
                 .mapToInt(BasketEntry::getQuantity).sum();
         return new BasketEntry(distinctItem, count);
     }
@@ -56,5 +60,9 @@ public class Basket {
         return newBasketEntries.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+    }
+
+    public String toString() {
+        return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
     }
 }
