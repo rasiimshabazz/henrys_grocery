@@ -7,15 +7,12 @@ import java.util.List;
 
 public class Pricer {
 
-    public Pricer() {
-    }
-
     public BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
 
         if (basket == null) return format(0);
         if (coupons == null) coupons = new ArrayList<>();
 
-        double price = basket.price(coupons);
+        double price = basket.calculatePrice(coupons);
 
         return format(price);
     }

@@ -23,17 +23,18 @@ public class Henry {
         BigDecimal price = new Pricer().priceBasket(basket, coupons());
 
         printOutro(price);
+
     }
 
     private static void printIntro() {
-        System.out.println("============================");
+        System.out.println("\n============================");
         System.out.println("welcome to Henry's! let's price up a basket of shopping.\n");
     }
 
     private static void printOutro(BigDecimal price) {
         System.out.println("\ntotal price is: $" + price);
-        System.out.println("\nthank you! come again.\n");
-        System.out.println("============================");
+        System.out.println("\nthank you! come again.");
+        System.out.println("\n============================");
     }
 
     private static List<Coupon> coupons() {
