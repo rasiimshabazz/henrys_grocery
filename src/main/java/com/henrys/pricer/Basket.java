@@ -36,7 +36,11 @@ public class Basket {
                 .sum();
     }
 
-    private List<BasketEntry> mergeQuantities(List<BasketEntry> unmerged) {
+    public String toString() {
+        return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
+    }
+
+    private static List<BasketEntry> mergeQuantities(List<BasketEntry> unmerged) {
         List<StockItem> distinctItems = unmerged.stream()
                 .map(BasketEntry::getItem)
                 .distinct().collect(Collectors.toList());
@@ -45,20 +49,16 @@ public class Basket {
                 .collect(Collectors.toList());
     }
 
-    private BasketEntry mergeQuantitiesByStockItem(List<BasketEntry> repeatedEntries, StockItem distinctItem) {
+    private static BasketEntry mergeQuantitiesByStockItem(List<BasketEntry> repeatedEntries, StockItem distinctItem) {
         int count = repeatedEntries.stream()
                 .filter(repeat -> repeat.getItem().equals(distinctItem))
                 .mapToInt(BasketEntry::getQuantity).sum();
         return new BasketEntry(distinctItem, count);
     }
 
-    private List<BasketEntry> filterOutNulls(List<BasketEntry> newBasketEntries) {
+    private static List<BasketEntry> filterOutNulls(List<BasketEntry> newBasketEntries) {
         return newBasketEntries.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-    }
-
-    public String toString() {
-        return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
     }
 }
