@@ -2,7 +2,6 @@ package com.henrys;
 
 import com.henrys.kiosk.Screen;
 import com.henrys.pricer.Basket;
-import com.henrys.pricer.Pricer;
 import com.henrys.pricer.Coupon;
 import com.henrys.kiosk.Kiosk;
 
@@ -20,7 +19,7 @@ public class Henry {
 
         Basket basket = new Kiosk(new Screen()).takeShoppersOrder();
 
-        BigDecimal price = Pricer.priceBasket(basket, coupons());
+        BigDecimal price = Basket.priceBasket(basket, coupons());
 
         printOutro(price);
 

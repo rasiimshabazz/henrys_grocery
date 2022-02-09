@@ -1,5 +1,7 @@
 package com.henrys.pricer;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,6 +17,17 @@ public class Basket {
 
         this.basketEntries = mergeQuantities(filterOutNulls(basketEntries));
         this.purchaseDate = purchaseDate;
+    }
+
+    public static BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
+
+        double price = basket.calculatePrice(coupons);
+
+        return format(price);
+    }
+
+    static BigDecimal format(double value) {
+        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
 
     double calculatePrice(List<Coupon> coupons) {
