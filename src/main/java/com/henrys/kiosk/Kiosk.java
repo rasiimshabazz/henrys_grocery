@@ -25,7 +25,7 @@ public class Kiosk {
 
         Basket basket = new Basket(collectBasketEntries(), LocalDate.now());
 
-        BigDecimal price = basket.calculatePrice(Coupon.currentPomotion());
+        BigDecimal price = basket.calculatePrice(Coupon.currentPromotion());
 
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
 

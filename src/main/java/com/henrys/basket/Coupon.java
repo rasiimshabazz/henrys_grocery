@@ -35,7 +35,7 @@ public abstract class Coupon {
         return new BreadCoupon(validFromDate, validToDate);
     }
 
-    public static List<Coupon> currentPomotion() {
+    public static List<Coupon> currentPromotion() {
         return Arrays.asList(
                 Coupon.createBreadCoupon(
                         LocalDate.now().minusDays(1),
