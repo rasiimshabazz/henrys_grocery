@@ -11,11 +11,13 @@ import java.util.List;
 
 public class Kiosk {
 
-    public static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product to the basket? ";
-    public static final String PROMPT_FOR_QUANTITY = "how many of them? ";
-    public static final String PROMPT_FOR_SHOPPING = "continue shopping? (y/n) ";
+    public static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
+    public static final String PROMPT_FOR_QUANTITY = "how many? ";
+    public static final String PROMPT_FOR_SHOPPING = "add more? (y/n) ";
     public static final String RESPONSE_YES = "y";
     public static final String RESPONSE_NO = "n";
+    public static final String INFO_BASKET_PREFIX = "your basket so far: ";
+    public static final String ERROR_PREFIX = "! you typed: ";
 
     private final Screen screen;
 
@@ -34,6 +36,7 @@ public class Kiosk {
 
             basketEntries.add(new BasketEntry(product, quantity));
 
+            screen.printLine(INFO_BASKET_PREFIX + basketEntries.toString());
             isShopping = promptToContinue();
         }
 
@@ -46,11 +49,16 @@ public class Kiosk {
         while(product == null) {
 
             screen.promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
-            String productResponse = screen.readResponse().trim().toUpperCase();
-            if (StockItem.names().contains(productResponse)) {
-                product = StockItem.valueOf(productResponse);
+            String productResponse = screen.readResponse();
+            String productResponseUpperCase = productResponse.trim().toUpperCase();
+            if (StockItem.names().contains(productResponseUpperCase)) {
+                product = StockItem.valueOf(productResponseUpperCase);
+            }
+            else {
+                screen.printLine(ERROR_PREFIX + productResponse);
             }
         }
+
         return product;
     }
 
@@ -65,9 +73,8 @@ public class Kiosk {
                 quantity = Integer.valueOf(quantityResponse);
             }
             catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
-                screen.promptUser("you sure?");
-            }
+                screen.printLine(ERROR_PREFIX + quantityResponse);
+             }
         }
 
         return quantity;
