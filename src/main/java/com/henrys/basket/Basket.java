@@ -25,7 +25,9 @@ public class Basket {
 
         if (coupons == null) coupons = new ArrayList<>();
 
-        return format(fullPrice() - discount(coupons));
+        double price = fullPrice() - discount(coupons);
+
+        return convertToDecimal(price);
     }
 
     private double fullPrice() {
@@ -44,7 +46,7 @@ public class Basket {
         return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
     }
 
-    private static BigDecimal format(double value) {
+    private static BigDecimal convertToDecimal(double value) {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
 
