@@ -29,6 +29,7 @@
     </properties>
 
     <build>
+        <finalName>henrys</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
