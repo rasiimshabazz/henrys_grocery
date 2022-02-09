@@ -7,12 +7,8 @@ class ApplesCoupon extends Coupon {
 
     private static final double DISCOUNT_FACTOR = .01;
 
-    private final LocalDate validFromDate;
-    private final LocalDate validToDate;
-
-    protected ApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
-        this.validFromDate = validFromDate;
-        this.validToDate = validToDate;
+    public ApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
+        super(validFromDate, validToDate);
     }
 
     @Override

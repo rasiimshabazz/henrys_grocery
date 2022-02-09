@@ -5,6 +5,14 @@ import java.util.List;
 
 public abstract class Coupon {
 
+    protected LocalDate validFromDate;
+    protected LocalDate validToDate;
+
+    protected Coupon(LocalDate validFromDate, LocalDate validToDate) {
+        this.validFromDate = validFromDate;
+        this.validToDate = validToDate;
+    }
+
     abstract double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate);
 
     boolean isNotApplicable(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
@@ -12,7 +20,6 @@ public abstract class Coupon {
         if (purchaseDate == null || validFromDate == null || validToDate == null) return true;
 
         return !(purchaseDate.isAfter(validFromDate) && purchaseDate.isBefore(validToDate));
-
     }
 
     public static Coupon createApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {

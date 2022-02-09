@@ -5,12 +5,8 @@ import java.util.List;
 
 class BreadCoupon extends Coupon {
 
-    private final LocalDate validFromDate;
-    private final LocalDate validToDate;
-
     protected BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
-        this.validFromDate = validFromDate;
-        this.validToDate = validToDate;
+        super(validFromDate, validToDate);
     }
 
     @Override
