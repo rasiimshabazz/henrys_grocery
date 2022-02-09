@@ -11,14 +11,13 @@ import java.util.List;
 
 public class Kiosk {
 
+    public static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product to the basket? ";
+    public static final String PROMPT_FOR_QUANTITY = "how many of them? ";
+    public static final String PROMPT_FOR_SHOPPING = "continue shopping? (y/n) ";
+    public static final String RESPONSE_YES = "y";
+    public static final String RESPONSE_NO = "n";
 
-    public static final String PROMPT_PRODUCT_PREFIX = "add a product to the basket? ";
-    public static final String PROMPT_PRODUCT = PROMPT_PRODUCT_PREFIX + StockItem.namesToString() + ": ";
-    public static final String PROMPT_QUANTITY = "how many of them? ";
-    public static final String PROMPT_QUANTITY_RETRY = "please enter a number for quantity: ";
-    public static final String PROMPT_SHOPPING = "continue shopping? (y/n) ";
-
-    private Screen screen;
+    private final Screen screen;
 
     public Kiosk(Screen screen) {
         this.screen = screen;
@@ -46,7 +45,7 @@ public class Kiosk {
         StockItem product = null;
         while(product == null) {
 
-            screen.promptUser(PROMPT_PRODUCT);
+            screen.promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
             String productResponse = screen.readResponse().trim().toUpperCase();
             if (StockItem.names().contains(productResponse)) {
                 product = StockItem.valueOf(productResponse);
@@ -60,13 +59,14 @@ public class Kiosk {
         Integer quantity = null;
         while(quantity == null) {
 
-            screen.promptUser(PROMPT_QUANTITY);
+            screen.promptUser(PROMPT_FOR_QUANTITY);
             String quantityResponse = screen.readResponse();
             try {
                 quantity = Integer.valueOf(quantityResponse);
             }
             catch (NumberFormatException e) {
-                screen.promptUser(PROMPT_QUANTITY_RETRY);
+                System.out.println(e.getMessage());
+                screen.promptUser("you sure?");
             }
         }
 
@@ -77,12 +77,12 @@ public class Kiosk {
 
         boolean isShopping = true;
         String shoppingResponse = "";
+        while (!Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(shoppingResponse.toLowerCase())) {
 
-        while (!Arrays.asList("y", "n").contains(shoppingResponse.toLowerCase())) {
-            screen.promptUser(PROMPT_SHOPPING);
+            screen.promptUser(PROMPT_FOR_SHOPPING);
             shoppingResponse = screen.readResponse().trim();
 
-            if (shoppingResponse.equalsIgnoreCase("n")) {
+            if (shoppingResponse.equalsIgnoreCase(RESPONSE_NO)) {
                 isShopping = false;
             }
         }
