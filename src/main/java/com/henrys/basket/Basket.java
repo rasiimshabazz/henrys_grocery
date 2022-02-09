@@ -1,4 +1,4 @@
-package com.henrys.pricer;
+package com.henrys.basket;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

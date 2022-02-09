@@ -1,8 +1,8 @@
 package com.henrys.kiosk;
 
-import com.henrys.pricer.Basket;
-import com.henrys.pricer.BasketEntry;
-import com.henrys.pricer.StockItem;
+import com.henrys.basket.Basket;
+import com.henrys.basket.BasketEntry;
+import com.henrys.basket.StockItem;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class Kiosk {
 
             basketEntries.add(new BasketEntry(product, quantity));
 
-            screen.printLine(INFO_BASKET_PREFIX + basketEntries.toString());
+            screen.printLine(INFO_BASKET_PREFIX + basketEntries);
             isShopping = promptToContinue();
         }
 

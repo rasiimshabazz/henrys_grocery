@@ -1,8 +1,8 @@
 package com.henrys;
 
 import com.henrys.kiosk.Screen;
-import com.henrys.pricer.Basket;
-import com.henrys.pricer.Coupon;
+import com.henrys.basket.Basket;
+import com.henrys.basket.Coupon;
 import com.henrys.kiosk.Kiosk;
 
 import java.math.BigDecimal;

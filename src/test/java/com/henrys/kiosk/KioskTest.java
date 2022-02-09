@@ -1,8 +1,8 @@
 package com.henrys.kiosk;
 
-import com.henrys.pricer.Basket;
-import com.henrys.pricer.BasketEntry;
-import com.henrys.pricer.StockItem;
+import com.henrys.basket.Basket;
+import com.henrys.basket.BasketEntry;
+import com.henrys.basket.StockItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
