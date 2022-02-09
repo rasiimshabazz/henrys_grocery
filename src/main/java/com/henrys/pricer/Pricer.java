@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Pricer {
 
-    public BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
+    public static BigDecimal priceBasket(Basket basket, List<Coupon> coupons) {
 
         if (basket == null) return format(0);
         if (coupons == null) coupons = new ArrayList<>();
