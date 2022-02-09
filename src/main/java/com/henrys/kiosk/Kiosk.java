@@ -2,9 +2,12 @@ package com.henrys.kiosk;
 
 import com.henrys.basket.Basket;
 import com.henrys.basket.BasketEntry;
+import com.henrys.basket.Coupon;
 import com.henrys.basket.StockItem;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,8 +22,10 @@ public class Kiosk {
 
     public Basket takeShoppersOrder() {
 
-        List<BasketEntry> basketEntries = new ArrayList<>();
+        printIntro();
 
+
+        List<BasketEntry> basketEntries = new ArrayList<>();
         boolean isShopping = true;
         while (isShopping) {
 
@@ -35,7 +40,13 @@ public class Kiosk {
             isShopping = promptToContinue();
         }
 
-        return new Basket(basketEntries, LocalDate.now());
+
+        Basket basket = new Basket(basketEntries, LocalDate.now());
+        BigDecimal price = basket.calculatePrice(coupons());
+
+        printOutro(price);
+
+        return basket;
     }
 
     private StockItem promptForProduct() {
@@ -80,6 +91,25 @@ public class Kiosk {
             }
         }
         return isShopping;
+    }
+
+    private static void printIntro() {
+        System.out.println("\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n");
+    }
+
+    private static void printOutro(BigDecimal price) {
+        System.out.println("\ntotal price is: $" + price);
+        System.out.println("\nthank you! come again.\n\n\n");
+    }
+
+    private static List<Coupon> coupons() {
+        return Arrays.asList(
+                Coupon.createBreadCoupon(
+                        LocalDate.now().minusDays(1),
+                        LocalDate.now().minusDays(1).plusDays(7)),
+                Coupon.createApplesCoupon(
+                        LocalDate.now().plusDays(3),
+                        LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth())));
     }
 
     private static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
