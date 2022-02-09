@@ -18,14 +18,16 @@ class BasketTest {
     @DisplayName("a basket containing null, costs nada")
     void test_priceBasket_containing_null_() {
 
-        Assertions.assertEquals(format(0), new Basket(null, null).calculatePrice(new ArrayList<>()));
+        Assertions.assertEquals(format(0),
+                new Basket(null, null).calculatePrice(new ArrayList<>()));
     }
 
     @Test
     @DisplayName("a basket containing nada, costs nada")
     void test_priceBasket_nada() {
 
-        Assertions.assertEquals(format(0), new Basket(new ArrayList<>(), LocalDate.now()).calculatePrice(new ArrayList<>()));
+        Assertions.assertEquals(format(0),
+                new Basket(new ArrayList<>(), LocalDate.now()).calculatePrice(new ArrayList<>()));
     }
 
     @Test
@@ -117,7 +119,8 @@ class BasketTest {
                 new BasketEntry(StockItem.BREAD, 2)
         ), LocalDate.now());
 
-        Assertions.assertEquals(format(3.15), basket.calculatePrice(Collections.singletonList(createBreadCoupon())));
+        Assertions.assertEquals(format(3.15),
+                basket.calculatePrice(Collections.singletonList(createBreadCoupon())));
     }
 
     @Test
@@ -129,7 +132,8 @@ class BasketTest {
                 new BasketEntry(StockItem.BREAD, 1)
         ), LocalDate.now());
 
-        Assertions.assertEquals(format(1.70), basket.calculatePrice(Collections.singletonList(createBreadCoupon())));
+        Assertions.assertEquals(format(1.70),
+                basket.calculatePrice(Collections.singletonList(createBreadCoupon())));
     }
 
     @Test
