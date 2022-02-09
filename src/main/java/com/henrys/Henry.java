@@ -19,8 +19,8 @@ public class Main {
 
         Kiosk kiosk = new Kiosk(new Screen());
         BigDecimal price = new Pricer().priceBasket(kiosk.takeShoppersOrder(), createCoupons());
-        System.out.println("\ntotal price is: $" + price);
 
+        System.out.println("\ntotal price is: $" + price);
         System.out.println("\nthank you! come again.\n");
         System.out.println("============================");
     }
