@@ -14,7 +14,7 @@ public enum StockItem {
         this.cost = cost;
     }
 
-    double getCost() {
+    public double getCost() {
         return cost;
     }
 

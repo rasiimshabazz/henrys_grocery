@@ -2,7 +2,7 @@ package com.henrys.kiosk;
 
 import com.henrys.basket.Basket;
 import com.henrys.basket.BasketEntry;
-import com.henrys.basket.Coupon;
+import com.henrys.coupon.Coupon;
 import com.henrys.basket.StockItem;
 
 import java.math.BigDecimal;

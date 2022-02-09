@@ -10,11 +10,11 @@ public class BasketEntry {
         this.quantity = quantity;
     }
 
-    StockItem getItem() {
+    public StockItem getItem() {
         return this.item;
     }
 
-    int getQuantity() {
+    public int getQuantity() {
         return this.quantity;
     }
 

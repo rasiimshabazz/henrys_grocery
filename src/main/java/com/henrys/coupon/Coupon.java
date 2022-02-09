@@ -1,4 +1,6 @@
-package com.henrys.basket;
+package com.henrys.coupon;
+
+import com.henrys.basket.BasketEntry;
 
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
@@ -15,7 +17,7 @@ public abstract class Coupon {
         this.validToDate = validToDate;
     }
 
-    abstract double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate);
+    public abstract double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate);
 
     boolean isApplicable(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
 
