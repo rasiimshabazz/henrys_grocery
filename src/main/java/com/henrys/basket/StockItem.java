@@ -6,17 +6,22 @@ import java.util.stream.Collectors;
 
 public enum StockItem {
 
-    SOUP(0.65), BREAD(0.80), MILK(1.30), APPLES(0.10);
+    SOUP(0.65, Unit.TIN), BREAD(0.80, Unit.LOAF),
+    MILK(1.30, Unit.BOTTLE), APPLES(0.10, Unit.SINGLE);
 
     private final double cost;
+    private final Unit unit;
 
-    StockItem(double cost) {
+    StockItem(double cost, Unit unit) {
         this.cost = cost;
+        this.unit = unit;
     }
 
     public double getCost() {
-        return cost;
+        return this.cost;
     }
+
+    public Unit getUnit() { return this.unit; }
 
     public static List<String> names() {
         return Arrays.stream(StockItem.values())

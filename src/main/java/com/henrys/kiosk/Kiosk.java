@@ -39,7 +39,7 @@ public class Kiosk {
 
             StockItem product = promptForProduct();
 
-            int quantity = promptForQuantity();
+            int quantity = promptForQuantity(product);
 
             basketEntries.add(new BasketEntry(product, quantity));
 
@@ -66,10 +66,10 @@ public class Kiosk {
         return product;
     }
 
-    private int promptForQuantity() {
+    private int promptForQuantity(StockItem product) {
         Integer quantity = null;
         while(quantity == null) {
-            screen.promptUser(PROMPT_FOR_QUANTITY);
+            screen.promptUser(("how many " + product.getUnit().getPlural() + " of " + product + "? ").toLowerCase());
             String quantityResponse = screen.readResponse();
             try {
                 quantity = Integer.valueOf(quantityResponse);
@@ -100,7 +100,6 @@ public class Kiosk {
     private static final String INFO_BASKET_STATUS_PREFIX = "your basket so far: ";
 
     private static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
-    private static final String PROMPT_FOR_QUANTITY = "how many? ";
     private static final String PROMPT_FOR_SHOPPING = "add more? (y/n) ";
 
     private static final String RESPONSE_YES = "y";

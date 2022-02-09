@@ -40,6 +40,10 @@ public class KioskTest {
 
         assertEquals(new Basket(bread, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(3)).readResponse();
+
+        then(mockScreen).should(times(1)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
+        then(mockScreen).should(times(1)).promptUser("add more? (y/n) ");
     }
 
     @Test
@@ -60,6 +64,10 @@ public class KioskTest {
 
         assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(8)).readResponse();
+
+        then(mockScreen).should(times(3)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
+        then(mockScreen).should(times(3)).promptUser("add more? (y/n) ");
 
     }
 
@@ -88,6 +96,11 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(12)).readResponse();
 
+        then(mockScreen).should(times(4)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
+        then(mockScreen).should(times(2)).promptUser("how many loaves of bread? ");
+        then(mockScreen).should(times(4)).promptUser("add more? (y/n) ");
+
     }
 
     @Test
@@ -114,6 +127,12 @@ public class KioskTest {
 
         assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(10)).readResponse();
+
+        then(mockScreen).should(times(4)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(1)).promptUser("how many tins of soup? ");
+        then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
+        then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
+        then(mockScreen).should(times(3)).promptUser("add more? (y/n) ");
 
     }
 
