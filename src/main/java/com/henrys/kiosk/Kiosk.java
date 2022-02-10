@@ -23,10 +23,10 @@ public class Kiosk {
 
         screen.printLine(INFO_WELCOME_MESSAGE);
 
-        List<BasketEntry> basketEntries = collectBasketEntries();
-        LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseTiming());
+        List<BasketEntry> entries = collectBasketEntries();
+        LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
 
-        Basket basket = new Basket(basketEntries, purchaseDate);
+        Basket basket = new Basket(entries, purchaseDate);
         BigDecimal price = basket.calculatePrice(Coupon.currentPromotion());
 
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
@@ -52,6 +52,14 @@ public class Kiosk {
         return basketEntries;
     }
 
+    private int promptForQuantity(StockItem product) {
+        return promptForAmount(("how many " + product.getUnit().getPlural() + " of " + product + "? ").toLowerCase());
+    }
+
+    private int promptForPurchaseDay() {
+        return promptForAmount(PROMPT_FOR_DAYS);
+    }
+
     private StockItem promptForProduct() {
         StockItem product = null;
         while(product == null) {
@@ -68,21 +76,6 @@ public class Kiosk {
         return product;
     }
 
-    private int promptForQuantity(StockItem product) {
-        Integer quantity = null;
-        while(quantity == null || quantity < 1) {
-            screen.promptUser(("how many " + product.getUnit().getPlural() + " of " + product + "? ").toLowerCase());
-            String quantityResponse = screen.readResponse().trim();
-            try {
-                quantity = Integer.valueOf(quantityResponse);
-            }
-            catch (NumberFormatException e) {
-                screen.printLine(ERROR_PREFIX + quantityResponse);
-             }
-        }
-        return quantity;
-    }
-
     private boolean promptToContinue() {
         boolean isShopping = true;
         String shoppingResponse = "";
@@ -96,19 +89,19 @@ public class Kiosk {
         return isShopping;
     }
 
-    private int promptForPurchaseTiming() {
-        Integer numberOfDays = null;
-        while(numberOfDays == null || numberOfDays < 0) {
-            screen.promptUser("bought how many days from now? ");
+    private Integer promptForAmount(String prompt) {
+        Integer amount = null;
+        while(amount == null || amount < 0) {
+            screen.promptUser(prompt);
             String quantityResponse = screen.readResponse().trim();
             try {
-                numberOfDays = Integer.valueOf(quantityResponse);
+                amount = Integer.valueOf(quantityResponse);
             }
             catch (NumberFormatException e) {
                 screen.printLine(ERROR_PREFIX + quantityResponse);
             }
         }
-        return numberOfDays;
+        return amount;
     }
 
     public static final String INFO_WELCOME_MESSAGE = "\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n";
