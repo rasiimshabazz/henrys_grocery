@@ -163,6 +163,7 @@ public class KioskTest {
                 .willReturn("y")
                 .willReturn("bread   ")
                 .willReturn("  3  ")
+                .willReturn("0")
                 .willReturn("y")
                 .willReturn("   apples")
                 .willReturn("5")
@@ -173,14 +174,15 @@ public class KioskTest {
                 .willReturn(" ");
 
         assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
-        then(mockScreen).should(times(14)).readResponse();
+        then(mockScreen).should(times(15)).readResponse();
 
         then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
-        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_SHOPPING);
         then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_DAYS);
+        then(mockScreen).should(times(7)).printLine(any());
 
     }
 

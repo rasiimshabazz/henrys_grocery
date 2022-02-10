@@ -61,32 +61,27 @@ public class Kiosk {
     }
 
     private StockItem promptForProduct() {
-        StockItem product = null;
-        while(product == null) {
+        String response = "";
+        while(!StockItem.names().contains(response.toUpperCase())) {
             screen.promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
-            String productResponse = screen.readResponse();
-            String productResponseUpperCase = productResponse.trim().toUpperCase();
-            if (StockItem.names().contains(productResponseUpperCase)) {
-                product = StockItem.valueOf(productResponseUpperCase);
+            response = screen.readResponse().trim();
+            if (!StockItem.names().contains(response.toUpperCase())) {
+                screen.printLine(ERROR_PREFIX + response);
             }
             else {
-                screen.printLine(ERROR_PREFIX + productResponse);
+               return StockItem.valueOf(response.toUpperCase());
             }
         }
-        return product;
+        return null;
     }
 
     private boolean promptToContinue() {
-        boolean isShopping = true;
-        String shoppingResponse = "";
-        while (!Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(shoppingResponse.toLowerCase())) {
+        String response = "";
+        while (!Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(response.toLowerCase())) {
             screen.promptUser(PROMPT_FOR_SHOPPING);
-            shoppingResponse = screen.readResponse().trim();
-            if (shoppingResponse.equalsIgnoreCase(RESPONSE_NO)) {
-                isShopping = false;
-            }
+            response = screen.readResponse().trim();
         }
-        return isShopping;
+        return response.equalsIgnoreCase(RESPONSE_YES);
     }
 
     private Integer promptForAmount(String prompt) {
