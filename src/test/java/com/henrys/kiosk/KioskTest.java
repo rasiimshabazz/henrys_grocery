@@ -161,14 +161,14 @@ public class KioskTest {
                 .willReturn("-1")
                 .willReturn("1")
                 .willReturn("y")
-                .willReturn("bread")
-                .willReturn("3")
+                .willReturn("bread   ")
+                .willReturn("  3  ")
                 .willReturn("y")
-                .willReturn("apples")
+                .willReturn("   apples")
                 .willReturn("5")
                 .willReturn("n")
                 .willReturn(" ")
-                .willReturn("-1")
+                .willReturn(" -1 ")
                 .willReturn("0")
                 .willReturn(" ");
 
