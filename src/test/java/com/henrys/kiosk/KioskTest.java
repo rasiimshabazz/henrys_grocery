@@ -182,7 +182,7 @@ public class KioskTest {
         then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
         then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_SHOPPING);
         then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_DAYS);
-        then(mockScreen).should(times(8)).printLine(any());
+        then(mockScreen).should(times(10)).printLine(any());
 
     }
 

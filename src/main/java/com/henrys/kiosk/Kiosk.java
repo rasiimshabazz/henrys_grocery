@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 public class Kiosk {
 
@@ -24,9 +25,11 @@ public class Kiosk {
         screen.printLine(INFO_WELCOME_MESSAGE);
 
         List<BasketEntry> entries = collectBasketEntries();
+
         LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
 
         Basket basket = new Basket(entries, purchaseDate);
+
         BigDecimal price = basket.calculatePrice(Coupon.currentPromotion());
 
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
@@ -38,85 +41,84 @@ public class Kiosk {
         List<BasketEntry> basketEntries = new ArrayList<>();
         boolean isShopping = true;
         while (isShopping) {
-
-            StockItem product = promptForProduct();
-
+            StockItem product = promptForProduct(PROMPT_FOR_PRODUCT, this::productResponseCondition);
             int quantity = promptForQuantity(product);
-
             basketEntries.add(new BasketEntry(product, quantity));
-
             screen.printLine(INFO_BASKET_STATUS_PREFIX + basketEntries);
-
-            isShopping = promptToContinue();
+            isShopping = promptToContinue(PROMPT_FOR_SHOPPING, this::continueResponseCondition);
         }
         return basketEntries;
     }
 
     private int promptForQuantity(StockItem product) {
-        return promptForAmount(("how many " + product.getUnit().getPlural() + " of " + product + "? ").toLowerCase());
+        String prompt = ("how many " + product.getUnit().getPlural() + " of " + product + "? ").toLowerCase();
+        return quantityResponse(promptForInput(this::quantityResponseCondition, prompt));
     }
 
     private int promptForPurchaseDay() {
-        return promptForAmount(PROMPT_FOR_DAYS);
+        return quantityResponse(promptForInput(this::quantityResponseCondition, PROMPT_FOR_DAYS));
     }
 
-    private StockItem promptForProduct() {
+    private StockItem promptForProduct(final String prompt, final Function<String, Boolean> function) {
+        return productResponse(promptForInput(function, prompt));
+    }
+
+    private Boolean promptToContinue(final String prompt, final Function<String, Boolean> function) {
+        return continueResponse(promptForInput(function, prompt));
+    }
+
+    private boolean productResponseCondition(String response) {
+        return !StockItem.names().contains(response.toUpperCase());
+    }
+    private StockItem productResponse(String response) {
+        return StockItem.valueOf(response.toUpperCase());
+    }
+
+    private boolean continueResponseCondition(String response) {
+        return !Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(response.toLowerCase());
+    }
+    private boolean continueResponse(String response) {
+        return response.equalsIgnoreCase(RESPONSE_YES);
+    }
+
+    private boolean quantityResponseCondition(String response) {
+        return !isNumeric(response) || !(Integer.valueOf(response) >= 0);
+    }
+    private int quantityResponse(String response) {
+        return Integer.valueOf(response);
+    }
+
+    private String promptForInput(Function<String, Boolean> function, String prompt) {
         String response = "";
-        while(!StockItem.names().contains(response.toUpperCase())) {
-            screen.promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
-            response = screen.readResponse().trim();
-            if (!StockItem.names().contains(response.toUpperCase())) {
-                screen.printLine(ERROR_PREFIX + response);
-            }
-            else {
-               return StockItem.valueOf(response.toUpperCase());
-            }
-        }
-        return null;
-    }
-
-    private boolean promptToContinue() {
-        String response = "";
-        while (!Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(response.toLowerCase())) {
-            screen.promptUser(PROMPT_FOR_SHOPPING);
-            response = screen.readResponse().trim();
-            if (!Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(response.toLowerCase())) {
-                screen.printLine(ERROR_PREFIX + response);
-            }
-            else {
-                return response.equalsIgnoreCase(RESPONSE_YES);
-            }
-        }
-        return false;
-    }
-
-    private Integer promptForAmount(String prompt) {
-        Integer amount = null;
-        while(amount == null || amount < 0) {
+        while (function.apply(response)) {
             screen.promptUser(prompt);
-            String quantityResponse = screen.readResponse().trim();
-            try {
-                amount = Integer.valueOf(quantityResponse);
-            }
-            catch (NumberFormatException e) {
-                screen.printLine(ERROR_PREFIX + quantityResponse);
-            }
+            response = screen.readResponse().trim();
+            if (function.apply(response)) screen.printLine(ERROR_PREFIX + response);
+            else break;
         }
-        return amount;
+        return response;
+    }
+
+    private boolean isNumeric(String string) {
+        try {
+            Integer.valueOf(string);
+            return true;
+        }
+        catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public static final String INFO_WELCOME_MESSAGE = "\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n";
     public static final String INFO_TOTAL_PRICE = "\ntotal price is: $";
     public static final String INFO_THANK_YOU = "\nthank you! come again.\n\n\n";
     public static final String INFO_BASKET_STATUS_PREFIX = "your basket so far: ";
-
     public static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
+    public static final String PROMPT_FOR_PRODUCT = PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ";
     public static final String PROMPT_FOR_SHOPPING = "add more? (y/n) ";
     public static final String PROMPT_FOR_DAYS = "bought how many days from now? ";
-
     public static final String RESPONSE_YES = "y";
     public static final String RESPONSE_NO = "n";
-
-    public static final String ERROR_PREFIX = "! did you mean to type?: ";
+    public static final String ERROR_PREFIX = "! was that a typo?: ";
 
 }
