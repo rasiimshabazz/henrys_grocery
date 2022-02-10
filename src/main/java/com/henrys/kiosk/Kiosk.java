@@ -43,7 +43,9 @@ public class Kiosk {
         while (isShopping) {
             StockItem product = promptForProduct(this::productResponseCondition);
             int quantity = promptForQuantity(product);
-            basketEntries.add(new BasketEntry(product, quantity));
+            if (quantity > 0) {
+                basketEntries.add(new BasketEntry(product, quantity));
+            }
             screen.printLine(INFO_BASKET_STATUS_PREFIX + basketEntries);
             isShopping = promptToContinue(this::continueResponseCondition);
         }
@@ -70,6 +72,7 @@ public class Kiosk {
     private boolean productResponseCondition(String response) {
         return !StockItem.names().contains(response.toUpperCase());
     }
+
     private StockItem productResponse(String response) {
         return StockItem.valueOf(response.toUpperCase());
     }
@@ -84,6 +87,7 @@ public class Kiosk {
     private boolean quantityResponseCondition(String response) {
         return !isNumeric(response) || !(Integer.parseInt(response) >= 0);
     }
+
     private int quantityResponse(String response) {
         return Integer.parseInt(response);
     }
@@ -112,7 +116,7 @@ public class Kiosk {
     public static final String INFO_WELCOME_MESSAGE = "\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n";
     public static final String INFO_TOTAL_PRICE = "\ntotal price is: $";
     public static final String INFO_THANK_YOU = "\nthank you! come again.\n\n\n";
-    public static final String INFO_BASKET_STATUS_PREFIX = "your basket so far: ";
+    public static final String INFO_BASKET_STATUS_PREFIX = "your entries so far: ";
     public static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
     public static final String PROMPT_FOR_PRODUCT = PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ";
     public static final String PROMPT_FOR_SHOPPING = "add more? (y/n) ";

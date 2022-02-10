@@ -50,6 +50,26 @@ public class KioskTest {
     }
 
     @Test
+    @DisplayName("when user enters 'bread', '0' - basket should have nada")
+    void test_takeShoppersOrder_nada() {
+
+        List<BasketEntry> bread = Collections.emptyList();
+        given(mockScreen.readResponse())
+                .willReturn("bread")
+                .willReturn("0")
+                .willReturn("n")
+                .willReturn("0");
+
+        assertEquals(new Basket(bread, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
+        then(mockScreen).should(times(4)).readResponse();
+
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
+    }
+
+    @Test
     @DisplayName("when user enters 1 soup and blank entries - basket should have 1 soup")
     void test_takeShoppersOrder_1_soup_with_blank_entries() {
 
