@@ -70,7 +70,7 @@ public class Kiosk {
 
     private int promptForQuantity(StockItem product) {
         Integer quantity = null;
-        while(quantity == null) {
+        while(quantity == null || quantity < 1) {
             screen.promptUser(("how many " + product.getUnit().getPlural() + " of " + product + "? ").toLowerCase());
             String quantityResponse = screen.readResponse();
             try {
@@ -98,7 +98,7 @@ public class Kiosk {
 
     private int promptForPurchaseTiming() {
         Integer numberOfDays = null;
-        while(numberOfDays == null) {
+        while(numberOfDays == null || numberOfDays < 0) {
             screen.promptUser("bought how many days from now? ");
             String quantityResponse = screen.readResponse();
             try {

@@ -145,5 +145,43 @@ public class KioskTest {
 
     }
 
+    @Test
+    @DisplayName("when user enters 1 soup, 3 bread, 5 apples, blanks/ negatives - basket should have 1 soup, 3 breads, 5 apples")
+    void test_takeShoppersOrder_1_soup_3_bread_5_apples_with_blanks_negatives() {
+
+        List<BasketEntry> expectedProducts = Arrays.asList(
+                new BasketEntry(StockItem.SOUP, 1),
+                new BasketEntry(StockItem.BREAD, 3),
+                new BasketEntry(StockItem.APPLES, 5));
+
+        given(mockScreen.readResponse())
+                .willReturn(" ")
+                .willReturn("soup")
+                .willReturn("-1")
+                .willReturn("1")
+                .willReturn("y")
+                .willReturn("bread")
+                .willReturn("3")
+                .willReturn("y")
+                .willReturn("apples")
+                .willReturn("5")
+                .willReturn("n")
+                .willReturn(" ")
+                .willReturn("-1")
+                .willReturn("0")
+                .willReturn(" ");
+
+        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
+        then(mockScreen).should(times(14)).readResponse();
+
+        then(mockScreen).should(times(4)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
+        then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
+        then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
+        then(mockScreen).should(times(3)).promptUser("add more? (y/n) ");
+        then(mockScreen).should(times(3)).promptUser("bought how many days from now? ");
+
+    }
+
 }
 
