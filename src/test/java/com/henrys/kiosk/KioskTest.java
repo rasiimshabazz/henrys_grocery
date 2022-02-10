@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static com.henrys.kiosk.Kiosk.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -42,10 +43,10 @@ public class KioskTest {
         assertEquals(new Basket(bread, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(4)).readResponse();
 
-        then(mockScreen).should(times(1)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
-        then(mockScreen).should(times(1)).promptUser("add more? (y/n) ");
-        then(mockScreen).should(times(1)).promptUser("bought how many days from now? ");
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
     }
 
     @Test
@@ -68,10 +69,10 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(9)).readResponse();
 
-        then(mockScreen).should(times(3)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
-        then(mockScreen).should(times(3)).promptUser("add more? (y/n) ");
-        then(mockScreen).should(times(1)).promptUser("bought how many days from now? ");
+        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
 
     }
 
@@ -101,11 +102,11 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(13)).readResponse();
 
-        then(mockScreen).should(times(4)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(2)).promptUser("how many loaves of bread? ");
-        then(mockScreen).should(times(4)).promptUser("add more? (y/n) ");
-        then(mockScreen).should(times(1)).promptUser("bought how many days from now? ");
+        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
 
     }
 
@@ -136,12 +137,12 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(12)).readResponse();
 
-        then(mockScreen).should(times(4)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(1)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
-        then(mockScreen).should(times(3)).promptUser("add more? (y/n) ");
-        then(mockScreen).should(times(2)).promptUser("bought how many days from now? ");
+        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(2)).promptUser(PROMPT_FOR_DAYS);
 
     }
 
@@ -174,14 +175,15 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(14)).readResponse();
 
-        then(mockScreen).should(times(4)).promptUser("add a product? " + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
-        then(mockScreen).should(times(3)).promptUser("add more? (y/n) ");
-        then(mockScreen).should(times(3)).promptUser("bought how many days from now? ");
+        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_DAYS);
 
     }
+
 
 }
 

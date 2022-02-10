@@ -111,17 +111,18 @@ public class Kiosk {
         return numberOfDays;
     }
 
-    private static final String INFO_WELCOME_MESSAGE = "\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n";
-    private static final String INFO_TOTAL_PRICE = "\ntotal price is: $";
-    private static final String INFO_THANK_YOU = "\nthank you! come again.\n\n\n";
-    private static final String INFO_BASKET_STATUS_PREFIX = "your basket so far: ";
+    public static final String INFO_WELCOME_MESSAGE = "\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n";
+    public static final String INFO_TOTAL_PRICE = "\ntotal price is: $";
+    public static final String INFO_THANK_YOU = "\nthank you! come again.\n\n\n";
+    public static final String INFO_BASKET_STATUS_PREFIX = "your basket so far: ";
 
-    private static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
-    private static final String PROMPT_FOR_SHOPPING = "add more? (y/n) ";
+    public static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
+    public static final String PROMPT_FOR_SHOPPING = "add more? (y/n) ";
+    public static final String PROMPT_FOR_DAYS = "bought how many days from now? ";
 
-    private static final String RESPONSE_YES = "y";
-    private static final String RESPONSE_NO = "n";
+    public static final String RESPONSE_YES = "y";
+    public static final String RESPONSE_NO = "n";
 
-    private static final String ERROR_PREFIX = "! you typed: ";
+    public static final String ERROR_PREFIX = "! you typed: ";
 
 }
