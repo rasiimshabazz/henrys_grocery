@@ -80,8 +80,14 @@ public class Kiosk {
         while (!Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(response.toLowerCase())) {
             screen.promptUser(PROMPT_FOR_SHOPPING);
             response = screen.readResponse().trim();
+            if (!Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(response.toLowerCase())) {
+                screen.printLine(ERROR_PREFIX + response);
+            }
+            else {
+                return response.equalsIgnoreCase(RESPONSE_YES);
+            }
         }
-        return response.equalsIgnoreCase(RESPONSE_YES);
+        return false;
     }
 
     private Integer promptForAmount(String prompt) {
@@ -111,6 +117,6 @@ public class Kiosk {
     public static final String RESPONSE_YES = "y";
     public static final String RESPONSE_NO = "n";
 
-    public static final String ERROR_PREFIX = "! you typed: ";
+    public static final String ERROR_PREFIX = "! did you mean to type?: ";
 
 }
