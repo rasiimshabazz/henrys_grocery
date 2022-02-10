@@ -41,11 +41,11 @@ public class Kiosk {
         List<BasketEntry> basketEntries = new ArrayList<>();
         boolean isShopping = true;
         while (isShopping) {
-            StockItem product = promptForProduct(PROMPT_FOR_PRODUCT, this::productResponseCondition);
+            StockItem product = promptForProduct(this::productResponseCondition);
             int quantity = promptForQuantity(product);
             basketEntries.add(new BasketEntry(product, quantity));
             screen.printLine(INFO_BASKET_STATUS_PREFIX + basketEntries);
-            isShopping = promptToContinue(PROMPT_FOR_SHOPPING, this::continueResponseCondition);
+            isShopping = promptToContinue(this::continueResponseCondition);
         }
         return basketEntries;
     }
@@ -59,12 +59,12 @@ public class Kiosk {
         return quantityResponse(promptForInput(this::quantityResponseCondition, PROMPT_FOR_DAYS));
     }
 
-    private StockItem promptForProduct(final String prompt, final Function<String, Boolean> function) {
-        return productResponse(promptForInput(function, prompt));
+    private StockItem promptForProduct(final Function<String, Boolean> function) {
+        return productResponse(promptForInput(function, PROMPT_FOR_PRODUCT));
     }
 
-    private Boolean promptToContinue(final String prompt, final Function<String, Boolean> function) {
-        return continueResponse(promptForInput(function, prompt));
+    private Boolean promptToContinue(final Function<String, Boolean> function) {
+        return continueResponse(promptForInput(function, PROMPT_FOR_SHOPPING));
     }
 
     private boolean productResponseCondition(String response) {
@@ -82,10 +82,10 @@ public class Kiosk {
     }
 
     private boolean quantityResponseCondition(String response) {
-        return !isNumeric(response) || !(Integer.valueOf(response) >= 0);
+        return !isNumeric(response) || !(Integer.parseInt(response) >= 0);
     }
     private int quantityResponse(String response) {
-        return Integer.valueOf(response);
+        return Integer.parseInt(response);
     }
 
     private String promptForInput(Function<String, Boolean> function, String prompt) {
