@@ -23,8 +23,10 @@ public class Kiosk {
 
         screen.printLine(INFO_WELCOME_MESSAGE);
 
-        Basket basket = new Basket(collectBasketEntries(), LocalDate.now());
+        List<BasketEntry> basketEntries = collectBasketEntries();
+        LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseTiming());
 
+        Basket basket = new Basket(basketEntries, purchaseDate);
         BigDecimal price = basket.calculatePrice(Coupon.currentPromotion());
 
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
@@ -92,6 +94,21 @@ public class Kiosk {
             }
         }
         return isShopping;
+    }
+
+    private int promptForPurchaseTiming() {
+        Integer numberOfDays = null;
+        while(numberOfDays == null) {
+            screen.promptUser("bought how many days from now? ");
+            String quantityResponse = screen.readResponse();
+            try {
+                numberOfDays = Integer.valueOf(quantityResponse);
+            }
+            catch (NumberFormatException e) {
+                screen.printLine(ERROR_PREFIX + quantityResponse);
+            }
+        }
+        return numberOfDays;
     }
 
     private static final String INFO_WELCOME_MESSAGE = "\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n";
