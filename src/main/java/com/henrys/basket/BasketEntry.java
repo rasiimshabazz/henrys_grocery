@@ -7,7 +7,7 @@ public class BasketEntry {
 
     public BasketEntry(StockItem item, int quantity) {
         this.item = item;
-        this.quantity = quantity;
+        this.quantity = Math.max(quantity, 0);
     }
 
     public StockItem getItem() {

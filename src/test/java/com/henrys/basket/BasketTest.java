@@ -32,6 +32,22 @@ class BasketTest {
     }
 
     @Test
+    @DisplayName("a basket containing -3 tins of soup (unmerged up) and -2 loaves of bread, bought today, costs nada")
+    void test_calculatePrice_bread_coupon_rolled_up_negative() {
+
+        Basket basket = new Basket(Arrays.asList(
+                new BasketEntry(StockItem.SOUP, -1),
+                new BasketEntry(StockItem.SOUP, -1),
+                new BasketEntry(StockItem.SOUP, -1),
+                new BasketEntry(StockItem.BREAD, -1),
+                new BasketEntry(StockItem.BREAD, -1)
+        ), LocalDate.now());
+
+        Assertions.assertEquals(format(0.00), basket.calculatePrice(Collections.singletonList(
+                createBreadCoupon())));
+    }
+
+    @Test
     @DisplayName("* a basket containing 6 apples and a bottle of milk, bought today, costs = 1.90")
     void test_calculatePrice_apple_coupon_invalid() {
 
