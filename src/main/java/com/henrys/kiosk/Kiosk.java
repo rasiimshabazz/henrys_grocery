@@ -23,17 +23,11 @@ public class Kiosk {
     public Basket takeShoppersOrder() {
 
         screen.printLine(INFO_WELCOME_MESSAGE);
-
         List<BasketEntry> entries = collectBasketEntries();
-
         LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
-
         Basket basket = new Basket(entries, purchaseDate);
-
         BigDecimal price = basket.calculatePrice(Coupon.currentPromotion());
-
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
-
         return basket;
     }
 

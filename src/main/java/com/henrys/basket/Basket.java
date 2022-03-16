@@ -14,19 +14,14 @@ public class Basket {
     private final LocalDate purchaseDate;
 
     public Basket(List<BasketEntry> basketEntries, LocalDate purchaseDate) {
-
         if (basketEntries == null) basketEntries = new ArrayList<>();
-
         this.basketEntries = mergeQuantities(filterOutNulls(basketEntries));
         this.purchaseDate = purchaseDate;
     }
 
     public BigDecimal calculatePrice(List<Coupon> coupons) {
-
         if (coupons == null) coupons = new ArrayList<>();
-
         double price = fullPrice() - discount(coupons);
-
         return convertToDecimal(price);
     }
 
