@@ -23,7 +23,7 @@ public abstract class Coupon {
         return isApplicableHelper(purchaseDate);
     }
 
-    private boolean isApplicableHelper(LocalDate purchaseDate) {
+    protected boolean isApplicableHelper(LocalDate purchaseDate) {
         if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
             return false;
         }

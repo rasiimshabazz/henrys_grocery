@@ -13,6 +13,8 @@ class ApplesCouponTest {
 
         ApplesCoupon coupon = new ApplesCoupon(LocalDate.now().minusDays(1), LocalDate.now().plusDays((1)));
 
-        assertTrue(coupon.isApplicable(LocalDate.now(), LocalDate.now().minusDays(1), LocalDate.now().plusDays((1))));
+        LocalDate.now();
+        LocalDate.now();
+        assertTrue(coupon.isApplicableHelper(LocalDate.now()));
     }
 }
