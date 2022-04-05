@@ -21,7 +21,7 @@ public abstract class Coupon {
         if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
             return false;
         }
-        return !purchaseDate.isBefore(this.validFromDate) && purchaseDate.isBefore(this.validToDate);
+        return !purchaseDate.isBefore(this.validFromDate) && !purchaseDate.isAfter(this.validToDate);
     }
 
 }
