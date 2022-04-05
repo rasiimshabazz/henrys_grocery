@@ -10,7 +10,7 @@ class ApplesCoupon extends Coupon {
 
     private static final double DISCOUNT_FACTOR = .01;
 
-    public ApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
+    ApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
         super(validFromDate, validToDate);
     }
 

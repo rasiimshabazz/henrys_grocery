@@ -11,7 +11,7 @@ class BreadCoupon extends Coupon {
     private static final double DISCOUNT_FACTOR = 0.5;
     public static final int DISCOUNT_AMOUNT_SOUP_NEEDED = 2;
 
-    protected BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
+    BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
         super(validFromDate, validToDate);
     }
 
