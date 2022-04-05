@@ -9,12 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class ApplesCouponTest {
 
     @Test
-    void calculateDiscount_purchaseDate_within_range() {
+    void isApplicable_purchaseDate_within_range() {
 
         ApplesCoupon coupon = new ApplesCoupon(LocalDate.now().minusDays(1), LocalDate.now().plusDays((1)));
 
-        boolean isApplicable = coupon.isApplicable(LocalDate.now(), LocalDate.now().minusDays(1), LocalDate.now().plusDays((1)));
-
-        assertTrue(isApplicable);
+        assertTrue(coupon.isApplicable(LocalDate.now(), LocalDate.now().minusDays(1), LocalDate.now().plusDays((1))));
     }
 }
