@@ -1,6 +1,7 @@
 package com.henrys.basket;
 
 import com.henrys.coupon.Coupon;
+import com.henrys.coupon.CouponFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -160,13 +161,13 @@ class BasketTest {
     }
 
     private Coupon createBreadCoupon() {
-        return Coupon.createBreadCoupon(
+        return CouponFactory.createBreadCoupon(
                 LocalDate.now().minusDays(1),
                 LocalDate.now().minusDays(1).plusDays(7));
     }
 
     private Coupon createApplesCoupon() {
-        return Coupon.createApplesCoupon(
+        return CouponFactory.createApplesCoupon(
                 LocalDate.now().plusDays(3),
                 LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()));
     }
