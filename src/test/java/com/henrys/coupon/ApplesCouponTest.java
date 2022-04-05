@@ -11,10 +11,17 @@ class ApplesCouponTest {
     @Test
     void isApplicable_purchaseDate_within_range() {
 
-        ApplesCoupon coupon = new ApplesCoupon(LocalDate.now().minusDays(1), LocalDate.now().plusDays((1)));
-
-        LocalDate.now();
-        LocalDate.now();
-        assertTrue(coupon.isApplicable(LocalDate.now()));
+        LocalDate purchaseDate = LocalDate.now();
+        ApplesCoupon applesCoupon = new ApplesCoupon(purchaseDate.minusDays(1), purchaseDate.plusDays((1)));
+        assertTrue(applesCoupon.isApplicable(purchaseDate));
     }
+
+    @Test
+    void isApplicable_purchaseDate_within_range_inclusive() {
+
+        LocalDate purchaseDate = LocalDate.now();
+        ApplesCoupon applesCoupon = new ApplesCoupon(purchaseDate, purchaseDate.plusDays((1)));
+        assertTrue(applesCoupon.isApplicable(purchaseDate));
+    }
+
 }
