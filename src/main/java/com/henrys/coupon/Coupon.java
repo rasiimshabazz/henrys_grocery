@@ -24,10 +24,10 @@ public abstract class Coupon {
     }
 
     private boolean isApplicableHelper(LocalDate purchaseDate) {
-        if (purchaseDate == null || validFromDate == null || validToDate == null) {
+        if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
             return false;
         }
-        return purchaseDate.isAfter(validFromDate) && purchaseDate.isBefore(validToDate);
+        return purchaseDate.isAfter(this.validFromDate) && purchaseDate.isBefore(this.validToDate);
     }
 
     public static Coupon createApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
