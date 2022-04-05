@@ -9,7 +9,7 @@ import java.util.List;
 class BreadCoupon extends Coupon {
 
     private static final double DISCOUNT_FACTOR = 0.5;
-    public static final int DISCOUNT_AMOUNT_SOUP_NEEDED = 2;
+    public static final int DISCOUNT_SOUP_QUANTITY = 2;
 
     BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
         super(validFromDate, validToDate);
@@ -30,7 +30,7 @@ class BreadCoupon extends Coupon {
         return basketEntries.stream()
                 .filter(item -> StockItem.SOUP.equals(item.getItem()))
                 .findFirst().orElse(new BasketEntry(StockItem.SOUP, 0))
-                .getQuantity() >= DISCOUNT_AMOUNT_SOUP_NEEDED;
+                .getQuantity() >= DISCOUNT_SOUP_QUANTITY;
     }
 
     private boolean isBuyingBread(List<BasketEntry> basketEntries) {
