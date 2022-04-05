@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-class BasketTest {
+public class BasketTest {
 
     @Test
     @DisplayName("* a basket containing 3 tins of soup (unmerged up) and 2 loaves of bread, bought today, costs 3.15")
@@ -172,7 +172,7 @@ class BasketTest {
                 LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()));
     }
     
-    static BigDecimal format(double value) {
+    public static BigDecimal format(double value) {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
 }
