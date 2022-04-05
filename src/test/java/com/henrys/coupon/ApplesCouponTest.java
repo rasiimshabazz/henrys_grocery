@@ -27,7 +27,7 @@ class ApplesCouponTest {
         List<BasketEntry> basketItems = Arrays.asList(new BasketEntry(StockItem.APPLES, 6));
         LocalDate purchaseDate = LocalDate.now();
         ApplesCoupon coupon = new ApplesCoupon(purchaseDate.minusDays(1), purchaseDate.minusDays(1));
-        Assertions.assertEquals(0.00, coupon.calculateDiscount(basketItems, purchaseDate));
+        Assertions.assertEquals(0.0, coupon.calculateDiscount(basketItems, purchaseDate));
     }
 
 }
