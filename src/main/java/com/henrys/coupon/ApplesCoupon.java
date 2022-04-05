@@ -16,7 +16,7 @@ class ApplesCoupon extends Coupon {
 
     @Override
     public double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
-        if (!isApplicableHelper(purchaseDate)) {
+        if (!isApplicable(purchaseDate)) {
             return 0;
         }
         return numberOfApples(items) * DISCOUNT_FACTOR;

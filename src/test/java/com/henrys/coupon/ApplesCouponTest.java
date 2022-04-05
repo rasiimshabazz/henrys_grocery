@@ -15,6 +15,6 @@ class ApplesCouponTest {
 
         LocalDate.now();
         LocalDate.now();
-        assertTrue(coupon.isApplicableHelper(LocalDate.now()));
+        assertTrue(coupon.isApplicable(LocalDate.now()));
     }
 }

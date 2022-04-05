@@ -17,7 +17,7 @@ class BreadCoupon extends Coupon {
 
     @Override
     public double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
-        if (!isApplicableHelper(purchaseDate)) {
+        if (!isApplicable(purchaseDate)) {
             return 0;
         }
         if (isBuyingBread(items) && isBuyingAtLeastTwoSoups(items)) {

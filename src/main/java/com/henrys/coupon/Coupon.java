@@ -19,11 +19,7 @@ public abstract class Coupon {
 
     public abstract double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate);
 
-    protected boolean isApplicable(LocalDate purchaseDate, LocalDate validFromDate, LocalDate validToDate) {
-        return isApplicableHelper(purchaseDate);
-    }
-
-    protected boolean isApplicableHelper(LocalDate purchaseDate) {
+    protected boolean isApplicable(LocalDate purchaseDate) {
         if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
             return false;
         }
