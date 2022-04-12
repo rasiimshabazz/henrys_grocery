@@ -17,7 +17,10 @@ public class BreadCoupon extends Coupon {
 
     @Override
     public double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
-        if (!this.isApplicable(purchaseDate)) {
+        if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
+            return 0;
+        }
+        if (purchaseDate.isBefore(this.validFromDate) || purchaseDate.isAfter(this.validToDate)) {
             return 0;
         }
         if (items.stream().anyMatch(item1 -> item1.getItem().equals(StockItem.BREAD)) && items.stream()
@@ -27,13 +30,6 @@ public class BreadCoupon extends Coupon {
             return StockItem.BREAD.getCost() * DISCOUNT_FACTOR;
         }
         return 0;
-    }
-
-    protected boolean isApplicable(LocalDate purchaseDate) {
-        if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
-            return false;
-        }
-        return !purchaseDate.isBefore(this.validFromDate) && !purchaseDate.isAfter(this.validToDate);
     }
 
 }

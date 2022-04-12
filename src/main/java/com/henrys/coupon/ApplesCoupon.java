@@ -16,19 +16,15 @@ public class ApplesCoupon extends Coupon {
 
     @Override
     public double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
-        if (!isApplicable(purchaseDate)) {
+        if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
+            return 0;
+        }
+        if (purchaseDate.isBefore(this.validFromDate) || purchaseDate.isAfter(this.validToDate)) {
             return 0;
         }
         return items.stream().filter(item ->
                 item.getItem().equals(StockItem.APPLES)
         ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity() * DISCOUNT_FACTOR;
-    }
-
-    boolean isApplicable(LocalDate purchaseDate) {
-        if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
-            return false;
-        }
-        return !purchaseDate.isBefore(this.validFromDate) && !purchaseDate.isAfter(this.validToDate);
     }
 
 }
