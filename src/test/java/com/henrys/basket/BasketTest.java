@@ -1,7 +1,8 @@
 package com.henrys.basket;
 
+import com.henrys.coupon.ApplesCoupon;
+import com.henrys.coupon.BreadCoupon;
 import com.henrys.coupon.Coupon;
-import com.henrys.coupon.CouponFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -161,15 +162,11 @@ public class BasketTest {
     }
 
     private Coupon createBreadCoupon() {
-        return CouponFactory.createBreadCoupon(
-                LocalDate.now().minusDays(1),
-                LocalDate.now().minusDays(1).plusDays(7));
+        return new BreadCoupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7));
     }
 
     private Coupon createApplesCoupon() {
-        return CouponFactory.createApplesCoupon(
-                LocalDate.now().plusDays(3),
-                LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()));
+        return new ApplesCoupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()));
     }
     
     public static BigDecimal format(double value) {

@@ -6,11 +6,11 @@ import com.henrys.basket.StockItem;
 import java.time.LocalDate;
 import java.util.List;
 
-class ApplesCoupon extends Coupon {
+public class ApplesCoupon extends Coupon {
 
     private static final double DISCOUNT_FACTOR = .01;
 
-    ApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
+    public ApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
         super(validFromDate, validToDate);
     }
 

@@ -6,12 +6,12 @@ import com.henrys.basket.StockItem;
 import java.time.LocalDate;
 import java.util.List;
 
-class BreadCoupon extends Coupon {
+public class BreadCoupon extends Coupon {
 
     private static final double DISCOUNT_FACTOR = 0.5;
     public static final int DISCOUNT_SOUP_QUANTITY = 2;
 
-    BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
+    public BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
         super(validFromDate, validToDate);
     }
 
