@@ -19,13 +19,16 @@ class ApplesCoupon extends Coupon {
         if (!isApplicable(purchaseDate)) {
             return 0;
         }
-        return numberOfApples(items) * DISCOUNT_FACTOR;
+        return items.stream().filter(item ->
+                item.getItem().equals(StockItem.APPLES)
+        ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity() * DISCOUNT_FACTOR;
     }
 
-    private int numberOfApples(List<BasketEntry> basketEntries) {
-        return basketEntries.stream().filter(item ->
-            item.getItem().equals(StockItem.APPLES)
-        ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity();
+    boolean isApplicable(LocalDate purchaseDate) {
+        if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
+            return false;
+        }
+        return !purchaseDate.isBefore(this.validFromDate) && !purchaseDate.isAfter(this.validToDate);
     }
 
 }

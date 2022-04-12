@@ -17,23 +17,23 @@ class BreadCoupon extends Coupon {
 
     @Override
     public double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
-        if (!isApplicable(purchaseDate)) {
+        if (!this.isApplicable(purchaseDate)) {
             return 0;
         }
-        if (isBuyingBread(items) && isBuyingAtLeastTwoSoups(items)) {
+        if (items.stream().anyMatch(item1 -> item1.getItem().equals(StockItem.BREAD)) && items.stream()
+                .filter(item -> StockItem.SOUP.equals(item.getItem()))
+                .findFirst().orElse(new BasketEntry(StockItem.SOUP, 0))
+                .getQuantity() >= DISCOUNT_SOUP_QUANTITY) {
             return StockItem.BREAD.getCost() * DISCOUNT_FACTOR;
         }
         return 0;
     }
 
-    private boolean isBuyingAtLeastTwoSoups(List<BasketEntry> basketEntries) {
-        return basketEntries.stream()
-                .filter(item -> StockItem.SOUP.equals(item.getItem()))
-                .findFirst().orElse(new BasketEntry(StockItem.SOUP, 0))
-                .getQuantity() >= DISCOUNT_SOUP_QUANTITY;
+    protected boolean isApplicable(LocalDate purchaseDate) {
+        if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
+            return false;
+        }
+        return !purchaseDate.isBefore(this.validFromDate) && !purchaseDate.isAfter(this.validToDate);
     }
 
-    private boolean isBuyingBread(List<BasketEntry> basketEntries) {
-        return basketEntries.stream().anyMatch(item -> item.getItem().equals(StockItem.BREAD));
-    }
 }
