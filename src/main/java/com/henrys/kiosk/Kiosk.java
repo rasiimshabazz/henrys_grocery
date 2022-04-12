@@ -23,88 +23,76 @@ public class Kiosk {
     public Basket takeShoppersOrder() {
 
         screen.printLine(INFO_WELCOME_MESSAGE);
-        List<BasketEntry> entries = collectBasketEntries();
-        LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
-        Basket basket = new Basket(entries, purchaseDate);
-        BigDecimal price = basket.calculatePrice(CouponFactory.createCurrentPromotion());
-        screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
-        return basket;
-    }
-
-    private List<BasketEntry> collectBasketEntries() {
         List<BasketEntry> basketEntries = new ArrayList<>();
         boolean isShopping = true;
         while (isShopping) {
-            StockItem product = promptForProduct(this::productResponseCondition);
-            int quantity = promptForQuantity(product);
+            final Function<String, Boolean> function1 = response11 -> !StockItem.names().contains(response11.toUpperCase());
+            String response2 = "";
+            while (function1.apply(response2)) {
+                screen.promptUser(PROMPT_FOR_PRODUCT);
+                response2 = screen.readResponse().trim();
+                if (function1.apply(response2)) screen.printLine(ERROR_PREFIX + response2);
+                else break;
+            }
+            StockItem product = StockItem.valueOf(response2.toUpperCase());
+            String prompt = ("how many " + product.getUnit().getPlural() + " of " + product + "? ").toLowerCase();
+            Function<String, Boolean> function2 = response11 -> {
+                boolean result;
+                try {
+                    Integer.valueOf(response11);
+                    result = true;
+                }
+                catch (NumberFormatException e) {
+                    result = false;
+                }
+                return !result || !(Integer.parseInt(response11) >= 0);
+            };
+            String response3 = "";
+            while (function2.apply(response3)) {
+                screen.promptUser(prompt);
+                response3 = screen.readResponse().trim();
+                if (function2.apply(response3)) screen.printLine(ERROR_PREFIX + response3);
+                else break;
+            }
+            int quantity = Integer.parseInt(response3);
             if (quantity > 0) {
                 basketEntries.add(new BasketEntry(product, quantity));
             }
             screen.printLine(INFO_BASKET_STATUS_PREFIX + basketEntries);
-            isShopping = promptToContinue(this::continueResponseCondition);
+            final Function<String, Boolean> function11 = response21 -> !Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(response21.toLowerCase());
+            String response11 = "";
+            while (function11.apply(response11)) {
+                screen.promptUser(PROMPT_FOR_SHOPPING);
+                response11 = screen.readResponse().trim();
+                if (function11.apply(response11)) screen.printLine(ERROR_PREFIX + response11);
+                else break;
+            }
+            isShopping = response11.equalsIgnoreCase(RESPONSE_YES);
         }
-        return basketEntries;
-    }
-
-    private int promptForQuantity(StockItem product) {
-        String prompt = ("how many " + product.getUnit().getPlural() + " of " + product + "? ").toLowerCase();
-        return quantityResponse(promptForInput(this::quantityResponseCondition, prompt));
-    }
-
-    private int promptForPurchaseDay() {
-        return quantityResponse(promptForInput(this::quantityResponseCondition, PROMPT_FOR_DAYS));
-    }
-
-    private StockItem promptForProduct(final Function<String, Boolean> function) {
-        return productResponse(promptForInput(function, PROMPT_FOR_PRODUCT));
-    }
-
-    private Boolean promptToContinue(final Function<String, Boolean> function) {
-        return continueResponse(promptForInput(function, PROMPT_FOR_SHOPPING));
-    }
-
-    private boolean productResponseCondition(String response) {
-        return !StockItem.names().contains(response.toUpperCase());
-    }
-
-    private StockItem productResponse(String response) {
-        return StockItem.valueOf(response.toUpperCase());
-    }
-
-    private boolean continueResponseCondition(String response) {
-        return !Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(response.toLowerCase());
-    }
-    private boolean continueResponse(String response) {
-        return response.equalsIgnoreCase(RESPONSE_YES);
-    }
-
-    private boolean quantityResponseCondition(String response) {
-        return !isNumeric(response) || !(Integer.parseInt(response) >= 0);
-    }
-
-    private int quantityResponse(String response) {
-        return Integer.parseInt(response);
-    }
-
-    private String promptForInput(Function<String, Boolean> function, String prompt) {
+        List<BasketEntry> entries = basketEntries;
+        Function<String, Boolean> function = response1 -> {
+            boolean result;
+            try {
+                Integer.valueOf(response1);
+                result = true;
+            }
+            catch (NumberFormatException e) {
+                result = false;
+            }
+            return !result || !(Integer.parseInt(response1) >= 0);
+        };
         String response = "";
         while (function.apply(response)) {
-            screen.promptUser(prompt);
+            screen.promptUser(PROMPT_FOR_DAYS);
             response = screen.readResponse().trim();
             if (function.apply(response)) screen.printLine(ERROR_PREFIX + response);
             else break;
         }
-        return response;
-    }
-
-    private boolean isNumeric(String string) {
-        try {
-            Integer.valueOf(string);
-            return true;
-        }
-        catch (NumberFormatException e) {
-            return false;
-        }
+        LocalDate purchaseDate = LocalDate.now().plusDays(Integer.parseInt(response));
+        Basket basket = new Basket(entries, purchaseDate);
+        BigDecimal price = basket.calculatePrice(CouponFactory.createCurrentPromotion());
+        screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
+        return basket;
     }
 
     public static final String INFO_WELCOME_MESSAGE = "\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n";

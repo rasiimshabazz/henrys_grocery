@@ -39,11 +39,13 @@ public class Basket {
 
     public BigDecimal calculatePrice(List<Coupon> coupons) {
         if (coupons == null) coupons = new ArrayList<>();
+
         double price = this.basketEntries.stream()
                 .mapToDouble(BasketEntry::price)
                 .sum() - coupons.stream()
                 .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, this.purchaseDate))
                 .sum();
+
         return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
     }
 
