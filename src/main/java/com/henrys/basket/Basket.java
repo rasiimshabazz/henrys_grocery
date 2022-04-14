@@ -39,7 +39,7 @@ public class Basket {
         this.coupons = coupons;
     }
 
-    public BigDecimal calculatePrice(List<Coupon> coupons) {
+    public BigDecimal calculatePrice() {
         if (coupons == null) coupons = new ArrayList<>();
 
         double price = this.basketEntries.stream()
