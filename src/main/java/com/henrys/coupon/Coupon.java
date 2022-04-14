@@ -6,7 +6,7 @@ import com.henrys.basket.StockItem;
 import java.time.LocalDate;
 import java.util.List;
 
-public abstract class Coupon {
+public class Coupon {
 
     private String type;
     protected LocalDate validFromDate;
@@ -16,16 +16,16 @@ public abstract class Coupon {
     private static final double BREAD_DISCOUNT_FACTOR = 0.5;
     public static final int BREAD_DISCOUNT_SOUP_QUANTITY = 2;
 
-    protected Coupon(LocalDate validFromDate, LocalDate validToDate, String type) {
+    public Coupon(LocalDate validFromDate, LocalDate validToDate, String type) {
         this.validFromDate = validFromDate;
         this.validToDate = validToDate;
         this.type = type;
     }
 
-    public abstract double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate);
-
-    public String getType() {
-        return type;
+    public double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate) {
+        if ("bread".equalsIgnoreCase(this.type))
+            return calculateBreadDiscount(basketEntries, purchaseDate);
+        return calculateAppleDiscount(basketEntries, purchaseDate);
     }
 
     public double calculateAppleDiscount(List<BasketEntry> items, LocalDate purchaseDate) {

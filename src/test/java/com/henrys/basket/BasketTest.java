@@ -2,6 +2,7 @@ package com.henrys.basket;
 
 import com.henrys.coupon.ApplesCoupon;
 import com.henrys.coupon.BreadCoupon;
+import com.henrys.coupon.Coupon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class BasketTest {
         ), LocalDate.now());
 
         Assertions.assertEquals(format(3.15), basket.calculatePrice(Collections.singletonList(
-                new BreadCoupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7)))));
+                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), "bread"))));
     }
 
     @Test
