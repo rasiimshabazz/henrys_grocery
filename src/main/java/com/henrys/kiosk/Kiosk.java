@@ -3,8 +3,7 @@ package com.henrys.kiosk;
 import com.henrys.basket.Basket;
 import com.henrys.basket.BasketEntry;
 import com.henrys.basket.StockItem;
-import com.henrys.coupon.ApplesCoupon;
-import com.henrys.coupon.BreadCoupon;
+import com.henrys.coupon.Coupon;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -71,7 +70,6 @@ public class Kiosk {
             }
             isShopping = response11.equalsIgnoreCase(RESPONSE_YES);
         }
-        List<BasketEntry> entries = basketEntries;
         Function<String, Boolean> function = response1 -> {
             boolean result;
             try {
@@ -91,10 +89,10 @@ public class Kiosk {
             else break;
         }
         LocalDate purchaseDate = LocalDate.now().plusDays(Integer.parseInt(response));
-        Basket basket = new Basket(entries, purchaseDate);
+        Basket basket = new Basket(basketEntries, purchaseDate);
         BigDecimal price = basket.calculatePrice(Arrays.asList(
-                new BreadCoupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7)),
-                new ApplesCoupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()))));
+                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD),
+                new Coupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()), Coupon.COUPON_IND_APPLE)));
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
         return basket;
     }
