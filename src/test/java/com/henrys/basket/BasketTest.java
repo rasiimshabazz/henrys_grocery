@@ -30,7 +30,7 @@ public class BasketTest {
         ), LocalDate.now());
 
         Assertions.assertEquals(format(3.15), basket.calculatePrice(Collections.singletonList(
-                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), "bread"))));
+                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD))));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class BasketTest {
         ), LocalDate.now());
 
         Assertions.assertEquals(format(0.00), basket.calculatePrice(Collections.singletonList(
-                new BreadCoupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7)))));
+                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD))));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class BasketTest {
         ), LocalDate.now());
 
         Assertions.assertEquals(format(1.90), basket.calculatePrice(Arrays.asList(
-                new BreadCoupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7)),
+                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD),
                 new ApplesCoupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth())))));
     }
 
@@ -74,7 +74,7 @@ public class BasketTest {
         ), boughtInFiveDaysTime);
 
         Assertions.assertEquals(format(1.84), basket.calculatePrice(Arrays.asList(
-                new BreadCoupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7)),
+                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD),
                 new ApplesCoupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth())))));
     }
 
@@ -89,7 +89,8 @@ public class BasketTest {
                 new BasketEntry(StockItem.BREAD, 1)
         ), boughtInFiveDaysTime);
 
-        Assertions.assertEquals(format(1.97), basket.calculatePrice(Arrays.asList(new BreadCoupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7)),
+        Assertions.assertEquals(format(1.97), basket.calculatePrice(Arrays.asList(
+                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD),
                 new ApplesCoupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth())))));
     }
 
@@ -104,7 +105,7 @@ public class BasketTest {
         ), boughtAWeekAgo);
 
         Assertions.assertEquals(format(3.55), basket.calculatePrice(Collections.singletonList(
-                new BreadCoupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7)))));
+                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD))));
     }
 
     @Test
@@ -156,7 +157,7 @@ public class BasketTest {
         ), LocalDate.now());
 
         Assertions.assertEquals(format(4.95), basket.calculatePrice(Collections.singletonList(
-                new BreadCoupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7)))));
+                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD))));
 
         Assertions.assertEquals(format(5.35), basket.calculatePrice(null));
     }

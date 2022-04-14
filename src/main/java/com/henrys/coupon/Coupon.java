@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Coupon {
 
+    public static final String COUPON_IND_BREAD = "bread";
     private String type;
     protected LocalDate validFromDate;
     protected LocalDate validToDate;
@@ -23,7 +24,7 @@ public class Coupon {
     }
 
     public double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate) {
-        if ("bread".equalsIgnoreCase(this.type))
+        if (COUPON_IND_BREAD.equalsIgnoreCase(this.type))
             return calculateBreadDiscount(basketEntries, purchaseDate);
         return calculateAppleDiscount(basketEntries, purchaseDate);
     }
