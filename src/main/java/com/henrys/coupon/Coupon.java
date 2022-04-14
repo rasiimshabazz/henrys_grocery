@@ -30,7 +30,7 @@ public class Coupon {
         return calculateAppleDiscount(basketEntries, purchaseDate);
     }
 
-    public double calculateAppleDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
+    private double calculateAppleDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
         if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
             return 0;
         }
@@ -42,8 +42,7 @@ public class Coupon {
         ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity() * APPLE_DISCOUNT_FACTOR;
     }
 
-
-    public double calculateBreadDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
+    private double calculateBreadDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
         if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
             return 0;
         }

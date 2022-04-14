@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-class ApplesCouponTest {
+class CouponTest {
 
     @Test
     void calculateDiscount_bread_valid_coupon() {
