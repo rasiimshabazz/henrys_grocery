@@ -1,7 +1,5 @@
 package com.henrys.basket;
 
-import com.henrys.coupon.ApplesCoupon;
-import com.henrys.coupon.BreadCoupon;
 import com.henrys.coupon.Coupon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -60,7 +58,7 @@ public class BasketTest {
 
         Assertions.assertEquals(format(1.90), basket.calculatePrice(Arrays.asList(
                 new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD),
-                new ApplesCoupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth())))));
+                new Coupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()), Coupon.COUPON_IND_APPLE))));
     }
 
     @Test
@@ -75,7 +73,7 @@ public class BasketTest {
 
         Assertions.assertEquals(format(1.84), basket.calculatePrice(Arrays.asList(
                 new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD),
-                new ApplesCoupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth())))));
+                new Coupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()), Coupon.COUPON_IND_APPLE))));
     }
 
     @Test
@@ -91,7 +89,7 @@ public class BasketTest {
 
         Assertions.assertEquals(format(1.97), basket.calculatePrice(Arrays.asList(
                 new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD),
-                new ApplesCoupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth())))));
+                new Coupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()), Coupon.COUPON_IND_APPLE))));
     }
 
     @Test

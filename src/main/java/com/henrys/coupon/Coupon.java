@@ -9,13 +9,14 @@ import java.util.List;
 public class Coupon {
 
     public static final String COUPON_IND_BREAD = "bread";
-    private String type;
-    protected LocalDate validFromDate;
-    protected LocalDate validToDate;
-
+    public static final String COUPON_IND_APPLE = "apple";
     private static final double APPLE_DISCOUNT_FACTOR = .01;
     private static final double BREAD_DISCOUNT_FACTOR = 0.5;
     public static final int BREAD_DISCOUNT_SOUP_QUANTITY = 2;
+
+    private String type;
+    protected LocalDate validFromDate;
+    protected LocalDate validToDate;
 
     public Coupon(LocalDate validFromDate, LocalDate validToDate, String type) {
         this.validFromDate = validFromDate;
