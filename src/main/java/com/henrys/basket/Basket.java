@@ -12,8 +12,9 @@ public class Basket {
 
     private final List<BasketEntry> basketEntries;
     private final LocalDate purchaseDate;
+    private List<Coupon> coupons;
 
-    public Basket(List<BasketEntry> basketEntries, LocalDate purchaseDate) {
+    public Basket(List<BasketEntry> basketEntries, LocalDate purchaseDate, List<Coupon> coupons) {
 
         if (basketEntries == null) basketEntries = new ArrayList<>();
 
@@ -35,6 +36,7 @@ public class Basket {
                 .collect(Collectors.toList());
 
         this.purchaseDate = purchaseDate;
+        this.coupons = coupons;
     }
 
     public BigDecimal calculatePrice(List<Coupon> coupons) {

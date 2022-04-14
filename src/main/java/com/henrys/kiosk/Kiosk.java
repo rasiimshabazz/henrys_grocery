@@ -89,7 +89,7 @@ public class Kiosk {
             else break;
         }
         LocalDate purchaseDate = LocalDate.now().plusDays(Integer.parseInt(response));
-        Basket basket = new Basket(basketEntries, purchaseDate);
+        Basket basket = new Basket(basketEntries, purchaseDate, null);
         BigDecimal price = basket.calculatePrice(Arrays.asList(
                 new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD),
                 new Coupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()), Coupon.COUPON_IND_APPLE)));
