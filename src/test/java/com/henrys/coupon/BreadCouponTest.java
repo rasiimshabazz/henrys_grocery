@@ -18,7 +18,7 @@ class BreadCouponTest {
                 new BasketEntry(StockItem.BREAD, 1)
         );
         LocalDate purchaseDate = LocalDate.now();
-        BreadCoupon coupon = new BreadCoupon(purchaseDate.minusDays(1), purchaseDate.plusDays(1));
+        Coupon coupon = new Coupon(purchaseDate.minusDays(1), purchaseDate.plusDays(1), Coupon.COUPON_IND_BREAD);
         Assertions.assertEquals(0.4, coupon.calculateDiscount(basketItems, purchaseDate));
     }
 
@@ -29,7 +29,7 @@ class BreadCouponTest {
                 new BasketEntry(StockItem.BREAD, 1)
         );
         LocalDate purchaseDate = LocalDate.now();
-        BreadCoupon coupon = new BreadCoupon(purchaseDate.minusDays(1), purchaseDate.minusDays(1));
+        Coupon coupon = new Coupon(purchaseDate.minusDays(1), purchaseDate.minusDays(1), Coupon.COUPON_IND_BREAD);
         Assertions.assertEquals(0.0, coupon.calculateDiscount(basketItems, purchaseDate));
     }
 
