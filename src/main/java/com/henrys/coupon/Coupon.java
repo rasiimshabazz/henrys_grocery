@@ -11,9 +11,10 @@ public abstract class Coupon {
     protected LocalDate validFromDate;
     protected LocalDate validToDate;
 
-    protected Coupon(LocalDate validFromDate, LocalDate validToDate) {
+    protected Coupon(LocalDate validFromDate, LocalDate validToDate, String type) {
         this.validFromDate = validFromDate;
         this.validToDate = validToDate;
+        this.type = type;
     }
 
     public abstract double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate);

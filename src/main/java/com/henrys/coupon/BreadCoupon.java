@@ -12,7 +12,7 @@ public class BreadCoupon extends Coupon {
     public static final int DISCOUNT_SOUP_QUANTITY = 2;
 
     public BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
-        super(validFromDate, validToDate);
+        super(validFromDate, validToDate, "");
     }
 
     @Override
