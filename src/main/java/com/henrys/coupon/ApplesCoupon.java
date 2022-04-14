@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ApplesCoupon extends Coupon {
 
-    private static final double DISCOUNT_FACTOR = .01;
+    private static final double APPLE_DISCOUNT_FACTOR = .01;
 
     public ApplesCoupon(LocalDate validFromDate, LocalDate validToDate) {
         super(validFromDate, validToDate, "");
@@ -24,7 +24,7 @@ public class ApplesCoupon extends Coupon {
         }
         return items.stream().filter(item ->
                 item.getItem().equals(StockItem.APPLES)
-        ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity() * DISCOUNT_FACTOR;
+        ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity() * APPLE_DISCOUNT_FACTOR;
     }
 
 }

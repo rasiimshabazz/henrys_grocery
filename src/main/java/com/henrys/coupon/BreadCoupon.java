@@ -8,12 +8,12 @@ import java.util.List;
 
 public class BreadCoupon extends Coupon {
 
-    private static final double DISCOUNT_FACTOR = 0.5;
-    public static final int DISCOUNT_SOUP_QUANTITY = 2;
-
     public BreadCoupon(LocalDate validFromDate, LocalDate validToDate) {
         super(validFromDate, validToDate, "");
     }
+
+    private static final double BREAD_DISCOUNT_FACTOR = 0.5;
+    public static final int BREAD_DISCOUNT_SOUP_QUANTITY = 2;
 
     @Override
     public double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
@@ -26,8 +26,8 @@ public class BreadCoupon extends Coupon {
         if (items.stream().anyMatch(item1 -> item1.getItem().equals(StockItem.BREAD)) && items.stream()
                 .filter(item -> StockItem.SOUP.equals(item.getItem()))
                 .findFirst().orElse(new BasketEntry(StockItem.SOUP, 0))
-                .getQuantity() >= DISCOUNT_SOUP_QUANTITY) {
-            return StockItem.BREAD.getCost() * DISCOUNT_FACTOR;
+                .getQuantity() >= BREAD_DISCOUNT_SOUP_QUANTITY) {
+            return StockItem.BREAD.getCost() * BREAD_DISCOUNT_FACTOR;
         }
         return 0;
     }
