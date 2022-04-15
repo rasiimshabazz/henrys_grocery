@@ -3,11 +3,9 @@ package com.henrys.kiosk;
 import com.henrys.basket.Basket;
 import com.henrys.basket.BasketEntry;
 import com.henrys.basket.StockItem;
-import com.henrys.coupon.Coupon;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -89,10 +87,8 @@ public class Kiosk {
             else break;
         }
         LocalDate purchaseDate = LocalDate.now().plusDays(Integer.parseInt(response));
-        Basket basket = new Basket(basketEntries, purchaseDate, Arrays.asList(
-                new Coupon(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1).plusDays(7), Coupon.COUPON_IND_BREAD),
-                new Coupon(LocalDate.now().plusDays(3), LocalDate.now().plusDays(3).plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()), Coupon.COUPON_IND_APPLE)));
-        BigDecimal price = basket.calculatePrice();
+        Basket basket = new Basket(basketEntries, purchaseDate);
+        BigDecimal price = basket.calculatePrice(null);
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
         return basket;
     }
