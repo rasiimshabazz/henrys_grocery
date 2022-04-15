@@ -10,18 +10,6 @@ public class BasketEntry {
         this.quantity = Math.max(quantity, 0);
     }
 
-    public StockItem getItem() {
-        return this.item;
-    }
-
-    public int getQuantity() {
-        return this.quantity;
-    }
-
-    public double price() {
-        return this.item.getCost() * this.quantity;
-    }
-
     public String toString() {
         return this.quantity + " " + this.item;
     }

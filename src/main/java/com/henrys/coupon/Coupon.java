@@ -26,10 +26,9 @@ public class Coupon {
             if (purchaseDate.isBefore(this.validFromDate) || purchaseDate.isAfter(this.validToDate)) {
                 return 0;
             }
-            if (basketEntries.stream().anyMatch(item1 -> item1.getItem().equals(StockItem.BREAD)) && basketEntries.stream()
-                    .filter(item -> StockItem.SOUP.equals(item.getItem()))
-                    .findFirst().orElse(new BasketEntry(StockItem.SOUP, 0))
-                    .getQuantity() >= 2) {
+            if (basketEntries.stream().anyMatch(item1 -> item1.item.equals(StockItem.BREAD)) && basketEntries.stream()
+                    .filter(item -> StockItem.SOUP.equals(item.item))
+                    .findFirst().orElse(new BasketEntry(StockItem.SOUP, 0)).quantity >= 2) {
                 return StockItem.BREAD.getCost() * 0.5;
             }
             return 0;
@@ -40,9 +39,8 @@ public class Coupon {
         if (purchaseDate.isBefore(this.validFromDate) || purchaseDate.isAfter(this.validToDate)) {
             return 0;
         }
-        return basketEntries.stream().filter(item ->
-                item.getItem().equals(StockItem.APPLES)
-        ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity() * .01;
+        return basketEntries.stream().filter(item -> item.item.equals(StockItem.APPLES)
+        ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).quantity * .01;
     }
 
 }

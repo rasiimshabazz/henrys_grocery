@@ -21,14 +21,14 @@ public class Basket {
                 .collect(Collectors.toList());
 
         List<StockItem> distinctItems = unmerged.stream()
-                .map(BasketEntry::getItem)
+                .map(basketEntry1 -> basketEntry1.item)
                 .distinct().collect(Collectors.toList());
 
         this.basketEntries = distinctItems.stream()
                 .map(distinctItem -> {
                     int count = unmerged.stream()
-                            .filter(repeat -> repeat.getItem().equals(distinctItem))
-                            .mapToInt(BasketEntry::getQuantity).sum();
+                            .filter(repeat -> repeat.item.equals(distinctItem))
+                            .mapToInt(basketEntry -> basketEntry.quantity).sum();
                     return new BasketEntry(distinctItem, count);
                 })
                 .collect(Collectors.toList());
@@ -39,7 +39,7 @@ public class Basket {
         if (couponList == null) couponList = new ArrayList<>();
 
         double price = this.basketEntries.stream()
-                .mapToDouble(BasketEntry::price)
+                .mapToDouble(basketEntry -> basketEntry.item.getCost() * basketEntry.quantity)
                 .sum() - couponList.stream()
                 .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, purchaseDate))
                 .sum();
