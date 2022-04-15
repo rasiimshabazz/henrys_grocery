@@ -2,8 +2,8 @@ package com.henrys.basket;
 
 public class BasketEntry {
 
-    private final StockItem item;
-    private final int quantity;
+    public final StockItem item;
+    public final int quantity;
 
     public BasketEntry(StockItem item, int quantity) {
         this.item = item;
@@ -18,7 +18,7 @@ public class BasketEntry {
         return this.quantity;
     }
 
-    double price() {
+    public double price() {
         return this.item.getCost() * this.quantity;
     }
 

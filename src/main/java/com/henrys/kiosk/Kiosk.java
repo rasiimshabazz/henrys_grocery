@@ -34,7 +34,7 @@ public class Kiosk {
                 else break;
             }
             StockItem product = StockItem.valueOf(response2.toUpperCase());
-            String prompt = ("how many " + product.getUnit().getPlural() + " of " + product + "? ").toLowerCase();
+            String prompt = ("how many " + product.getUnit().plural + " of " + product + "? ").toLowerCase();
             Function<String, Boolean> function2 = response11 -> {
                 boolean result;
                 try {
