@@ -49,8 +49,8 @@ public class Basket {
         return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
     }
 
-    public String toString() {
-        return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
+    public String toString(LocalDate purchaseDate) {
+        return "items: " + this.basketEntries.toString() + ", purchase date: " + purchaseDate.toString();
     }
 
 }
