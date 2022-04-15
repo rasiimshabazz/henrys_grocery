@@ -8,10 +8,6 @@ import java.util.List;
 
 public class Coupon {
 
-    public static final String COUPON_IND_BREAD = "bread";
-    public static final String COUPON_IND_APPLE = "apple";
-    public static final int BREAD_DISCOUNT_SOUP_QUANTITY = 2;
-
     private String type;
     private LocalDate validFromDate;
     private LocalDate validToDate;
@@ -23,7 +19,7 @@ public class Coupon {
     }
 
     public double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate) {
-        if (COUPON_IND_BREAD.equalsIgnoreCase(this.type)) {
+        if ("bread".equalsIgnoreCase(this.type)) {
             if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
                 return 0;
             }
@@ -33,7 +29,7 @@ public class Coupon {
             if (basketEntries.stream().anyMatch(item1 -> item1.getItem().equals(StockItem.BREAD)) && basketEntries.stream()
                     .filter(item -> StockItem.SOUP.equals(item.getItem()))
                     .findFirst().orElse(new BasketEntry(StockItem.SOUP, 0))
-                    .getQuantity() >= BREAD_DISCOUNT_SOUP_QUANTITY) {
+                    .getQuantity() >= 2) {
                 return StockItem.BREAD.getCost() * 0.5;
             }
             return 0;
