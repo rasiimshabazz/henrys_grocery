@@ -88,7 +88,7 @@ public class Kiosk {
         }
         LocalDate purchaseDate = LocalDate.now().plusDays(Integer.parseInt(response));
         Basket basket = new Basket(basketEntries, purchaseDate);
-        BigDecimal price = basket.calculatePrice(null);
+        BigDecimal price = basket.calculatePrice(null, null);
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
         return basket;
     }
