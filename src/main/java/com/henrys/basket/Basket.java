@@ -35,7 +35,7 @@ public class Basket {
 
     }
 
-    public BigDecimal calculatePrice(List<Coupon> couponList, LocalDate purchaseDate) {
+    public BigDecimal calculatePrice(List<Coupon> couponList, LocalDate purchaseDate, List<BasketEntry> basketEntries) {
         if (couponList == null) couponList = new ArrayList<>();
 
         double price = this.basketEntries.stream()
