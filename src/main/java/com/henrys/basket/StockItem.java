@@ -16,9 +16,4 @@ public enum StockItem {
         this.unit = unit;
     }
 
-    public static String namesToString() {
-        return Arrays.stream(StockItem.values())
-                .map(Enum::name).collect(Collectors.toList()).toString().toLowerCase();
-    }
-
 }

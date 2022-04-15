@@ -100,7 +100,8 @@ public class Kiosk {
     public static final String INFO_THANK_YOU = "\nthank you! come again.\n\n\n";
     public static final String INFO_BASKET_STATUS_PREFIX = "your entries so far: ";
     public static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
-    public static final String PROMPT_FOR_PRODUCT = PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ";
+    public static final String PROMPT_FOR_PRODUCT = PROMPT_FOR_PRODUCT_PREFIX + Arrays.stream(StockItem.values())
+            .map(Enum::name).collect(Collectors.toList()).toString().toLowerCase() + " ";
     public static final String PROMPT_FOR_SHOPPING = "add more? (y/n) ";
     public static final String PROMPT_FOR_DAYS = "bought how many days from now? ";
     public static final String RESPONSE_YES = "y";

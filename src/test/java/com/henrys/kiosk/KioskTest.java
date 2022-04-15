@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.henrys.kiosk.Kiosk.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,7 +44,8 @@ public class KioskTest {
         assertEquals(new Basket(bread).toString(LocalDate.now()), kiosk.takeShoppersOrder().toString(LocalDate.now()));
         then(mockScreen).should(times(4)).readResponse();
 
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + Arrays.stream(StockItem.values())
+                .map(Enum::name).collect(Collectors.toList()).toString().toLowerCase() + " ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_SHOPPING);
         then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
@@ -63,7 +65,8 @@ public class KioskTest {
         assertEquals(new Basket(bread).toString(LocalDate.now()), kiosk.takeShoppersOrder().toString(LocalDate.now()));
         then(mockScreen).should(times(4)).readResponse();
 
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + Arrays.stream(StockItem.values())
+                .map(Enum::name).collect(Collectors.toList()).toString().toLowerCase() + " ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_SHOPPING);
         then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
@@ -89,7 +92,8 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts).toString(LocalDate.now()), kiosk.takeShoppersOrder().toString(LocalDate.now()));
         then(mockScreen).should(times(9)).readResponse();
 
-        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + Arrays.stream(StockItem.values())
+                .map(Enum::name).collect(Collectors.toList()).toString().toLowerCase() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_SHOPPING);
         then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
@@ -122,7 +126,8 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts).toString(LocalDate.now()), kiosk.takeShoppersOrder().toString(LocalDate.now()));
         then(mockScreen).should(times(13)).readResponse();
 
-        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + Arrays.stream(StockItem.values())
+                .map(Enum::name).collect(Collectors.toList()).toString().toLowerCase() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(2)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_SHOPPING);
@@ -157,7 +162,8 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts).toString(LocalDate.now()), kiosk.takeShoppersOrder().toString(LocalDate.now()));
         then(mockScreen).should(times(12)).readResponse();
 
-        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + Arrays.stream(StockItem.values())
+                .map(Enum::name).collect(Collectors.toList()).toString().toLowerCase() + " ");
         then(mockScreen).should(times(1)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
@@ -196,7 +202,8 @@ public class KioskTest {
         assertEquals(new Basket(expectedProducts).toString(LocalDate.now()), kiosk.takeShoppersOrder().toString(LocalDate.now()));
         then(mockScreen).should(times(15)).readResponse();
 
-        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + Arrays.stream(StockItem.values())
+                .map(Enum::name).collect(Collectors.toList()).toString().toLowerCase() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
