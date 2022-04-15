@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Kiosk {
 
@@ -25,7 +26,8 @@ public class Kiosk {
         List<BasketEntry> basketEntries = new ArrayList<>();
         boolean isShopping = true;
         while (isShopping) {
-            final Function<String, Boolean> function1 = response11 -> !StockItem.names().contains(response11.toUpperCase());
+            final Function<String, Boolean> function1 = response11 -> !Arrays.stream(StockItem.values())
+                    .map(Enum::name).collect(Collectors.toList()).contains(response11.toUpperCase());
             String response2 = "";
             while (function1.apply(response2)) {
                 screen.promptUser(PROMPT_FOR_PRODUCT);
@@ -34,7 +36,7 @@ public class Kiosk {
                 else break;
             }
             StockItem product = StockItem.valueOf(response2.toUpperCase());
-            String prompt = ("how many " + product.getUnit().plural + " of " + product + "? ").toLowerCase();
+            String prompt = ("how many " + product.unit.plural + " of " + product + "? ").toLowerCase();
             Function<String, Boolean> function2 = response11 -> {
                 boolean result;
                 try {

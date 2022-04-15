@@ -1,7 +1,6 @@
 package com.henrys.basket;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public enum StockItem {
@@ -17,19 +16,9 @@ public enum StockItem {
         this.unit = unit;
     }
 
-    public double getCost() {
-        return this.cost;
-    }
-
-    public Unit getUnit() { return this.unit; }
-
-    public static List<String> names() {
-        return Arrays.stream(StockItem.values())
-                .map(Enum::name).collect(Collectors.toList());
-    }
-
     public static String namesToString() {
-        return names().toString().toLowerCase();
+        return Arrays.stream(StockItem.values())
+                .map(Enum::name).collect(Collectors.toList()).toString().toLowerCase();
     }
 
 }

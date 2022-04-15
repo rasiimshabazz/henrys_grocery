@@ -39,7 +39,7 @@ public class Basket {
         if (couponList == null) couponList = new ArrayList<>();
 
         double price = this.basketEntries.stream()
-                .mapToDouble(basketEntry -> basketEntry.item.getCost() * basketEntry.quantity)
+                .mapToDouble(basketEntry -> basketEntry.item.cost * basketEntry.quantity)
                 .sum() - couponList.stream()
                 .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, purchaseDate))
                 .sum();

@@ -29,7 +29,7 @@ public class Coupon {
             if (basketEntries.stream().anyMatch(item1 -> item1.item.equals(StockItem.BREAD)) && basketEntries.stream()
                     .filter(item -> StockItem.SOUP.equals(item.item))
                     .findFirst().orElse(new BasketEntry(StockItem.SOUP, 0)).quantity >= 2) {
-                return StockItem.BREAD.getCost() * 0.5;
+                return StockItem.BREAD.cost * 0.5;
             }
             return 0;
         }
