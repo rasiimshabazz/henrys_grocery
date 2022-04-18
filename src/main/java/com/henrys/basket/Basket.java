@@ -5,7 +5,9 @@ import com.henrys.coupon.Coupon;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Basket {
@@ -15,7 +17,7 @@ public class Basket {
 
     public Basket(List<BasketEntry> basketEntries, LocalDate purchaseDate) {
         if (basketEntries == null) basketEntries = new ArrayList<>();
-        this.basketEntries = mergeQuantities(filterOutNulls(basketEntries));
+        this.basketEntries = mergeBasketEntries(filterOutNulls(basketEntries));
         this.purchaseDate = purchaseDate;
     }
 
@@ -45,20 +47,20 @@ public class Basket {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
 
-    private static List<BasketEntry> mergeQuantities(List<BasketEntry> unmerged) {
-        List<StockItem> distinctItems = unmerged.stream()
+    private static List<BasketEntry> mergeBasketEntries(List<BasketEntry> unmergedBasketEntries) {
+        List<StockItem> distinctItems = unmergedBasketEntries.stream()
                 .map(BasketEntry::getItem)
                 .distinct().collect(Collectors.toList());
         return distinctItems.stream()
-                .map(distinctItem -> mergeQuantitiesByStockItem(unmerged, distinctItem))
+                .map(distinctItem -> mergeByStockItem(unmergedBasketEntries, distinctItem))
                 .collect(Collectors.toList());
     }
 
-    private static BasketEntry mergeQuantitiesByStockItem(List<BasketEntry> repeatedEntries, StockItem distinctItem) {
-        int count = repeatedEntries.stream()
+    private static BasketEntry mergeByStockItem(List<BasketEntry> repeatedEntries, StockItem distinctItem) {
+        int quantity = repeatedEntries.stream()
                 .filter(repeat -> repeat.getItem().equals(distinctItem))
                 .mapToInt(BasketEntry::getQuantity).sum();
-        return new BasketEntry(distinctItem, count);
+        return new BasketEntry(distinctItem, quantity);
     }
 
     private static List<BasketEntry> filterOutNulls(List<BasketEntry> newBasketEntries) {
