@@ -11,12 +11,7 @@ public class BasketEntries {
 
     public BasketEntries(List<BasketEntry> basketEntries) {
         if (basketEntries == null) basketEntries = new ArrayList<>();
-        this.basketEntries = validateBasketEntries(basketEntries);
-    }
-
-    private List<BasketEntry> validateBasketEntries(List<BasketEntry> basketEntries) {
-        if (basketEntries == null) return new ArrayList<>();
-        return mergeBasketEntries(basketEntries);
+        this.basketEntries = mergeBasketEntries(basketEntries);
     }
 
     public List<BasketEntry> getEntries() {
