@@ -47,4 +47,8 @@ public class BasketEntries {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
+
+    public String toString() {
+        return this.basketEntries.toString();
+    }
 }

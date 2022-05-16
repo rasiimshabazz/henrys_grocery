@@ -33,7 +33,7 @@ public class Basket {
     }
 
     public String toString() {
-        return "items: " + this.basketEntries.getEntries().toString() + ", purchase date: " + this.purchaseDate.toString();
+        return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
     }
 
     private static BigDecimal convertToDecimal(double value) {
