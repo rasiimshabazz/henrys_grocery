@@ -34,7 +34,7 @@ public class Basket {
 
     private double discount(List<Coupon> coupons) {
         return coupons.stream()
-                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries.getEntries(), this.purchaseDate))
+                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, this.purchaseDate))
                 .sum();
     }
 

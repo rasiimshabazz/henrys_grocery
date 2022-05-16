@@ -1,5 +1,6 @@
 package com.henrys.coupon;
 
+import com.henrys.basket.BasketEntries;
 import com.henrys.basket.BasketEntry;
 import com.henrys.basket.StockItem;
 
@@ -15,15 +16,15 @@ class ApplesCoupon extends Coupon {
     }
 
     @Override
-    public double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
+    public double calculateDiscount(BasketEntries basketEntries, LocalDate purchaseDate) {
         if (!isApplicable(purchaseDate)) {
             return 0;
         }
-        return numberOfApples(items) * DISCOUNT_FACTOR;
+        return numberOfApples(basketEntries) * DISCOUNT_FACTOR;
     }
 
-    private int numberOfApples(List<BasketEntry> basketEntries) {
-        return basketEntries.stream().filter(item ->
+    private int numberOfApples(BasketEntries basketEntries) {
+        return basketEntries.getEntries().stream().filter(item ->
             item.getItem().equals(StockItem.APPLES)
         ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity();
     }

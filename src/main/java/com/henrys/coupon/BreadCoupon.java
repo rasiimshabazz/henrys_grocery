@@ -1,5 +1,6 @@
 package com.henrys.coupon;
 
+import com.henrys.basket.BasketEntries;
 import com.henrys.basket.BasketEntry;
 import com.henrys.basket.StockItem;
 
@@ -16,24 +17,24 @@ class BreadCoupon extends Coupon {
     }
 
     @Override
-    public double calculateDiscount(List<BasketEntry> items, LocalDate purchaseDate) {
+    public double calculateDiscount(BasketEntries basketEntries, LocalDate purchaseDate) {
         if (!isApplicable(purchaseDate)) {
             return 0;
         }
-        if (isBuyingBread(items) && isBuyingAtLeastTwoSoups(items)) {
+        if (isBuyingBread(basketEntries) && isBuyingAtLeastTwoSoups(basketEntries)) {
             return StockItem.BREAD.getCost() * DISCOUNT_FACTOR;
         }
         return 0;
     }
 
-    private boolean isBuyingAtLeastTwoSoups(List<BasketEntry> basketEntries) {
-        return basketEntries.stream()
+    private boolean isBuyingAtLeastTwoSoups(BasketEntries basketEntries) {
+        return basketEntries.getEntries().stream()
                 .filter(item -> StockItem.SOUP.equals(item.getItem()))
                 .findFirst().orElse(new BasketEntry(StockItem.SOUP, 0))
                 .getQuantity() >= DISCOUNT_SOUP_QUANTITY;
     }
 
-    private boolean isBuyingBread(List<BasketEntry> basketEntries) {
-        return basketEntries.stream().anyMatch(item -> item.getItem().equals(StockItem.BREAD));
+    private boolean isBuyingBread(BasketEntries basketEntries) {
+        return basketEntries.getEntries().stream().anyMatch(item -> item.getItem().equals(StockItem.BREAD));
     }
 }

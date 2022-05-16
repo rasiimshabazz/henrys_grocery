@@ -1,5 +1,6 @@
 package com.henrys.coupon;
 
+import com.henrys.basket.BasketEntries;
 import com.henrys.basket.BasketEntry;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public abstract class Coupon {
         this.validToDate = validToDate;
     }
 
-    public abstract double calculateDiscount(List<BasketEntry> basketEntries, LocalDate purchaseDate);
+    public abstract double calculateDiscount(BasketEntries basketEntries, LocalDate purchaseDate);
 
     protected boolean isApplicable(LocalDate purchaseDate) {
         if (purchaseDate == null || this.validFromDate == null || this.validToDate == null) {
