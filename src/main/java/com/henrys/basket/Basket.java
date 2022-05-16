@@ -15,7 +15,7 @@ public class Basket {
 
     public Basket(List<BasketEntry> basketEntries, LocalDate purchaseDate) {
         if (basketEntries == null) basketEntries = new ArrayList<>();
-        this.basketEntries = BasketEntry.mergeBasketEntries(BasketEntry.filterOutNulls(basketEntries));
+        this.basketEntries = BasketEntry.mergeBasketEntries(basketEntries);
         this.purchaseDate = purchaseDate;
     }
 

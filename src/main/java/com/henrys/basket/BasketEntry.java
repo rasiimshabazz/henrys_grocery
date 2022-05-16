@@ -39,6 +39,8 @@ public class BasketEntry {
 
 
     static List<BasketEntry> mergeBasketEntries(List<BasketEntry> unmergedBasketEntries) {
+
+        BasketEntry.filterOutNulls(unmergedBasketEntries);
         List<StockItem> distinctItems = unmergedBasketEntries.stream()
                 .map(BasketEntry::getItem)
                 .distinct().collect(Collectors.toList());
