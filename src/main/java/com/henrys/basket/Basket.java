@@ -11,12 +11,12 @@ import java.util.List;
 
 public class Basket {
 
-    private final List<BasketEntry> basketEntries;
+    private final BasketEntries basketEntries;
     private final LocalDate purchaseDate;
 
     public Basket(BasketEntries basketEntries, LocalDate purchaseDate) {
         if (basketEntries == null) basketEntries = new BasketEntries(Collections.emptyList());
-        this.basketEntries = basketEntries.getEntries();
+        this.basketEntries = basketEntries;
         this.purchaseDate = purchaseDate;
     }
 
@@ -27,19 +27,19 @@ public class Basket {
     }
 
     private double fullPrice() {
-        return this.basketEntries.stream()
+        return this.basketEntries.getEntries().stream()
                 .mapToDouble(BasketEntry::price)
                 .sum();
     }
 
     private double discount(List<Coupon> coupons) {
         return coupons.stream()
-                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, this.purchaseDate))
+                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries.getEntries(), this.purchaseDate))
                 .sum();
     }
 
     public String toString() {
-        return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
+        return "items: " + this.basketEntries.getEntries().toString() + ", purchase date: " + this.purchaseDate.toString();
     }
 
     private static BigDecimal convertToDecimal(double value) {
