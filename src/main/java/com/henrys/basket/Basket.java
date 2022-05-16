@@ -23,7 +23,7 @@ public class Basket {
     public BigDecimal calculatePrice(List<Coupon> coupons) {
         if (coupons == null) coupons = new ArrayList<>();
         double price = this.basketEntries.fullPrice() - discount(coupons);
-        return convertToDecimal(price);
+        return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
     }
 
     private double discount(List<Coupon> coupons) {
@@ -34,10 +34,6 @@ public class Basket {
 
     public String toString() {
         return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
-    }
-
-    private static BigDecimal convertToDecimal(double value) {
-        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
 
 }
