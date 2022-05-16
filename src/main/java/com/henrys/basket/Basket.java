@@ -13,8 +13,8 @@ public class Basket {
     private final List<BasketEntry> basketEntries;
     private final LocalDate purchaseDate;
 
-    public Basket(List<BasketEntry> basketEntries, LocalDate purchaseDate) {
-        this.basketEntries = validateBasketEntries(basketEntries);
+    public Basket(BasketEntries basketEntries, LocalDate purchaseDate) {
+        this.basketEntries = validateBasketEntries(basketEntries.getEntries());
         this.purchaseDate = purchaseDate;
     }
 

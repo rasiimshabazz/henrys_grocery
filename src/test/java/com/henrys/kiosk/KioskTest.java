@@ -1,6 +1,7 @@
 package com.henrys.kiosk;
 
 import com.henrys.basket.Basket;
+import com.henrys.basket.BasketEntries;
 import com.henrys.basket.BasketEntry;
 import com.henrys.basket.StockItem;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +41,7 @@ public class KioskTest {
                 .willReturn("n")
                 .willReturn("0");
 
-        assertEquals(new Basket(bread, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
+        assertEquals(new Basket(new BasketEntries(bread), LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(4)).readResponse();
 
         then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
@@ -60,7 +61,7 @@ public class KioskTest {
                 .willReturn("n")
                 .willReturn("0");
 
-        assertEquals(new Basket(bread, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
+        assertEquals(new Basket(new BasketEntries(bread), LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(4)).readResponse();
 
         then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
@@ -86,7 +87,7 @@ public class KioskTest {
                 .willReturn("n")
                 .willReturn("0");
 
-        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
+        assertEquals(new Basket(new BasketEntries(expectedProducts), LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(9)).readResponse();
 
         then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
@@ -119,7 +120,7 @@ public class KioskTest {
                 .willReturn("n")
                 .willReturn("0");
 
-        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
+        assertEquals(new Basket(new BasketEntries(expectedProducts), LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(13)).readResponse();
 
         then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
@@ -154,7 +155,7 @@ public class KioskTest {
                 .willReturn("0")
                 .willReturn(" ");
 
-        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
+        assertEquals(new Basket(new BasketEntries(expectedProducts), LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(12)).readResponse();
 
         then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
@@ -193,7 +194,7 @@ public class KioskTest {
                 .willReturn("0")
                 .willReturn(" ");
 
-        assertEquals(new Basket(expectedProducts, LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
+        assertEquals(new Basket(new BasketEntries(expectedProducts), LocalDate.now()).toString(), kiosk.takeShoppersOrder().toString());
         then(mockScreen).should(times(15)).readResponse();
 
         then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");

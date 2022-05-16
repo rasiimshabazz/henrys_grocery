@@ -6,7 +6,11 @@ public class BasketEntries {
 
     private final List<BasketEntry> basketEntries;
 
-    BasketEntries(List<BasketEntry> basketEntries) {
+    public BasketEntries(List<BasketEntry> basketEntries) {
         this.basketEntries = basketEntries;
+    }
+
+    public List<BasketEntry> getEntries() {
+        return this.basketEntries;
     }
 }

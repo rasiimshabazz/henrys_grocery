@@ -1,6 +1,7 @@
 package com.henrys.kiosk;
 
 import com.henrys.basket.Basket;
+import com.henrys.basket.BasketEntries;
 import com.henrys.basket.BasketEntry;
 import com.henrys.basket.StockItem;
 import com.henrys.coupon.CouponFactory;
@@ -25,7 +26,7 @@ public class Kiosk {
         screen.printLine(INFO_WELCOME_MESSAGE);
         List<BasketEntry> entries = collectBasketEntries();
         LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
-        Basket basket = new Basket(entries, purchaseDate);
+        Basket basket = new Basket(new BasketEntries(entries), purchaseDate);
         BigDecimal price = basket.calculatePrice(CouponFactory.createCurrentPromotion());
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
         return basket;
