@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Basket {
@@ -14,6 +15,7 @@ public class Basket {
     private final LocalDate purchaseDate;
 
     public Basket(BasketEntries basketEntries, LocalDate purchaseDate) {
+        if (basketEntries == null) basketEntries = new BasketEntries(Collections.emptyList());
         this.basketEntries = basketEntries.getEntries();
         this.purchaseDate = purchaseDate;
     }

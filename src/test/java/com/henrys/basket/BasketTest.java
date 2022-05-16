@@ -19,9 +19,8 @@ public class BasketTest {
     @Test
     @DisplayName("a basket containing null, costs nada")
     void test_calculatePrice_of_null() {
-
-//        Assertions.assertEquals(format(0),
-//                new Basket(null, null).calculatePrice(new ArrayList<>()));
+        Assertions.assertEquals(format(0),
+                new Basket(null, null).calculatePrice(new ArrayList<>()));
     }
 
     @Test

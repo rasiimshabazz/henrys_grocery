@@ -8,6 +8,7 @@ public class BasketEntries {
     private final List<BasketEntry> basketEntries;
 
     public BasketEntries(List<BasketEntry> basketEntries) {
+        if (basketEntries == null) basketEntries = new ArrayList<>();
         this.basketEntries = validateBasketEntries(basketEntries);
     }
 
