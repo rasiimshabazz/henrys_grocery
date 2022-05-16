@@ -22,14 +22,8 @@ public class Basket {
 
     public BigDecimal calculatePrice(List<Coupon> coupons) {
         if (coupons == null) coupons = new ArrayList<>();
-        double price = fullPrice() - discount(coupons);
+        double price = this.basketEntries.fullPrice() - discount(coupons);
         return convertToDecimal(price);
-    }
-
-    private double fullPrice() {
-        return this.basketEntries.getEntries().stream()
-                .mapToDouble(BasketEntry::price)
-                .sum();
     }
 
     private double discount(List<Coupon> coupons) {
