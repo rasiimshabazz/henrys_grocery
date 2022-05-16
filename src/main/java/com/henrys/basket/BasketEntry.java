@@ -30,14 +30,6 @@ public class BasketEntry {
         return this.quantity + " " + this.item;
     }
 
-    static BasketEntry mergeByStockItem(List<BasketEntry> repeatedEntries, StockItem distinctItem) {
-        int quantity = repeatedEntries.stream()
-                .filter(repeat -> repeat.getItem().equals(distinctItem))
-                .mapToInt(BasketEntry::getQuantity).sum();
-        return new BasketEntry(distinctItem, quantity);
-    }
-
-
     static List<BasketEntry> mergeBasketEntries(List<BasketEntry> unmergedBasketEntries) {
 
         BasketEntry.filterOutNulls(unmergedBasketEntries);
@@ -49,7 +41,14 @@ public class BasketEntry {
                 .collect(Collectors.toList());
     }
 
-    static List<BasketEntry> filterOutNulls(List<BasketEntry> newBasketEntries) {
+    private static BasketEntry mergeByStockItem(List<BasketEntry> repeatedEntries, StockItem distinctItem) {
+        int quantity = repeatedEntries.stream()
+                .filter(repeat -> repeat.getItem().equals(distinctItem))
+                .mapToInt(BasketEntry::getQuantity).sum();
+        return new BasketEntry(distinctItem, quantity);
+    }
+
+    private static List<BasketEntry> filterOutNulls(List<BasketEntry> newBasketEntries) {
         return newBasketEntries.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
