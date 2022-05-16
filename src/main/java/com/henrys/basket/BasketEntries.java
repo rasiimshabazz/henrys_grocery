@@ -24,7 +24,7 @@ public class BasketEntries {
         return this.basketEntries;
     }
 
-    public static List<BasketEntry> mergeBasketEntries(List<BasketEntry> unmergedBasketEntries) {
+    private static List<BasketEntry> mergeBasketEntries(List<BasketEntry> unmergedBasketEntries) {
 
         filterOutNulls(unmergedBasketEntries);
         List<StockItem> distinctItems = unmergedBasketEntries.stream()
