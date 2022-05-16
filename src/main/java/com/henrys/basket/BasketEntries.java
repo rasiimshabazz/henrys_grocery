@@ -8,10 +8,10 @@ public class BasketEntries {
     private final List<BasketEntry> basketEntries;
 
     public BasketEntries(List<BasketEntry> basketEntries) {
-        this.basketEntries = basketEntries;
+        this.basketEntries = validateBasketEntries(basketEntries);
     }
 
-    static List<BasketEntry> validateBasketEntries(List<BasketEntry> basketEntries) {
+    private List<BasketEntry> validateBasketEntries(List<BasketEntry> basketEntries) {
         if (basketEntries == null) return new ArrayList<>();
         return BasketEntry.mergeBasketEntries(basketEntries);
     }

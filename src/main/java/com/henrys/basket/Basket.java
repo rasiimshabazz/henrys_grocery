@@ -14,7 +14,7 @@ public class Basket {
     private final LocalDate purchaseDate;
 
     public Basket(BasketEntries basketEntries, LocalDate purchaseDate) {
-        this.basketEntries = BasketEntries.validateBasketEntries(basketEntries.getEntries());
+        this.basketEntries = basketEntries.getEntries();
         this.purchaseDate = purchaseDate;
     }
 
