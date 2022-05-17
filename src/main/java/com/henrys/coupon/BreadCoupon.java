@@ -16,9 +16,8 @@ class BreadCoupon extends Coupon {
 
     @Override
     public double calculateDiscount(BasketEntries basketEntries, LocalDate purchaseDate) {
-        if (!isApplicable(purchaseDate)) {
-            return 0;
-        }
+        if (!isApplicable(purchaseDate)) return 0;
+
         if (basketEntries.count(StockItem.BREAD) >= 1
                 && basketEntries.count(StockItem.SOUP) >= DISCOUNT_SOUP_QUANTITY) {
             return StockItem.BREAD.getCost() * DISCOUNT_FACTOR;

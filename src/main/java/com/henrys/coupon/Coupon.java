@@ -7,6 +7,7 @@ import java.time.LocalDate;
 public abstract class Coupon {
 
     protected LocalDate validFromDate;
+
     protected LocalDate validToDate;
 
     protected Coupon(LocalDate validFromDate, LocalDate validToDate) {
