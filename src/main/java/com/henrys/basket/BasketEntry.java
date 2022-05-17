@@ -26,4 +26,7 @@ public class BasketEntry {
         return this.quantity + " " + this.item;
     }
 
+    public boolean sameAs(StockItem stockItem) {
+        return this.item.equals(stockItem);
+    }
 }

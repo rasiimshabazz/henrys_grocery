@@ -22,7 +22,7 @@ public class BasketEntries {
 
     public int count(StockItem stockItem) {
         return this.entries.stream()
-                .filter(basketEntry -> basketEntry.getItem().equals(stockItem))
+                .filter(basketEntry -> basketEntry.sameAs(stockItem))
                 .findFirst().orElse(new BasketEntry(stockItem, 0))
                 .getQuantity();
     }
@@ -47,7 +47,7 @@ public class BasketEntries {
 
     private static BasketEntry mergeByStockItem(List<BasketEntry> repeatedEntries, StockItem distinctItem) {
         int quantity = repeatedEntries.stream()
-                .filter(repeat -> repeat.getItem().equals(distinctItem))
+                .filter(repeat -> repeat.sameAs(distinctItem))
                 .mapToInt(BasketEntry::getQuantity).sum();
         return new BasketEntry(distinctItem, quantity);
     }
