@@ -14,7 +14,7 @@ public class BasketEntries {
         this.basketEntries = mergeBasketEntries(basketEntries);
     }
 
-    public double fullPrice() {
+    public double price() {
         return this.basketEntries.stream()
                 .mapToDouble(BasketEntry::price)
                 .sum();
