@@ -20,7 +20,7 @@ class BreadCoupon extends Coupon {
         if (!isApplicable(purchaseDate)) {
             return 0;
         }
-        if (isBuyingBread(basketEntries) && isBuyingAtLeastTwoSoups(basketEntries)) {
+        if (contains(basketEntries, StockItem.BREAD) && isBuyingAtLeastTwoSoups(basketEntries)) {
             return StockItem.BREAD.getCost() * DISCOUNT_FACTOR;
         }
         return 0;
@@ -33,7 +33,7 @@ class BreadCoupon extends Coupon {
                 .getQuantity() >= DISCOUNT_SOUP_QUANTITY;
     }
 
-    private boolean isBuyingBread(BasketEntries basketEntries) {
-        return basketEntries.getEntries().stream().anyMatch(item -> item.getItem().equals(StockItem.BREAD));
+    private boolean contains(BasketEntries basketEntries, StockItem stockItem) {
+        return basketEntries.getEntries().stream().anyMatch(item -> item.getItem().equals(stockItem));
     }
 }
