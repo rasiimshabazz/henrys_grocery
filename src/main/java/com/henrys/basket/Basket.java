@@ -20,12 +20,12 @@ public class Basket {
     }
 
     public BigDecimal calculatePrice(Coupons coupons) {
-        return price(coupons);
+        return price(coupons).value();
     }
 
-    private BigDecimal price(Coupons coupons) {
+    private Price price(Coupons coupons) {
         double price = this.basketEntries.price() - coupons.discount(this.basketEntries, this.purchaseDate);
-        return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
+        return new Price(price);
     }
 
     public String toString() {
