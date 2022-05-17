@@ -24,11 +24,11 @@ public class BasketEntries {
         return this.basketEntries;
     }
 
-    public boolean contains(StockItem stockItem) {
+    public boolean containsAtLeastOne(StockItem stockItem) {
         return this.basketEntries.stream().anyMatch(item -> item.getItem().equals(stockItem));
     }
 
-    public boolean contains(StockItem stockItem, int amount) {
+    public boolean containsGivenAmount(StockItem stockItem, int amount) {
         return this.basketEntries.stream()
                 .filter(item -> stockItem.equals(item.getItem()))
                 .findFirst().orElse(new BasketEntry(stockItem, 0))
