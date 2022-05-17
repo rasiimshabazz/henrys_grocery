@@ -28,6 +28,13 @@ public class BasketEntries {
         return this.basketEntries.stream().anyMatch(item -> item.getItem().equals(stockItem));
     }
 
+    public boolean isBuyingAtLeastTwoSoups(StockItem stockItem, int amount) {
+        return this.basketEntries.stream()
+                .filter(item -> stockItem.equals(item.getItem()))
+                .findFirst().orElse(new BasketEntry(stockItem, 0))
+                .getQuantity() >= amount;
+    }
+
     public int count(StockItem stockItem) {
         return this.basketEntries.stream().filter(item ->
                 item.getItem().equals(stockItem)
