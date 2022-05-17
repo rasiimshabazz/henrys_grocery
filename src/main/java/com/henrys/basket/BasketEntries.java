@@ -24,6 +24,10 @@ public class BasketEntries {
         return this.basketEntries;
     }
 
+    public boolean contains(StockItem stockItem) {
+        return this.basketEntries.stream().anyMatch(item -> item.getItem().equals(stockItem));
+    }
+
     public int numberOfStockItem(StockItem stockItem) {
         return this.basketEntries.stream().filter(item ->
                 item.getItem().equals(stockItem)
