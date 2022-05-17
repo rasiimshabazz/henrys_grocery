@@ -22,9 +22,13 @@ class ApplesCoupon extends Coupon {
     }
 
     private int numberOfApples(BasketEntries basketEntries) {
+        return numberOfStockItem(basketEntries, StockItem.APPLES);
+    }
+
+    private int numberOfStockItem(BasketEntries basketEntries, StockItem stockItem) {
         return basketEntries.getEntries().stream().filter(item ->
-            item.getItem().equals(StockItem.APPLES)
-        ).findFirst().orElse(new BasketEntry(StockItem.APPLES, 0)).getQuantity();
+                item.getItem().equals(stockItem)
+        ).findFirst().orElse(new BasketEntry(stockItem, 0)).getQuantity();
     }
 
 }

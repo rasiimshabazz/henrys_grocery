@@ -24,6 +24,10 @@ public class BasketEntries {
         return this.basketEntries;
     }
 
+    public String toString() {
+        return this.basketEntries.toString();
+    }
+
     private static List<BasketEntry> mergeBasketEntries(List<BasketEntry> unmergedBasketEntries) {
 
         filterOutNulls(unmergedBasketEntries);
@@ -46,9 +50,5 @@ public class BasketEntries {
         return newBasketEntries.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-    }
-
-    public String toString() {
-        return this.basketEntries.toString();
     }
 }
