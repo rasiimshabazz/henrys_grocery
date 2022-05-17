@@ -159,6 +159,19 @@ public class BasketTest {
         Assertions.assertEquals(format(5.35), basket.calculatePrice(null));
     }
 
+    @Test
+    @DisplayName("represent a basket as a string")
+    void test_toString() {
+
+        Basket basket = new Basket(new BasketEntries(Arrays.asList(
+                new BasketEntry(StockItem.SOUP, 1),
+                new BasketEntry(StockItem.SOUP, 6),
+                new BasketEntry(StockItem.BREAD, 1)
+        )), LocalDate.MIN);
+
+        Assertions.assertEquals("items: [7 SOUP, 1 BREAD], purchase date: -999999999-01-01", basket.toString());
+    }
+
     private Coupon createBreadCoupon() {
         return CouponFactory.createBreadCoupon(
                 LocalDate.now().minusDays(1),
