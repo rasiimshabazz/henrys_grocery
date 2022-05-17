@@ -22,13 +22,13 @@ public class Basket {
     public BigDecimal priceBasket(Coupons coupons) {
         if (coupons == null) coupons = new Coupons(new ArrayList<>());
         if (coupons.coupons == null) coupons = new Coupons(new ArrayList<>());
-        double price = this.basketEntries.fullPrice() - discount(coupons);
+        double price = this.basketEntries.fullPrice() - discount(coupons, this.basketEntries, this.purchaseDate);
         return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
     }
 
-    private double discount(Coupons coupons) {
+    private double discount(Coupons coupons, BasketEntries basketEntries, LocalDate purchaseDate) {
         return coupons.coupons.stream()
-                .mapToDouble(coupon -> coupon.calculateDiscount(this.basketEntries, this.purchaseDate))
+                .mapToDouble(coupon -> coupon.calculateDiscount(basketEntries, purchaseDate))
                 .sum();
     }
     public String toString() {
