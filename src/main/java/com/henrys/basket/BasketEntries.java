@@ -20,10 +20,6 @@ public class BasketEntries {
                 .sum();
     }
 
-    public boolean containsAtLeastOne(StockItem stockItem) {
-        return containsAtLeastGivenAmountOf(stockItem, 1);
-    }
-
     public boolean containsAtLeastGivenAmountOf(StockItem stockItem, int amount) {
         return this.basketEntries.stream()
                 .filter(item -> stockItem.equals(item.getItem()))
