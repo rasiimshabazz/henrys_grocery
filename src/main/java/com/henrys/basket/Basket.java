@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Basket {
-
     private final BasketEntries basketEntries;
     private final LocalDate purchaseDate;
     public Basket(BasketEntries basketEntries, LocalDate purchaseDate) {
