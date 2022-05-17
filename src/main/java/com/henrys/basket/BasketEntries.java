@@ -25,7 +25,7 @@ public class BasketEntries {
     }
 
     public boolean containsAtLeastOne(StockItem stockItem) {
-        return this.basketEntries.stream().anyMatch(item -> item.getItem().equals(stockItem));
+        return containsGivenAmount(stockItem, 1);
     }
 
     public boolean containsGivenAmount(StockItem stockItem, int amount) {
