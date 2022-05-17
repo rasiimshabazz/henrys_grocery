@@ -7,28 +7,28 @@ import java.util.stream.Collectors;
 
 public class BasketEntries {
 
-    private final List<BasketEntry> basketEntries;
+    private final List<BasketEntry> entries;
 
-    public BasketEntries(List<BasketEntry> basketEntries) {
-        if (basketEntries == null) basketEntries = new ArrayList<>();
-        this.basketEntries = mergeBasketEntries(basketEntries);
+    public BasketEntries(List<BasketEntry> entries) {
+        if (entries == null) entries = new ArrayList<>();
+        this.entries = mergeBasketEntries(entries);
     }
 
     public double price() {
-        return this.basketEntries.stream()
+        return this.entries.stream()
                 .mapToDouble(BasketEntry::price)
                 .sum();
     }
 
     public int count(StockItem stockItem) {
-        return this.basketEntries.stream()
+        return this.entries.stream()
                 .filter(basketEntry -> basketEntry.getItem().equals(stockItem))
                 .findFirst().orElse(new BasketEntry(stockItem, 0))
                 .getQuantity();
     }
 
     public String toString() {
-        return this.basketEntries.toString();
+        return this.entries.toString();
     }
 
     private static List<BasketEntry> mergeBasketEntries(List<BasketEntry> unmergedBasketEntries) {

@@ -7,22 +7,22 @@ import java.util.Collections;
 
 public class Basket {
 
-    private final BasketEntries basketEntries;
+    private final BasketEntries entries;
 
     private final LocalDate purchaseDate;
 
-    public Basket(BasketEntries basketEntries, LocalDate purchaseDate) {
-        if (basketEntries == null) basketEntries = new BasketEntries(Collections.emptyList());
-        this.basketEntries = basketEntries;
+    public Basket(BasketEntries entries, LocalDate purchaseDate) {
+        if (entries == null) entries = new BasketEntries(Collections.emptyList());
+        this.entries = entries;
         this.purchaseDate = purchaseDate;
     }
 
     public Price price(Coupons coupons) {
-        double price = this.basketEntries.price() - coupons.discount(this.basketEntries, this.purchaseDate);
+        double price = this.entries.price() - coupons.discount(this.entries, this.purchaseDate);
         return new Price(price);
     }
 
     public String toString() {
-        return "items: " + this.basketEntries.toString() + ", purchase date: " + this.purchaseDate.toString();
+        return "items: " + this.entries.toString() + ", purchase date: " + this.purchaseDate.toString();
     }
 }
