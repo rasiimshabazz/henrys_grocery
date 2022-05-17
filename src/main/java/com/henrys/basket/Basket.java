@@ -2,8 +2,6 @@ package com.henrys.basket;
 
 import com.henrys.coupon.Coupons;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Collections;
 
@@ -19,11 +17,7 @@ public class Basket {
         this.purchaseDate = purchaseDate;
     }
 
-    public BigDecimal calculatePrice(Coupons coupons) {
-        return price(coupons).value();
-    }
-
-    private Price price(Coupons coupons) {
+    public Price price(Coupons coupons) {
         double price = this.basketEntries.price() - coupons.discount(this.basketEntries, this.purchaseDate);
         return new Price(price);
     }
