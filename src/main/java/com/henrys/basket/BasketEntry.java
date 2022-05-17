@@ -1,9 +1,5 @@
 package com.henrys.basket;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 public class BasketEntry {
 
     private final StockItem item;

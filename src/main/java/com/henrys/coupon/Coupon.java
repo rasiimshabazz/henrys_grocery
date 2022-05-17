@@ -1,10 +1,8 @@
 package com.henrys.coupon;
 
 import com.henrys.basket.BasketEntries;
-import com.henrys.basket.BasketEntry;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public abstract class Coupon {
 
