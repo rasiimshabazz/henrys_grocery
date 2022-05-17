@@ -1,18 +1,18 @@
 package com.henrys.basket;
 
-import com.henrys.coupon.Coupon;
 import com.henrys.coupon.Coupons;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class Basket {
+
     private final BasketEntries basketEntries;
+
     private final LocalDate purchaseDate;
+
     public Basket(BasketEntries basketEntries, LocalDate purchaseDate) {
         if (basketEntries == null) basketEntries = new BasketEntries(Collections.emptyList());
         this.basketEntries = basketEntries;
