@@ -1,7 +1,6 @@
 package com.henrys.coupon;
 
 import com.henrys.basket.BasketEntries;
-import com.henrys.basket.BasketEntry;
 import com.henrys.basket.StockItem;
 
 import java.time.LocalDate;
@@ -18,7 +17,7 @@ class ApplesCoupon extends Coupon {
         if (!isApplicable(purchaseDate)) {
             return 0;
         }
-        return basketEntries.numberOfStockItem(StockItem.APPLES) * DISCOUNT_FACTOR;
+        return basketEntries.count(StockItem.APPLES) * DISCOUNT_FACTOR;
     }
 
 
