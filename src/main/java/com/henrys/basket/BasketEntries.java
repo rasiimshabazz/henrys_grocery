@@ -20,10 +20,6 @@ public class BasketEntries {
                 .sum();
     }
 
-    public List<BasketEntry> getEntries() {
-        return this.basketEntries;
-    }
-
     public boolean containsAtLeastOne(StockItem stockItem) {
         return containsGivenAmount(stockItem, 1);
     }
@@ -36,9 +32,9 @@ public class BasketEntries {
     }
 
     public int count(StockItem stockItem) {
-        return this.basketEntries.stream().filter(item ->
-                item.getItem().equals(stockItem)
-        ).findFirst().orElse(new BasketEntry(stockItem, 0)).getQuantity();
+        return this.basketEntries.stream()
+                .filter(item -> item.getItem().equals(stockItem))
+                .findFirst().orElse(new BasketEntry(stockItem, 0)).getQuantity();
     }
 
     public String toString() {
