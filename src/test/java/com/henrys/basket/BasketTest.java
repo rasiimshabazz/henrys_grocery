@@ -2,6 +2,7 @@ package com.henrys.basket;
 
 import com.henrys.coupon.Coupon;
 import com.henrys.coupon.CouponFactory;
+import com.henrys.coupon.Coupons;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ public class BasketTest {
     @DisplayName("a basket containing null, costs nada")
     void test_calculatePrice_of_null() {
         Assertions.assertEquals(format(0),
-                new Basket(null, null).calculatePrice(new ArrayList<>()));
+                new Basket(null, null).priceBasket(new Coupons(new ArrayList<Coupon>())));
     }
 
     @Test
@@ -35,8 +36,8 @@ public class BasketTest {
                 new BasketEntry(StockItem.BREAD, 1))
         ), LocalDate.now());
 
-        Assertions.assertEquals(format(3.15), basket.calculatePrice(Collections.singletonList(
-                createBreadCoupon())));
+        Assertions.assertEquals(format(3.15), basket.priceBasket(new Coupons(Collections.singletonList(
+                createBreadCoupon()))));
     }
 
     @Test
@@ -51,8 +52,8 @@ public class BasketTest {
                 new BasketEntry(StockItem.BREAD, -1)
         )), LocalDate.now());
 
-        Assertions.assertEquals(format(0.00), basket.calculatePrice(Collections.singletonList(
-                createBreadCoupon())));
+        Assertions.assertEquals(format(0.00), basket.priceBasket(new Coupons(Collections.singletonList(
+                createBreadCoupon()))));
     }
 
     @Test
@@ -64,9 +65,9 @@ public class BasketTest {
                 new BasketEntry(StockItem.MILK, 1)
         )), LocalDate.now());
 
-        Assertions.assertEquals(format(1.90), basket.calculatePrice(Arrays.asList(
+        Assertions.assertEquals(format(1.90), basket.priceBasket(new Coupons(Arrays.asList(
                 createBreadCoupon(),
-                createApplesCoupon())));
+                createApplesCoupon()))));
     }
 
     @Test
@@ -79,9 +80,9 @@ public class BasketTest {
                 new BasketEntry(StockItem.MILK, 1)
         )), boughtInFiveDaysTime);
 
-        Assertions.assertEquals(format(1.84), basket.calculatePrice(Arrays.asList(
+        Assertions.assertEquals(format(1.84), basket.priceBasket(new Coupons(Arrays.asList(
                 createBreadCoupon(),
-                createApplesCoupon())));
+                createApplesCoupon()))));
     }
 
     @Test
@@ -95,8 +96,8 @@ public class BasketTest {
                 new BasketEntry(StockItem.BREAD, 1)
         )), boughtInFiveDaysTime);
 
-        Assertions.assertEquals(format(1.97), basket.calculatePrice(Arrays.asList(createBreadCoupon(),
-                createApplesCoupon())));
+        Assertions.assertEquals(format(1.97), basket.priceBasket(new Coupons(Arrays.asList(createBreadCoupon(),
+                createApplesCoupon()))));
     }
 
     @Test
@@ -109,8 +110,8 @@ public class BasketTest {
                 new BasketEntry(StockItem.BREAD, 2)
         )), boughtAWeekAgo);
 
-        Assertions.assertEquals(format(3.55), basket.calculatePrice(Collections.singletonList(
-                createBreadCoupon())));
+        Assertions.assertEquals(format(3.55), basket.priceBasket(new Coupons(Collections.singletonList(
+                createBreadCoupon()))));
     }
 
     @Test
@@ -118,7 +119,7 @@ public class BasketTest {
     void test_calculatePrice_of_nada() {
 
         Assertions.assertEquals(format(0),
-                new Basket(new BasketEntries(new ArrayList<>()), LocalDate.now()).calculatePrice(new ArrayList<>()));
+                new Basket(new BasketEntries(new ArrayList<>()), LocalDate.now()).priceBasket(new Coupons(new ArrayList<Coupon>())));
     }
 
     @Test
@@ -129,7 +130,7 @@ public class BasketTest {
                 new BasketEntry(StockItem.SOUP, 1)
         )), LocalDate.now());
 
-        Assertions.assertEquals(format(0.65), basket.calculatePrice(new ArrayList<>()));
+        Assertions.assertEquals(format(0.65), basket.priceBasket(new Coupons(new ArrayList<Coupon>())));
     }
 
     @Test
@@ -140,7 +141,7 @@ public class BasketTest {
                 new BasketEntry(StockItem.SOUP, 1)
         )), LocalDate.now());
 
-        Assertions.assertEquals(format(0.65), basket.calculatePrice(null));
+        Assertions.assertEquals(format(0.65), basket.priceBasket(new Coupons(null)));
     }
 
     @Test
@@ -153,10 +154,10 @@ public class BasketTest {
                 new BasketEntry(StockItem.BREAD, 1)
         )), LocalDate.now());
 
-        Assertions.assertEquals(format(4.95), basket.calculatePrice(Collections.singletonList(
-                createBreadCoupon())));
+        Assertions.assertEquals(format(4.95), basket.priceBasket(new Coupons(Collections.singletonList(
+                createBreadCoupon()))));
 
-        Assertions.assertEquals(format(5.35), basket.calculatePrice(null));
+        Assertions.assertEquals(format(5.35), basket.priceBasket(new Coupons(null)));
     }
 
     @Test

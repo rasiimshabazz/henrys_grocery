@@ -5,6 +5,7 @@ import com.henrys.basket.BasketEntries;
 import com.henrys.basket.BasketEntry;
 import com.henrys.basket.StockItem;
 import com.henrys.coupon.CouponFactory;
+import com.henrys.coupon.Coupons;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ public class Kiosk {
         List<BasketEntry> entries = collectBasketEntries();
         LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
         Basket basket = new Basket(new BasketEntries(entries), purchaseDate);
-        BigDecimal price = basket.calculatePrice(CouponFactory.createCurrentPromotion());
+        BigDecimal price = basket.priceBasket(new Coupons(CouponFactory.createCurrentPromotion()));
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
         return basket;
     }
