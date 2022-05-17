@@ -24,6 +24,12 @@ public class BasketEntries {
         return this.basketEntries;
     }
 
+    public int numberOfStockItem(StockItem stockItem) {
+        return this.basketEntries.stream().filter(item ->
+                item.getItem().equals(stockItem)
+        ).findFirst().orElse(new BasketEntry(stockItem, 0)).getQuantity();
+    }
+
     public String toString() {
         return this.basketEntries.toString();
     }

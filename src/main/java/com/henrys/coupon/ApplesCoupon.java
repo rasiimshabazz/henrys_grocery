@@ -18,13 +18,8 @@ class ApplesCoupon extends Coupon {
         if (!isApplicable(purchaseDate)) {
             return 0;
         }
-        return numberOfStockItem(basketEntries, StockItem.APPLES) * DISCOUNT_FACTOR;
+        return basketEntries.numberOfStockItem(StockItem.APPLES) * DISCOUNT_FACTOR;
     }
 
-    private int numberOfStockItem(BasketEntries basketEntries, StockItem stockItem) {
-        return basketEntries.getEntries().stream().filter(item ->
-                item.getItem().equals(stockItem)
-        ).findFirst().orElse(new BasketEntry(stockItem, 0)).getQuantity();
-    }
 
 }
