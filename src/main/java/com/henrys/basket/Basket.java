@@ -24,7 +24,6 @@ public class Basket {
     }
 
     private BigDecimal priceBasket(Coupons coupons) {
-        if (coupons == null) coupons = new Coupons(new ArrayList<>());
         double price = this.basketEntries.fullPrice() - discount(coupons.coupons);
         return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
     }
