@@ -21,11 +21,6 @@ public class BasketEntriesTest {
     }
 
     @Test
-    void test_compiles() {
-        Assertions.assertNotNull(basketEntries);
-    }
-
-    @Test
     void test_toString() {
         Assertions.assertEquals("[3 SOUP, 2 BREAD]", basketEntries.toString());
     }
