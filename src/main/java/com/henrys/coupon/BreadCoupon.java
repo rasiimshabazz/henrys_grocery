@@ -19,8 +19,8 @@ class BreadCoupon extends Coupon {
         if (!isApplicable(purchaseDate)) {
             return 0;
         }
-        if (basketEntries.containsAtLeastGivenAmountOf(StockItem.BREAD, 1)
-                && basketEntries.containsAtLeastGivenAmountOf(StockItem.SOUP, DISCOUNT_SOUP_QUANTITY)) {
+        if (basketEntries.count(StockItem.BREAD) >= 1
+                && basketEntries.count(StockItem.SOUP) >= DISCOUNT_SOUP_QUANTITY) {
             return StockItem.BREAD.getCost() * DISCOUNT_FACTOR;
         }
         return 0;

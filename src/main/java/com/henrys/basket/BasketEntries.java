@@ -20,10 +20,6 @@ public class BasketEntries {
                 .sum();
     }
 
-    public boolean containsAtLeastGivenAmountOf(StockItem stockItem, int amount) {
-        return count(stockItem) >= amount;
-    }
-
     public int count(StockItem stockItem) {
         return this.basketEntries.stream()
                 .filter(basketEntry -> basketEntry.getItem().equals(stockItem))
