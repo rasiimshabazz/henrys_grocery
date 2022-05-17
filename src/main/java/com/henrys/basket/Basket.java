@@ -20,8 +20,6 @@ public class Basket {
     }
 
     public BigDecimal priceBasket(Coupons coupons) {
-        if (coupons == null) coupons = new Coupons(new ArrayList<>());
-        if (coupons.coupons == null) coupons = new Coupons(new ArrayList<>());
         double price = this.basketEntries.fullPrice() - coupons.discount(this.basketEntries, this.purchaseDate);
         return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
     }

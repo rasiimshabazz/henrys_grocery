@@ -3,6 +3,7 @@ package com.henrys.coupon;
 import com.henrys.basket.BasketEntries;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coupons {
@@ -10,6 +11,7 @@ public class Coupons {
     public final List<Coupon> coupons;
 
     public Coupons(List<Coupon> coupons) {
+        if (coupons == null) coupons = new ArrayList<>();
         this.coupons = coupons;
     }
 
