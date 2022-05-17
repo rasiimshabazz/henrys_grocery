@@ -1,7 +1,6 @@
 package com.henrys.coupon;
 
 import com.henrys.basket.BasketEntries;
-import com.henrys.basket.BasketEntry;
 import com.henrys.basket.StockItem;
 
 import java.time.LocalDate;
@@ -20,7 +19,7 @@ class BreadCoupon extends Coupon {
         if (!isApplicable(purchaseDate)) {
             return 0;
         }
-        if (basketEntries.contains(StockItem.BREAD) && basketEntries.isBuyingAtLeastTwoSoups(StockItem.SOUP, DISCOUNT_SOUP_QUANTITY)) {
+        if (basketEntries.contains(StockItem.BREAD) && basketEntries.contains(StockItem.SOUP, DISCOUNT_SOUP_QUANTITY)) {
             return StockItem.BREAD.getCost() * DISCOUNT_FACTOR;
         }
         return 0;
