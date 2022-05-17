@@ -21,10 +21,10 @@ public class BasketEntries {
     }
 
     public boolean containsAtLeastOne(StockItem stockItem) {
-        return containsGivenAmount(stockItem, 1);
+        return containsAtLeastGivenAmountOf(stockItem, 1);
     }
 
-    public boolean containsGivenAmount(StockItem stockItem, int amount) {
+    public boolean containsAtLeastGivenAmountOf(StockItem stockItem, int amount) {
         return this.basketEntries.stream()
                 .filter(item -> stockItem.equals(item.getItem()))
                 .findFirst().orElse(new BasketEntry(stockItem, 0))
