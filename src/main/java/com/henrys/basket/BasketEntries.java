@@ -21,16 +21,14 @@ public class BasketEntries {
     }
 
     public boolean containsAtLeastGivenAmountOf(StockItem stockItem, int amount) {
-        return this.basketEntries.stream()
-                .filter(item -> stockItem.equals(item.getItem()))
-                .findFirst().orElse(new BasketEntry(stockItem, 0))
-                .getQuantity() >= amount;
+        return count(stockItem) >= amount;
     }
 
     public int count(StockItem stockItem) {
         return this.basketEntries.stream()
-                .filter(item -> item.getItem().equals(stockItem))
-                .findFirst().orElse(new BasketEntry(stockItem, 0)).getQuantity();
+                .filter(basketEntry -> basketEntry.getItem().equals(stockItem))
+                .findFirst().orElse(new BasketEntry(stockItem, 0))
+                .getQuantity();
     }
 
     public String toString() {
