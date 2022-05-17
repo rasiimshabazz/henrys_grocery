@@ -18,11 +18,7 @@ class ApplesCoupon extends Coupon {
         if (!isApplicable(purchaseDate)) {
             return 0;
         }
-        return numberOfApples(basketEntries) * DISCOUNT_FACTOR;
-    }
-
-    private int numberOfApples(BasketEntries basketEntries) {
-        return numberOfStockItem(basketEntries, StockItem.APPLES);
+        return numberOfStockItem(basketEntries, StockItem.APPLES) * DISCOUNT_FACTOR;
     }
 
     private int numberOfStockItem(BasketEntries basketEntries, StockItem stockItem) {
