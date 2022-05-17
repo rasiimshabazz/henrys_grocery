@@ -28,7 +28,7 @@ public class Kiosk {
         List<BasketEntry> entries = collectBasketEntries();
         LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
         Basket basket = new Basket(new BasketEntries(entries), purchaseDate);
-        BigDecimal price = basket.priceBasket(new Coupons(CouponFactory.createCurrentPromotion()));
+        BigDecimal price = basket.calculatePrice(new Coupons(CouponFactory.createCurrentPromotion()));
         screen.printLine(INFO_TOTAL_PRICE + price + INFO_THANK_YOU);
         return basket;
     }

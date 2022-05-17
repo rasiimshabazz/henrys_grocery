@@ -19,7 +19,11 @@ public class Basket {
         this.purchaseDate = purchaseDate;
     }
 
-    public BigDecimal priceBasket(Coupons coupons) {
+    public BigDecimal calculatePrice(Coupons coupons) {
+        return price(coupons);
+    }
+
+    private BigDecimal price(Coupons coupons) {
         double price = this.basketEntries.price() - coupons.discount(this.basketEntries, this.purchaseDate);
         return BigDecimal.valueOf(price).setScale(2, RoundingMode.HALF_UP);
     }

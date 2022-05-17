@@ -10,7 +10,6 @@ public class CouponsTest {
 
     @Test
     void test_compiles() {
-
         Assertions.assertNotNull(new Coupons(Collections.emptyList()));
     }
 }
