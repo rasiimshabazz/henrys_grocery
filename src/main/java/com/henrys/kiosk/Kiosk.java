@@ -21,27 +21,27 @@ public class Kiosk {
     public Basket takeShoppersOrder() {
 
         screen.printLine(INFO_WELCOME_MESSAGE);
-        List<BasketEntry> entries = collectBasketEntries();
+        BasketEntries entries = collectBasketEntries();
         LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
-        Basket basket = new Basket(new BasketEntries(entries), purchaseDate);
+        Basket basket = new Basket(entries, purchaseDate);
         Price price = basket.price(new Coupons(CouponFactory.createCurrentPromotion()));
         screen.printLine(INFO_TOTAL_PRICE + price.value() + INFO_THANK_YOU);
         return basket;
     }
 
-    private List<BasketEntry> collectBasketEntries() {
-        List<BasketEntry> basketEntries = new ArrayList<>();
+    private BasketEntries collectBasketEntries() {
+        BasketEntries entries = new BasketEntries(new ArrayList<BasketEntry>());
         boolean isShopping = true;
         while (isShopping) {
             StockItem product = promptForProduct(this::productResponseCondition);
             int quantity = promptForQuantity(product);
             if (quantity > 0) {
-                basketEntries.add(new BasketEntry(product, quantity));
+                entries.add(new BasketEntry(product, quantity));
             }
-            screen.printLine(INFO_BASKET_STATUS_PREFIX + new BasketEntries(basketEntries).stringValue());
+            screen.printLine(INFO_BASKET_STATUS_PREFIX + entries.stringValue());
             isShopping = promptToContinue(this::continueResponseCondition);
         }
-        return basketEntries;
+        return entries;
     }
 
     private int promptForQuantity(StockItem product) {
