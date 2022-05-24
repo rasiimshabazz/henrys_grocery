@@ -24,4 +24,17 @@ public class BasketEntriesTest {
     void test_stringValue() {
         Assertions.assertEquals("3 SOUP, 2 BREAD", basketEntries.stringValue());
     }
+
+    @Test
+    void test_size() {
+        Assertions.assertEquals(2, basketEntries.countAll());
+    }
+
+    @Test
+    void test_add() {
+        basketEntries.add(new BasketEntry(StockItem.BREAD, 1));
+        Assertions.assertEquals(2, basketEntries.countAll());
+        basketEntries.add(new BasketEntry(StockItem.APPLES, 1));
+        Assertions.assertEquals(3, basketEntries.countAll());
+    }
 }

@@ -19,11 +19,20 @@ public class BasketEntries {
                 .sum();
     }
 
-    public int count(StockItem stockItem) {
+    public int countStockItem(StockItem stockItem) {
         return this.entries.stream()
                 .filter(basketEntry -> basketEntry.sameAs(stockItem))
                 .findFirst().orElse(new BasketEntry(stockItem, 0))
                 .getQuantity();
+    }
+
+    public int countAll() {
+        return this.entries.size();
+    }
+
+    public void add(BasketEntry entry) {
+        this.entries.add(entry);
+        this.entries = mergeBasketEntries();
     }
 
     public String stringValue() {
