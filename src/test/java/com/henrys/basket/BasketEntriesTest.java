@@ -21,7 +21,7 @@ public class BasketEntriesTest {
     }
 
     @Test
-    void test_toString() {
-        Assertions.assertEquals("[3 SOUP, 2 BREAD]", basketEntries.toString());
+    void test_stringValue() {
+        Assertions.assertEquals("3 SOUP, 2 BREAD", basketEntries.stringValue());
     }
 }

@@ -22,7 +22,7 @@ public class BasketEntry {
         return this.item.getCost() * this.quantity;
     }
 
-    public String toString() {
+    public String stringValue() {
         return this.quantity + " " + this.item;
     }
 

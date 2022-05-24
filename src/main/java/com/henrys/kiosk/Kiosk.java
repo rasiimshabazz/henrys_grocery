@@ -38,7 +38,7 @@ public class Kiosk {
             if (quantity > 0) {
                 basketEntries.add(new BasketEntry(product, quantity));
             }
-            screen.printLine(INFO_BASKET_STATUS_PREFIX + basketEntries);
+            screen.printLine(INFO_BASKET_STATUS_PREFIX + new BasketEntries(basketEntries).stringValue());
             isShopping = promptToContinue(this::continueResponseCondition);
         }
         return basketEntries;

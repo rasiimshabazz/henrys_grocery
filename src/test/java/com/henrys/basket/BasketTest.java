@@ -170,7 +170,7 @@ public class BasketTest {
                 new BasketEntry(StockItem.BREAD, 1)
         )), LocalDate.MIN);
 
-        Assertions.assertEquals("items: [7 SOUP, 1 BREAD], purchase date: -999999999-01-01", basket.toString());
+        Assertions.assertEquals("items: 7 SOUP, 1 BREAD, purchase date: -999999999-01-01", basket.stringValue());
     }
 
     private Coupon createBreadCoupon() {

@@ -26,8 +26,16 @@ public class BasketEntries {
                 .getQuantity();
     }
 
-    public String toString() {
-        return this.entries.toString();
+    public String stringValue() {
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < this.entries.size(); i++) {
+            BasketEntry entry = this.entries.get(i);
+            result.append(entry.stringValue());
+            if (i < this.entries.size()-1) {
+                result.append(", ");
+            }
+        }
+        return result.toString();
     }
 
     private List<BasketEntry> mergeBasketEntries() {

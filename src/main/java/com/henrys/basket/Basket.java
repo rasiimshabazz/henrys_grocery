@@ -22,7 +22,7 @@ public class Basket {
         return new Price(price);
     }
 
-    public String toString() {
-        return "items: " + this.entries.toString() + ", purchase date: " + this.purchaseDate.toString();
+    public String stringValue() {
+        return "items: " + this.entries.stringValue() + ", purchase date: " + this.purchaseDate.toString();
     }
 }
