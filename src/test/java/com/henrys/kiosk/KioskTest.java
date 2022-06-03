@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.henrys.kiosk.Kiosk.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -44,10 +43,10 @@ public class KioskTest {
         assertEquals(new Basket(new BasketEntries(bread), LocalDate.now()).stringValue(), kiosk.takeShoppersOrder().stringValue());
         then(mockScreen).should(times(4)).readResponse();
 
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(1)).promptUser(KioskText.PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_SHOPPING);
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
+        then(mockScreen).should(times(1)).promptUser(KioskText.PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(1)).promptUser(KioskText.PROMPT_FOR_DAYS);
     }
 
     @Test
@@ -64,10 +63,10 @@ public class KioskTest {
         assertEquals(new Basket(new BasketEntries(bread), LocalDate.now()).stringValue(), kiosk.takeShoppersOrder().stringValue());
         then(mockScreen).should(times(4)).readResponse();
 
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(1)).promptUser(KioskText.PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_SHOPPING);
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
+        then(mockScreen).should(times(1)).promptUser(KioskText.PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(1)).promptUser(KioskText.PROMPT_FOR_DAYS);
     }
 
     @Test
@@ -90,10 +89,10 @@ public class KioskTest {
         assertEquals(new Basket(new BasketEntries(expectedProducts), LocalDate.now()).stringValue(), kiosk.takeShoppersOrder().stringValue());
         then(mockScreen).should(times(9)).readResponse();
 
-        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(3)).promptUser(KioskText.PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
-        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_SHOPPING);
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
+        then(mockScreen).should(times(3)).promptUser(KioskText.PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(1)).promptUser(KioskText.PROMPT_FOR_DAYS);
 
     }
 
@@ -123,11 +122,11 @@ public class KioskTest {
         assertEquals(new Basket(new BasketEntries(expectedProducts), LocalDate.now()).stringValue(), kiosk.takeShoppersOrder().stringValue());
         then(mockScreen).should(times(13)).readResponse();
 
-        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(4)).promptUser(KioskText.PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(2)).promptUser("how many loaves of bread? ");
-        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_SHOPPING);
-        then(mockScreen).should(times(1)).promptUser(PROMPT_FOR_DAYS);
+        then(mockScreen).should(times(4)).promptUser(KioskText.PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(1)).promptUser(KioskText.PROMPT_FOR_DAYS);
 
     }
 
@@ -158,12 +157,12 @@ public class KioskTest {
         assertEquals(new Basket(new BasketEntries(expectedProducts), LocalDate.now()).stringValue(), kiosk.takeShoppersOrder().stringValue());
         then(mockScreen).should(times(12)).readResponse();
 
-        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(4)).promptUser(KioskText.PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(1)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
-        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_SHOPPING);
-        then(mockScreen).should(times(2)).promptUser(PROMPT_FOR_DAYS);
+        then(mockScreen).should(times(3)).promptUser(KioskText.PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(2)).promptUser(KioskText.PROMPT_FOR_DAYS);
 
     }
 
@@ -197,12 +196,12 @@ public class KioskTest {
         assertEquals(new Basket(new BasketEntries(expectedProducts), LocalDate.now()).stringValue(), kiosk.takeShoppersOrder().stringValue());
         then(mockScreen).should(times(15)).readResponse();
 
-        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
+        then(mockScreen).should(times(4)).promptUser(KioskText.PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ");
         then(mockScreen).should(times(2)).promptUser("how many tins of soup? ");
         then(mockScreen).should(times(1)).promptUser("how many loaves of bread? ");
         then(mockScreen).should(times(1)).promptUser("how many singles of apples? ");
-        then(mockScreen).should(times(4)).promptUser(PROMPT_FOR_SHOPPING);
-        then(mockScreen).should(times(3)).promptUser(PROMPT_FOR_DAYS);
+        then(mockScreen).should(times(4)).promptUser(KioskText.PROMPT_FOR_SHOPPING);
+        then(mockScreen).should(times(3)).promptUser(KioskText.PROMPT_FOR_DAYS);
         then(mockScreen).should(times(10)).printLine(any());
 
     }

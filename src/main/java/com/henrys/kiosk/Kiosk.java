@@ -19,12 +19,12 @@ public class Kiosk {
 
     public Basket takeShoppersOrder() {
 
-        screen.printLine(INFO_WELCOME_MESSAGE);
+        screen.printLine(KioskText.INFO_WELCOME_MESSAGE);
         BasketEntries entries = collectBasketEntries();
         LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
         Basket basket = new Basket(entries, purchaseDate);
         Price price = basket.price(new Coupons(CouponFactory.createCurrentPromotion()));
-        screen.printLine(INFO_TOTAL_PRICE + price.value() + INFO_THANK_YOU);
+        screen.printLine(KioskText.INFO_TOTAL_PRICE + price.value() + KioskText.INFO_THANK_YOU);
         return basket;
     }
 
@@ -37,7 +37,7 @@ public class Kiosk {
             if (quantity > 0) {
                 entries.add(new BasketEntry(product, quantity));
             }
-            screen.printLine(INFO_BASKET_STATUS_PREFIX + entries.stringValue());
+            screen.printLine(KioskText.INFO_BASKET_STATUS_PREFIX + entries.stringValue());
             isShopping = promptToContinue(this::continueResponseCondition);
         }
         return entries;
@@ -49,15 +49,15 @@ public class Kiosk {
     }
 
     private int promptForPurchaseDay() {
-        return quantityResponse(promptForInput(this::quantityResponseCondition, PROMPT_FOR_DAYS));
+        return quantityResponse(promptForInput(this::quantityResponseCondition, KioskText.PROMPT_FOR_DAYS));
     }
 
     private StockItem promptForProduct(final Function<String, Boolean> function) {
-        return productResponse(promptForInput(function, PROMPT_FOR_PRODUCT));
+        return productResponse(promptForInput(function, KioskText.PROMPT_FOR_PRODUCT));
     }
 
     private Boolean promptToContinue(final Function<String, Boolean> function) {
-        return continueResponse(promptForInput(function, PROMPT_FOR_SHOPPING));
+        return continueResponse(promptForInput(function, KioskText.PROMPT_FOR_SHOPPING));
     }
 
     private boolean productResponseCondition(String response) {
@@ -69,10 +69,10 @@ public class Kiosk {
     }
 
     private boolean continueResponseCondition(String response) {
-        return !Arrays.asList(RESPONSE_YES, RESPONSE_NO).contains(response.toLowerCase());
+        return !Arrays.asList(KioskText.RESPONSE_YES, KioskText.RESPONSE_NO).contains(response.toLowerCase());
     }
     private boolean continueResponse(String response) {
-        return response.equalsIgnoreCase(RESPONSE_YES);
+        return response.equalsIgnoreCase(KioskText.RESPONSE_YES);
     }
 
     private boolean quantityResponseCondition(String response) {
@@ -88,7 +88,7 @@ public class Kiosk {
         while (function.apply(response)) {
             screen.promptUser(prompt);
             response = screen.readResponse().trim();
-            if (function.apply(response)) screen.printLine(ERROR_PREFIX + response);
+            if (function.apply(response)) screen.printLine(KioskText.ERROR_PREFIX + response);
             else break;
         }
         return response;
@@ -103,17 +103,5 @@ public class Kiosk {
             return false;
         }
     }
-
-    public static final String INFO_WELCOME_MESSAGE = "\n\n\nwelcome to Henry's! let's price up a basket of shopping.\n";
-    public static final String INFO_TOTAL_PRICE = "\ntotal price is: $";
-    public static final String INFO_THANK_YOU = "\nthank you! come again.\n\n\n";
-    public static final String INFO_BASKET_STATUS_PREFIX = "your entries so far: ";
-    public static final String PROMPT_FOR_PRODUCT_PREFIX = "add a product? ";
-    public static final String PROMPT_FOR_PRODUCT = PROMPT_FOR_PRODUCT_PREFIX + StockItem.namesToString() + " ";
-    public static final String PROMPT_FOR_SHOPPING = "add more? (y/n) ";
-    public static final String PROMPT_FOR_DAYS = "bought how many days from now? ";
-    public static final String RESPONSE_YES = "y";
-    public static final String RESPONSE_NO = "n";
-    public static final String ERROR_PREFIX = "! was that a typo?: ";
 
 }
