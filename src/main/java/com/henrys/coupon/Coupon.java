@@ -1,13 +1,11 @@
 package com.henrys.coupon;
 
 import com.henrys.basket.BasketEntries;
-
 import java.time.LocalDate;
 
 public abstract class Coupon {
 
     protected LocalDate validFromDate;
-
     protected LocalDate validToDate;
 
     protected Coupon(LocalDate validFromDate, LocalDate validToDate) {
@@ -23,5 +21,4 @@ public abstract class Coupon {
         }
         return !purchaseDate.isBefore(this.validFromDate) && !purchaseDate.isAfter(this.validToDate);
     }
-
 }

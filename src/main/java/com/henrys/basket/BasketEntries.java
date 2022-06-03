@@ -48,7 +48,6 @@ public class BasketEntries {
     }
 
     private List<BasketEntry> mergeBasketEntries() {
-
         return findDistinctItems().stream()
                 .map(distinctItem -> mergeByStockItem(distinctItem))
                 .collect(Collectors.toList());
