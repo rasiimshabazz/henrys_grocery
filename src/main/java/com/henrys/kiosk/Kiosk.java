@@ -21,8 +21,7 @@ public class Kiosk {
 
         screen.printLine(KioskText.INFO_WELCOME_MESSAGE);
         BasketEntries entries = collectBasketEntries();
-        LocalDate purchaseDate = LocalDate.now().plusDays(promptForPurchaseDay());
-        Basket basket = new Basket(entries, purchaseDate);
+        Basket basket = new Basket(entries, LocalDate.now().plusDays(promptForPurchaseDay()));
         Price price = basket.price(new Coupons(CouponFactory.createCurrentPromotion()));
         screen.printLine(KioskText.INFO_TOTAL_PRICE + price.value() + KioskText.INFO_THANK_YOU);
         return basket;
